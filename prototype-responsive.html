@@ -2339,7 +2339,7 @@ function maxMelding(v, max) {
   var p = document.createElement('p'); p.className = 'rb-mx__max';
   var outlet = !!rij.querySelector('.rb-mx__label') || !!(v.closest('.rb-wk') && v.closest('.rb-wk').querySelector('.rb-wk__afgeprijsd'));   /* outletlabel per kleur, of afgeprijsde regel in de winkelwagen */
   var cm = v.dataset.modus === 'voorraad' && v.closest('.rb-pdp__boven') && v.closest('.rb-pdp__boven').querySelector('.rb-modus[data-modus="voorverkoop"]');
-  p.innerHTML = 'Maat ' + v.dataset.maat + ': maximaal <b>' + max + '</b> leverbaar' + (outlet ? ', outlet wordt niet aangevuld.' : ' (nu op voorraad plus wat onderweg is).') + (cm ? ' Meer nodig? <a href="#" data-modus-wissel="voorverkoop">Bestel de rest via Voorverkoop</a>.' : '');
+  p.innerHTML = 'Maat ' + v.dataset.maat + ': maximaal <b>' + max + '</b> leverbaar ' + (outlet ? '(outlet wordt niet aangevuld)' : '(huidige voorraad + wat onderweg is)') + (cm ? ' &middot; Meer nodig? <a href="#" data-modus-wissel="voorverkoop">Bestel de rest via Voorverkoop</a>' : '');
   var cellen = rij.querySelector('.rb-mx__cellen') || rij.querySelector('.rb-wk__cellen'); (cellen || rij).appendChild(p);
 }
 document.addEventListener('click', function (e) { var w = e.target.closest('[data-modus-wissel]'); if (w) { e.preventDefault(); var knop = w.closest('.rb-pdp__boven').querySelector('.rb-modus[data-modus="' + w.dataset.modusWissel + '"]'); if (knop) knop.click(); w.closest('.rb-mx__max').remove(); } });
