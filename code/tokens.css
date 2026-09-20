@@ -18,12 +18,13 @@
   --robey-color-gold-hover: #9F751D;  /* Hover of gold */
   --robey-color-red: #D90606;  /* Reduced: price and Outlet label; the Outlet nav link */
   --robey-color-green: #46973A;  /* Stock: indicator line, dot, label */
-  --robey-color-green-tint: #E4FDE1;  /* Filled cell from stock; cart label Stock */
+  --robey-color-green-tint: #E4FDE1;  /* Filled cell from stock; cart label Stock; free-shipping label in the cost summary */
+  --robey-color-green-tint-border: #9AD08F;  /* Border of the free-shipping label, so the tint reads as a label and not as a surface */
   --robey-color-orange: #FD7E14;  /* Size sold out, will be backordered: indicator line, dot */
   --robey-color-orange-tint: #FFEDDD;  /* Cell of a size that is sold out, also when empty */
   --robey-color-blue: #1155CC;  /* Preorder: indicator line, dot, counter */
   --robey-color-blue-tint: #E3ECFB;  /* Filled preorder cell; cart label Preorder */
-  --robey-color-notice: #FFF4C2;  /* Notice that is not a status: free-shipping threshold, per-size maximum, preorder minimum (light yellow, deliberately outside the status colours) */
+  --robey-color-notice: #FFF4C2;  /* Notice that asks for a correction: the per-size maximum and the preorder minimum (light yellow, deliberately outside the status colours) */
   --robey-color-notice-border: #F0DC8C;  /* Border of a notice */
 
   /* Radius */
