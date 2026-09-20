@@ -217,11 +217,12 @@ img { display:block; max-width:100%; }
 .rb-kruimel__sep { opacity:.5; }
 .rb-kruimel__hier { color:var(--robey-color-black); }
 
-/* ============================================================ zwarte balk: 34px tot 900, daarboven 36.
-   Scrollt gewoon mee; alleen de witte balk is sticky, op elke breedte. */
+/* ============================================================ zwarte balk: overal 36px hoog.
+   Scrollt gewoon mee; alleen de witte balk is sticky, op elke breedte. Onder 900 alleen de leverzin,
+   gecentreerd; daarboven staat die links en komen de vier links erbij. */
 .rb-topbar { background:var(--robey-color-black); color:var(--robey-color-white); font-size:var(--robey-text-12); }
 .rb-topbar__rechts i { width:1px; height:16px; background:rgba(255,255,255,.15); flex-shrink:0; }
-.rb-topbar__in { height:34px; display:flex; align-items:center; justify-content:center; padding:0 16px; }
+.rb-topbar__in { height:36px; display:flex; align-items:center; justify-content:center; padding:0 16px; }
 .rb-topbar__links { display:inline-flex; align-items:center; gap:6px; opacity:.85; }
 .rb-topbar__links > svg { display:none; }
 .rb-topbar__links b { font-weight:700; }
@@ -1073,7 +1074,7 @@ body.rb-lb-open { overflow:hidden; }
   /* de kop van het desktopontwerp: navlinks in de balk, geen hamburger, en de links in de zwarte balk erbij.
      Alleen het zoekveld blijft tot 1200 op een eigen rij eronder: in de balk past het pas vanaf 1166 px. */
   .rb-topbar { font-size:var(--robey-text-13); }
-  .rb-topbar__in { height:36px; padding:0 32px; justify-content:space-between; gap:24px; }
+  .rb-topbar__in { padding:0 32px; justify-content:space-between; gap:24px; }
   .rb-topbar__links > svg { display:block; }
   .rb-topbar__links b { font-weight:600; }
   .rb-topbar__rechts { display:inline-flex; }
