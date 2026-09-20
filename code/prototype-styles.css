@@ -885,7 +885,7 @@ body.rb-lb-open { overflow:hidden; }
   .rb-wk__bedrag { font-size:var(--robey-text-18); line-height:1.2; }
   .rb-wk__body { background:var(--robey-color-gray-1); padding:10px 14px 4px; }
   .rb-wk__menu { margin:0 0 0 6px; }
-  .rb-wk__rij, .rb-wk__rij:first-child { display:grid; grid-template-columns:92px minmax(0,1fr) 112px; gap:8px; align-items:start; margin:0 0 10px; padding:12px 6px; border:1px solid var(--robey-color-gray-2); border-radius:var(--robey-radius-cell); }  /* 96 + 4 x 105 + 112 past precies op 768 */
+  .rb-wk__rij { display:grid; grid-template-columns:92px minmax(0,1fr) 112px; gap:8px; align-items:start; margin:0 0 10px; padding:12px 6px; border:1px solid var(--robey-color-gray-2); border-radius:var(--robey-radius-cell); }  /* 96 + 4 x 105 + 112 past precies op 768 */
   .rb-wk.is-alles .rb-wk__rij.is-leeg { display:grid; }
   .rb-wk__links { display:block; padding:0; cursor:default; }
   .rb-wk__foto { width:64px; height:80px; margin-bottom:8px; }
@@ -1118,7 +1118,7 @@ body.rb-lb-open { overflow:hidden; }
   .rb-acc__uitrij { border-top:1px solid var(--robey-color-gray-2); padding:13px 20px 15px; }
   .rb-acc__uit { font-size:var(--robey-text-14); font-weight:600; display:flex; align-items:center; gap:9px; }
   .rb-wrap { padding-left:32px; padding-right:32px; }
-  .rb-wk__rij, .rb-wk__rij:first-child { grid-template-columns:100px minmax(0,1fr) 130px; gap:14px; padding:14px 20px; }
+  .rb-wk__rij { grid-template-columns:100px minmax(0,1fr) 130px; gap:14px; padding:14px 20px; }
   .rb-wk__body { padding:12px 20px 4px; }
   .rb-wk__kop { padding:18px 20px 8px; }
   .rb-wk__artikel { font-size:var(--robey-text-18); }
