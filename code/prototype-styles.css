@@ -189,8 +189,8 @@
    Mobile-first. Elke waarde hieronder komt uit het vaste artboard van dat formaat:
    <768 uit Mobiel*, 768 uit Tablet*768, 900 uit Tablet* (liggend), 1200 uit de desktop-artboards. */
 * { box-sizing:border-box; }
-html { -webkit-text-size-adjust:100%; background:var(--robey-color-black); }   /* de achtergrond van het DOCUMENT, niet van de pagina: iOS Safari kleurt het statusgebied bovenin hiermee, en de rubberband onderaan sluit aan op de zwarte voet. Zolang html een eigen achtergrond heeft, gaat die van body niet meer naar het canvas (20 september) */
-body { margin:0; min-height:100vh; font-family:var(--robey-font-text); font-size:var(--robey-text-15); line-height:1.6; color:var(--robey-color-black); background:var(--robey-color-white); -webkit-font-smoothing:antialiased; }   /* min-height zodat het wit ook op een korte pagina tot onderaan doorloopt en het zwart van html alleen bij de randen te zien is */
+html { -webkit-text-size-adjust:100%; }
+body { margin:0; font-family:var(--robey-font-text); font-size:var(--robey-text-15); line-height:1.6; color:var(--robey-color-black); background:var(--robey-color-white); -webkit-font-smoothing:antialiased; }
 a { color:inherit; text-decoration:none; }
 a:hover { color:var(--robey-color-gold); }
 .rb-nav__link:hover, .rb-topbar a:hover, .rb-pil:hover, .rb-banner__knop:hover, .rb-col:hover, .rb-pblok:hover, .rb-tegel:hover, .rb-dl:hover, .rb-menu a:hover, .rb-cat:hover, .rb-voet__knop:hover, .robey-button:hover, .rb-mc__order:hover, .rb-pag:hover, .rb-toonmeer:hover { color:inherit; }
@@ -222,13 +222,10 @@ img { display:block; max-width:100%; }
 .rb-kruimel__hier { color:var(--robey-color-black); }
 
 /* ============================================================ zwarte balk: 34px tot 1200, 37 daarboven.
-   Zit sinds 20 september IN de header. Onder 768 plakt hij mee met de slimme balk; vanaf 768 wordt hij met een
-   negatieve sticky-top uit beeld gepind, zodat alleen de witte balk blijft staan - precies zoals het eerder was.
-   LET OP: er stond hier '36 op tablet', maar die regel stond in het 1200-blok en werd daar meteen door 37 overschreven;
-   de zwarte balk is dus altijd 34 geweest tot 1200. Dat is zo gelaten, niet stilletjes veranderd (20 september). */
+   Scrollt gewoon mee; alleen de witte balk is sticky, op elke breedte. */
 .rb-topbar { background:var(--robey-color-black); color:var(--robey-color-white); font-size:var(--robey-text-12); }
 .rb-topbar__rechts i { width:1px; height:16px; background:rgba(255,255,255,.15); flex-shrink:0; }
-.rb-topbar__in { height:var(--rb-topbar-h); display:flex; align-items:center; justify-content:center; padding:0 16px; }
+.rb-topbar__in { height:34px; display:flex; align-items:center; justify-content:center; padding:0 16px; }
 .rb-topbar__links { display:inline-flex; align-items:center; gap:6px; opacity:.85; }
 .rb-topbar__links > svg { display:none; }
 .rb-topbar__links b { font-weight:700; }
@@ -242,7 +239,7 @@ img { display:block; max-width:100%; }
    <900: compacte balk met hamburger en een eigen zoekrij (76px mobiel, 72px tablet)
    900-1199: compacte balk met navlinks en het zoekveld in de balk
    1200+: volle balk van 86px, inhoud in de wrap van 1320, hoverpanelen */
-.rb-header { --rb-topbar-h:34px; background:var(--robey-color-white); position:sticky; top:0; z-index:var(--robey-layer-bar); transition:transform .22s ease, box-shadow .22s ease; }   /* de zwarte balk zit IN de header: onder 768 plakt hij mee (top:0), daarboven wordt hij met een negatieve top uit beeld gepind (20 september) */
+.rb-header { background:var(--robey-color-white); position:sticky; top:0; z-index:var(--robey-layer-bar); transition:transform .22s ease, box-shadow .22s ease; }
 body.rb-kop-weg .rb-header { transform:translateY(-100%); }
 body.rb-gescrold:not(.rb-kop-weg) .rb-header { box-shadow:0 2px 6px rgba(18,18,18,.1); }   /* geen schaduw als de balk weggeschoven is: die bleef anders bovenaan staan */
 .rb-header__zoekrij { position:relative; z-index:2; }
@@ -1021,7 +1018,6 @@ body.rb-lb-open { overflow:hidden; }
   .robey-cell--compact .robey-cell__head { font-size:var(--robey-text-12); padding:4px 5px; }
   .robey-cell--compact .robey-cell__stock { font-size:10px; padding:0 5px 4px; min-height:24px; }
   .robey-cell--compact .robey-cell__input { height:44px; }
-  .rb-header { top:calc(-1 * var(--rb-topbar-h)); }   /* vanaf tablet scrollt de zwarte balk weg en plakt alleen de witte, zoals op de artboards; onder 768 plakken ze samen */
   .rb-topbar__in, .rb-header__rij { padding:0 24px; }
   .rb-header__zoekrij { padding:0 24px 10px; }
   .rb-filters { padding-left:32px; padding-right:32px; }
@@ -1303,8 +1299,7 @@ body.rb-lb-open { overflow:hidden; }
   .rb-paginering > span:first-child { display:block; }
   .rb-wrap { padding:0 var(--robey-size-wrap-gutter); }
   .rb-topbar { font-size:var(--robey-text-13); }
-  .rb-header { --rb-topbar-h:37px; }
-  .rb-topbar__in { max-width:var(--robey-size-wrap); margin:0 auto; padding:0 40px; justify-content:space-between; gap:24px; }
+  .rb-topbar__in { height:37px; max-width:var(--robey-size-wrap); margin:0 auto; padding:0 40px; justify-content:space-between; gap:24px; }
   .rb-topbar__rechts { display:inline-flex; }
   .rb-topbar__links b { font-weight:600; }
   .rb-header__rij { height:var(--robey-size-bar); max-width:var(--robey-size-wrap); margin:0 auto; padding:0 40px; gap:56px; }
