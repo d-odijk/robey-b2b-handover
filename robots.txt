@@ -1,0 +1,4 @@
+# De link is openbaar voor wie hem heeft, maar hoort niet in zoekmachines:
+# het prototype toont voorraadaantallen en dealerprijzen.
+User-agent: *
+Disallow: /
