@@ -1069,6 +1069,53 @@ body.rb-lb-open { overflow:hidden; }
 
 /* ============================================================ 900: tablet liggend ============================================================ */
 @media (min-width: 900px) {
+  /* de kop van het desktopontwerp: navlinks in de balk, geen hamburger, en de links in de zwarte balk erbij.
+     Alleen het zoekveld blijft tot 1200 op een eigen rij eronder: in de balk past het pas vanaf 1166 px. */
+  .rb-topbar { font-size:var(--robey-text-13); }
+  .rb-topbar__in { height:36px; padding:0 32px; justify-content:space-between; gap:24px; }
+  .rb-topbar__links > svg { display:block; }
+  .rb-topbar__links b { font-weight:600; }
+  .rb-topbar__rechts { display:inline-flex; }
+  .rb-header__rij { height:var(--robey-size-bar); padding:0 32px; gap:56px; }
+  .rb-header__zoekrij { padding:0 32px 10px; }
+  .rb-logo { flex:0 0 auto; }
+  .rb-logo img { height:50px; }
+  .rb-nav { display:flex; margin-left:0; gap:34px; }
+  .rb-nav__link { padding:0 2px; }
+  .rb-hamburger { display:none; }
+  .rb-menu { display:none !important; }
+  .rb-header__acties { gap:10px; }
+  .rb-pil { height:var(--robey-size-button); padding:0 18px; gap:9px; font-size:var(--robey-text-14); }
+  .rb-pil--goud { padding:0 18px; margin:0; }
+  .rb-pil svg:first-child { width:21px; height:21px; }
+  .rb-pil--goud svg:first-child { width:22px; height:22px; }
+  .rb-pil__kort { display:none; }
+  .rb-pil__lang, .rb-pil__pijl, .rb-pil__haak { display:inline; }
+  .rb-pil__pijl { display:inline-block; }
+  /* dezelfde panelen als op desktop: megamenu, account en minicart hangen onder de balk */
+  .rb-paneel { position:absolute; top:100%; left:0; right:0; display:none; pointer-events:none; }
+  .rb-paneel > * { pointer-events:auto; }
+  .rb-header.is-mega .rb-mega, .rb-header.is-acc .rb-acc, .rb-header.is-mc .rb-mc { display:block; pointer-events:auto; }
+  .rb-mega { background:var(--robey-color-white); border-bottom:1px solid var(--robey-color-gray-2); box-shadow:var(--robey-shadow-mega); }
+  .rb-mega__in { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:32px; max-width:var(--robey-size-wrap); margin:0 auto; padding:34px 40px 38px; }
+  .rb-mega__kop { font-size:var(--robey-text-14); font-weight:700; margin:0 0 10px; }
+  .rb-mega__link { display:block; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); line-height:2.1; }
+  .rb-mega__link:hover { color:var(--robey-color-gold); }
+  .rb-paneel__in { max-width:var(--robey-size-wrap); margin:0 auto; padding:0 32px; }
+  .rb-acc__kaart, .rb-mc__kaart { background:var(--robey-color-white); border-radius:0 0 var(--robey-radius-large) var(--robey-radius-large); box-shadow:var(--robey-shadow-panel); clip-path:inset(0 -40px -40px -40px); position:relative; }
+  .rb-acc__kaart { width:300px; }
+  .rb-mc__kaart { width:360px; }
+  .rb-acc__blok { padding:18px 20px 4px; }
+  .rb-acc__blok--lijn { padding:10px 20px 14px; border-top:1px solid var(--robey-color-gray-2); margin-top:10px; }
+  .rb-acc__naam { font-size:var(--robey-text-16); font-weight:700; line-height:1.3; margin-bottom:10px; }
+  .rb-acc__link { font-size:var(--robey-text-14); color:var(--robey-color-gray-6); line-height:29px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .rb-acc__link:hover { color:var(--robey-color-gold); }
+  .rb-acc__voet { background:var(--robey-color-gray-1); padding:12px 20px 13px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .rb-acc__winkel { font-size:var(--robey-text-14); font-weight:700; line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .rb-acc__nr { font-size:var(--robey-text-12); color:var(--robey-color-gray-6); line-height:1.4; margin-top:1px; }
+  .rb-acc__wissel { font-size:var(--robey-text-13); font-weight:600; text-decoration:underline; text-underline-offset:2px; white-space:nowrap; }
+  .rb-acc__uitrij { border-top:1px solid var(--robey-color-gray-2); padding:13px 20px 15px; }
+  .rb-acc__uit { font-size:var(--robey-text-14); font-weight:600; display:flex; align-items:center; gap:9px; }
   .rb-wrap { padding-left:32px; padding-right:32px; }
   .rb-wk__rij, .rb-wk__rij:first-child { grid-template-columns:100px minmax(0,1fr) 130px; gap:14px; padding:14px 20px; }
   .rb-wk__body { padding:12px 20px 4px; }
@@ -1079,7 +1126,6 @@ body.rb-lb-open { overflow:hidden; }
   .rb-ko__links { flex:0 1 auto; }  /* natuurlijke breedte: label en bedrag blijven bij elkaar (18 september) */
   .rb-ko__item { gap:28px; }
   .rb-ko__eind { flex:0 0 250px; margin-left:auto; }
-  .rb-topbar__in, .rb-header__rij { padding-left:32px; padding-right:32px; }
   .rb-sl--col .rb-col { width:229px; }
   .rb-zoekveld { max-width:520px; }
   .rb-zoekveld input, .rb-zoekveld .robey-button { height:44px; }
@@ -1118,14 +1164,9 @@ body.rb-lb-open { overflow:hidden; }
 
 /* ============================================================ 1200: desktop ============================================================ */
 @media (min-width: 1200px) {
-  /* vanaf hier de balk met navlinks en het zoekveld erin, en de catalogus met filterkolom */
-  .rb-topbar__links > svg { display:block; }
-  .rb-logo { flex:0 0 auto; }
-  .rb-nav { display:flex; }
-  .rb-hamburger { display:none; }
+  /* vanaf hier het zoekveld in de balk en de catalogus met filterkolom; de rest van de kop geldt al vanaf 900 */
   .rb-header__zoek { display:flex; flex:1; min-width:0; }
   .rb-header__zoekrij { display:none; }
-  .rb-menu { display:none !important; }
   .rb-tb--filters, .rb-fchips { display:none; }
   .rb-plp { display:grid; grid-template-columns:220px minmax(0,1fr); gap:32px; align-items:start; }
   .rb-filters { position:static; display:block; padding:0; overflow:visible; z-index:auto; }
@@ -1198,55 +1239,19 @@ body.rb-lb-open { overflow:hidden; }
   /* paginering: telling gecentreerd boven de knoppen, zoals PLPD */
   .rb-paginering > span:first-child { display:block; }
   .rb-wrap { padding:0 var(--robey-size-wrap-gutter); }
-  .rb-topbar { font-size:var(--robey-text-13); }
-  .rb-topbar__in { height:37px; max-width:var(--robey-size-wrap); margin:0 auto; padding:0 40px; justify-content:space-between; gap:24px; }
-  .rb-topbar__rechts { display:inline-flex; }
-  .rb-topbar__links b { font-weight:600; }
-  .rb-header__rij { height:var(--robey-size-bar); max-width:var(--robey-size-wrap); margin:0 auto; padding:0 40px; gap:56px; }
-  .rb-logo img { height:50px; }
-  .rb-nav { margin-left:0; gap:34px; }
-  .rb-nav__link { padding:0 2px; }
+  .rb-topbar__in { height:37px; max-width:var(--robey-size-wrap); margin:0 auto; padding:0 40px; }
+  .rb-header__rij { max-width:var(--robey-size-wrap); margin:0 auto; padding:0 40px; }
   .rb-header__zoek { justify-content:stretch; margin-left:0; }
-  .rb-header__acties { gap:10px; }
   .rb-zoek { max-width:none; height:var(--robey-size-button); padding:0 20px 0 28px; gap:14px; }
   .rb-zoek__veld { font-size:var(--robey-text-15); margin-top:-1px; }
   .rb-zoek__veld::placeholder { color:var(--robey-color-gray-6); }
-  .rb-pil { height:var(--robey-size-button); padding:0 18px; gap:9px; font-size:var(--robey-text-14); }
-  .rb-pil--goud { padding:0 18px; margin:0; }
-  .rb-pil svg:first-child { width:21px; height:21px; }
-  .rb-pil--goud svg:first-child { width:22px; height:22px; }
-  .rb-pil__kort { display:none; }
-  .rb-pil__lang, .rb-pil__pijl, .rb-pil__haak { display:inline; }
-  .rb-pil__pijl { display:inline-block; }
   /* hoverpanelen, zoals in het desktopontwerp: mega op Catalogus, account op de accountknop, minicart op goud */
   body:not(.rb-kop-weg) .rb-header { box-shadow:var(--robey-shadow-bar); }   /* op desktop staat de schaduw er altijd, behalve als de balk weggeschoven is */
-  .rb-paneel { position:absolute; top:100%; left:0; right:0; display:none; pointer-events:none; }
-  .rb-paneel > * { pointer-events:auto; }
+  .rb-paneel__in { padding:0 40px; }
   .rb-zoekhouder { position:relative; flex:1; min-width:0; }
   .rb-zoekpaneel { position:absolute; top:calc(100% + 19px); left:0; right:0; display:none; background:var(--robey-color-white); border-radius:0 0 var(--robey-radius-large) var(--robey-radius-large); box-shadow:var(--robey-shadow-panel); clip-path:inset(0 -40px -40px -40px); z-index:var(--robey-layer-search-panel); }
   .rb-zoekhouder.is-open .rb-zoekpaneel { display:block; }
   .rb-zoekhouder.is-open .rb-zoek { background:var(--robey-color-white); box-shadow:0 0 0 2px var(--robey-color-black) inset; }
-  .rb-header.is-mega .rb-mega, .rb-header.is-acc .rb-acc, .rb-header.is-mc .rb-mc { display:block; pointer-events:auto; }
-  .rb-mega { background:var(--robey-color-white); border-bottom:1px solid var(--robey-color-gray-2); box-shadow:var(--robey-shadow-mega); }
-  .rb-mega__in { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:32px; max-width:var(--robey-size-wrap); margin:0 auto; padding:34px 40px 38px; }
-  .rb-mega__kop { font-size:var(--robey-text-14); font-weight:700; margin:0 0 10px; }
-  .rb-mega__link { display:block; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); line-height:2.1; }
-  .rb-mega__link:hover { color:var(--robey-color-gold); }
-  .rb-paneel__in { max-width:var(--robey-size-wrap); margin:0 auto; padding:0 40px; }
-  .rb-acc__kaart, .rb-mc__kaart { background:var(--robey-color-white); border-radius:0 0 var(--robey-radius-large) var(--robey-radius-large); box-shadow:var(--robey-shadow-panel); clip-path:inset(0 -40px -40px -40px); position:relative; }
-  .rb-acc__kaart { width:300px; }
-  .rb-mc__kaart { width:360px; }
-  .rb-acc__blok { padding:18px 20px 4px; }
-  .rb-acc__blok--lijn { padding:10px 20px 14px; border-top:1px solid var(--robey-color-gray-2); margin-top:10px; }
-  .rb-acc__naam { font-size:var(--robey-text-16); font-weight:700; line-height:1.3; margin-bottom:10px; }
-  .rb-acc__link { font-size:var(--robey-text-14); color:var(--robey-color-gray-6); line-height:29px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
-  .rb-acc__link:hover { color:var(--robey-color-gold); }
-  .rb-acc__voet { background:var(--robey-color-gray-1); padding:12px 20px 13px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
-  .rb-acc__winkel { font-size:var(--robey-text-14); font-weight:700; line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .rb-acc__nr { font-size:var(--robey-text-12); color:var(--robey-color-gray-6); line-height:1.4; margin-top:1px; }
-  .rb-acc__wissel { font-size:var(--robey-text-13); font-weight:600; text-decoration:underline; text-underline-offset:2px; white-space:nowrap; }
-  .rb-acc__uitrij { border-top:1px solid var(--robey-color-gray-2); padding:13px 20px 15px; }
-  .rb-acc__uit { font-size:var(--robey-text-14); font-weight:600; display:flex; align-items:center; gap:9px; }
   /* homepage */
   .rb-bannerwrap { padding-top:32px; }
   .rb-banner { aspect-ratio:1240/300; }
@@ -2179,6 +2184,19 @@ function paneelDichtStraks() { clearTimeout(paneelTimer); paneelTimer = setTimeo
   paneel.addEventListener('mouseenter', function () { clearTimeout(paneelTimer); });
   paneel.addEventListener('mouseleave', paneelDichtStraks);
 });
+/* tussen 900 en 1200 staan de navlinks en de accountknop wel in de balk maar is er geen hover: daar opent een tik het paneel */
+document.addEventListener('click', function (e) {
+  var w = window.innerWidth;
+  if (w < 900 || w >= 1200) return;
+  var cat = e.target.closest('.rb-nav__link--cat'), acc = e.target.closest('.rb-pil--account');
+  if (cat || acc) {
+    e.preventDefault(); e.stopImmediatePropagation(); clearTimeout(paneelTimer);
+    var k = cat ? 'is-mega' : 'is-acc';
+    paneelOpen(header.classList.contains(k) ? '' : k);
+  } else if (!e.target.closest('.rb-mega') && !e.target.closest('.rb-acc')) {
+    header.classList.remove('is-mega', 'is-acc');
+  }
+}, true);
 document.addEventListener('click', function (e) {
   if (e.target.closest('.rb-pil--goud')) { e.preventDefault(); e.stopImmediatePropagation(); clearTimeout(paneelTimer); header.classList.toggle('is-mc'); header.classList.remove('is-mega', 'is-acc'); return; }
   if (!e.target.closest('.rb-mc')) header.classList.remove('is-mc');
