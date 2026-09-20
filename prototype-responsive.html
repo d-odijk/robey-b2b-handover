@@ -1450,7 +1450,8 @@ body.rb-lb-open { overflow:hidden; }
   .rb-ko { margin-top:30px; bottom:24px; padding:16px 24px; align-items:center; justify-content:space-between; gap:8px 32px; }  /* de zes onderdelen evenredig verdeeld (18 september) */
   .rb-ko__links, .rb-ko__eind { display:contents; }
   .rb-ko__kop { width:auto; font-size:var(--robey-text-16); margin:0 6px 0 0; }
-  .rb-ko__kol { flex:none; min-height:44px; }  /* altijd twee regels hoog: Verzendkosten blijft bovenaan staan, ook zonder leverregel */
+  .rb-ko__kol { flex:none; min-height:44px; align-self:flex-start; }  /* altijd twee regels hoog: Verzendkosten blijft bovenaan staan, ook zonder leverregel; bovenaan uitgelijnd zodat Verzendkosten op dezelfde regel staat als Subtotaal, nu de bedragenkolom drie regels heeft */
+  .rb-ko:not(.rb-ko--order) .rb-ko__kol--bedragen { min-height:66px; }   /* Subtotaal, Aanvullende korting, Na korting; het orderdetail heeft die derde regel niet en blijft 80 px */
   .rb-ko__item { justify-content:flex-start; gap:14px; line-height:1.55; }
   .rb-ko__kol .rb-ko__lbl { white-space:nowrap; }
   .rb-ko__kol .rb-ko__val { margin-left:auto; }
@@ -1803,7 +1804,8 @@ body.rb-lb-open { overflow:hidden; }
       <div class="rb-ko__kop">Kostenoverzicht</div>
       <div class="rb-ko__links">
       <div class="rb-ko__kol rb-ko__kol--bedragen"><div class="rb-ko__item"><span class="rb-ko__lbl">Subtotaal:</span><span class="rb-ko__val rb-ko__subtotaal">&euro; 0,00</span></div>
-      <div class="rb-ko__item"><span class="rb-ko__lbl">Aanvullende korting 30%:</span><span class="rb-ko__val rb-ko__korting">&minus; &euro; 0,00</span></div></div>
+      <div class="rb-ko__item"><span class="rb-ko__lbl">Aanvullende korting 30%:</span><span class="rb-ko__val rb-ko__korting">&minus; &euro; 0,00</span></div>
+      <div class="rb-ko__item rb-ko__item--na"><span class="rb-ko__lbl">Na korting:</span><span class="rb-ko__val rb-ko__netto">&euro; 0,00</span></div></div>
       <div class="rb-ko__kol rb-ko__kol--verzend"><div class="rb-ko__item"><span class="rb-ko__lbl">Verzendkosten:</span><span class="rb-ko__val rb-ko__verzend">Gratis</span></div>
       <div class="rb-ko__lever" hidden><span class="rb-ko__levertekst">Nog <b>&euro; 0,00</b> tot gratis levering</span></div>
       </div>
@@ -1825,7 +1827,8 @@ body.rb-lb-open { overflow:hidden; }
       <div class="rb-ko__kop">Kostenoverzicht</div>
       <div class="rb-ko__links">
       <div class="rb-ko__kol rb-ko__kol--bedragen"><div class="rb-ko__item"><span class="rb-ko__lbl">Subtotaal:</span><span class="rb-ko__val rb-ko__subtotaal">&euro; 0,00</span></div>
-      <div class="rb-ko__item"><span class="rb-ko__lbl">Aanvullende korting 30%:</span><span class="rb-ko__val rb-ko__korting">&minus; &euro; 0,00</span></div></div>
+      <div class="rb-ko__item"><span class="rb-ko__lbl">Aanvullende korting 30%:</span><span class="rb-ko__val rb-ko__korting">&minus; &euro; 0,00</span></div>
+      <div class="rb-ko__item rb-ko__item--na"><span class="rb-ko__lbl">Na korting:</span><span class="rb-ko__val rb-ko__netto">&euro; 0,00</span></div></div>
       <div class="rb-ko__kol rb-ko__kol--verzend"><div class="rb-ko__item"><span class="rb-ko__lbl">Verzendkosten:</span><span class="rb-ko__val rb-ko__verzend">Gratis</span></div>
       <div class="rb-ko__lever" hidden><span class="rb-ko__levertekst">Nog <b>&euro; 0,00</b> tot gratis levering</span></div>
       </div>
@@ -2058,8 +2061,8 @@ function herbereken() {
     var t = tot[m], korting = t.b * 0.30, netto = t.b - korting, verzend = t.n === 0 || netto >= 150 ? 0 : 5, w = document.querySelector('.rb-wagen[data-modus="' + m + '"]'), ko = w.querySelector('.rb-ko');
     ko.querySelector('.rb-ko__stuks').textContent = t.n;
     ko.querySelector('.rb-ko__verzend').innerHTML = verzend ? geld(verzend) : 'Gratis';
-    var lever = ko.querySelector('.rb-ko__lever'); lever.hidden = t.n === 0 || netto >= 150; lever.querySelector('.rb-ko__levertekst').innerHTML = 'Nog <b>' + geld(150 - netto) + '</b> tot gratis levering';
-    ko.querySelector('.rb-ko__subtotaal').innerHTML = geld(t.b); ko.querySelector('.rb-ko__korting').innerHTML = '− ' + geld(korting); ko.querySelector('.rb-ko__totaal').innerHTML = geld(netto + verzend);
+    var lever = ko.querySelector('.rb-ko__lever'); lever.hidden = t.n === 0 || netto >= 150; lever.querySelector('.rb-ko__levertekst').innerHTML = 'Nog <b>' + geld(150 - netto) + '</b> tot gratis levering';   /* het bedrag waarop de drempel telt staat erbij: het totaal op de kaart bevat de verzendkosten en sluit er dus niet op aan (Dennis, 20 september) */
+    ko.querySelector('.rb-ko__subtotaal').innerHTML = geld(t.b); ko.querySelector('.rb-ko__korting').innerHTML = '− ' + geld(korting); ko.querySelector('.rb-ko__netto').innerHTML = geld(netto); ko.querySelector('.rb-ko__totaal').innerHTML = geld(netto + verzend);
     w.querySelector('.rb-wagen__wissel').hidden = !beide;
     w.querySelector('.rb-cart__tools').style.visibility = t.n ? '' : 'hidden';
     w.querySelector('.rb-cart__legen--kop').hidden = !t.n;

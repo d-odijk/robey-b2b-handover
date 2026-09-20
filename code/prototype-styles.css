@@ -1451,7 +1451,8 @@ body.rb-lb-open { overflow:hidden; }
   .rb-ko { margin-top:30px; bottom:24px; padding:16px 24px; align-items:center; justify-content:space-between; gap:8px 32px; }  /* de zes onderdelen evenredig verdeeld (18 september) */
   .rb-ko__links, .rb-ko__eind { display:contents; }
   .rb-ko__kop { width:auto; font-size:var(--robey-text-16); margin:0 6px 0 0; }
-  .rb-ko__kol { flex:none; min-height:44px; }  /* altijd twee regels hoog: Verzendkosten blijft bovenaan staan, ook zonder leverregel */
+  .rb-ko__kol { flex:none; min-height:44px; align-self:flex-start; }  /* altijd twee regels hoog: Verzendkosten blijft bovenaan staan, ook zonder leverregel; bovenaan uitgelijnd zodat Verzendkosten op dezelfde regel staat als Subtotaal, nu de bedragenkolom drie regels heeft */
+  .rb-ko:not(.rb-ko--order) .rb-ko__kol--bedragen { min-height:66px; }   /* Subtotaal, Aanvullende korting, Na korting; het orderdetail heeft die derde regel niet en blijft 80 px */
   .rb-ko__item { justify-content:flex-start; gap:14px; line-height:1.55; }
   .rb-ko__kol .rb-ko__lbl { white-space:nowrap; }
   .rb-ko__kol .rb-ko__val { margin-left:auto; }
