@@ -217,7 +217,7 @@ img { display:block; max-width:100%; }
 .rb-kruimel__sep { opacity:.5; }
 .rb-kruimel__hier { color:var(--robey-color-black); }
 
-/* ============================================================ zwarte balk: 34px tot 1200, 37 daarboven.
+/* ============================================================ zwarte balk: 34px tot 900, daarboven 36.
    Scrollt gewoon mee; alleen de witte balk is sticky, op elke breedte. */
 .rb-topbar { background:var(--robey-color-black); color:var(--robey-color-white); font-size:var(--robey-text-12); }
 .rb-topbar__rechts i { width:1px; height:16px; background:rgba(255,255,255,.15); flex-shrink:0; }
@@ -1239,7 +1239,7 @@ body.rb-lb-open { overflow:hidden; }
   /* paginering: telling gecentreerd boven de knoppen, zoals PLPD */
   .rb-paginering > span:first-child { display:block; }
   .rb-wrap { padding:0 var(--robey-size-wrap-gutter); }
-  .rb-topbar__in { height:37px; max-width:var(--robey-size-wrap); margin:0 auto; padding:0 40px; }
+  .rb-topbar__in { max-width:var(--robey-size-wrap); margin:0 auto; padding:0 40px; }   /* de hoogte van 36 uit het 900-blok blijft staan */
   .rb-header__rij { max-width:var(--robey-size-wrap); margin:0 auto; padding:0 40px; }
   .rb-header__zoek { justify-content:stretch; margin-left:0; }
   .rb-zoek { max-width:none; height:var(--robey-size-button); padding:0 20px 0 28px; gap:14px; }
