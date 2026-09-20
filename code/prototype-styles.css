@@ -374,7 +374,7 @@ body.rb-gescrold .rb-header { box-shadow:0 2px 6px rgba(18,18,18,.1); }
 .rb-sl--klein .rb-tegel__prijs .robey-price { font-size:var(--robey-text-13); }
 .rb-tegel .robey-label { left:8px; bottom:8px; font-size:10px; padding:3px 7px; }
 /* kleurstalen op de tegel (19 september): één regel met zoveel stalen als passen (maximaal negen) en een +N-knop die de rest uitklapt; klik op een staal wisselt de foto */
-.rb-tegel__stalen { display:flex; gap:6px; flex-wrap:wrap; align-items:center; margin-top:8px; min-height:24px; }   /* telefoon: 24 px, maximaal twee regels (aantikbaar) */
+.rb-tegel__stalen { display:flex; gap:6px; flex-wrap:wrap; align-items:center; margin:8px -3px 0; padding:3px; min-height:24px; }   /* 3 px rondom voor de ring om de actieve staal */   /* telefoon: 24 px, maximaal twee regels (aantikbaar) */
 .rb-staal { width:24px; height:24px; border-radius:var(--robey-radius-round); border:1px solid rgba(18,18,18,.2); display:block; box-sizing:border-box; cursor:pointer; flex-shrink:0; }
 .rb-staal[hidden] { display:none; }
 .rb-staal.is-aan { outline:1px solid var(--robey-color-black); outline-offset:2px; }
@@ -788,6 +788,8 @@ body.rb-lb-open { overflow:hidden; }
 .rb-order__knoppen { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
 .rb-order__knoppen .rb-tb { flex:1; justify-content:center; }
 .rb-order__knoppen .rb-tb--opnieuw { flex:1 0 100%; height:44px; border-color:var(--robey-color-black); font-weight:600; }
+.rb-tb--rood { color:var(--robey-color-red); }
+.rb-otab__type .robey-cart-label { height:24px; font-size:var(--robey-text-12); }
 .rb-ometa { margin:22px 0 0; padding:14px 16px 4px; background:var(--robey-color-gray-1); border-radius:var(--robey-radius-large); }
 .rb-ometa div { margin-bottom:12px; }
 .rb-ometa dt { font-size:var(--robey-text-11); font-weight:700; letter-spacing:var(--robey-label-tracking); text-transform:uppercase; color:var(--robey-color-gray-6); margin:0 0 2px; }
@@ -889,7 +891,7 @@ body.rb-lb-open { overflow:hidden; }
 .rb-dl__nieuw { display:inline-block; margin-left:8px; background:var(--robey-color-black); color:var(--robey-color-white); font-size:10px; font-weight:700; line-height:1.4; padding:2px 7px; border-radius:var(--robey-radius-small); vertical-align:2px; }
 
 @media (min-width: 768px) {
-  .rb-tegel__stalen { gap:6px; flex-wrap:nowrap; margin-top:10px; min-height:20px; }
+  .rb-tegel__stalen { gap:6px; flex-wrap:nowrap; margin:10px -3px 0; min-height:20px; }
   .rb-tegel__stalen.is-alles { flex-wrap:wrap; }
   .rb-staal { width:18px; height:18px; }
   .rb-staal-meer { height:18px; min-width:18px; padding:0 5px; line-height:16px; }
