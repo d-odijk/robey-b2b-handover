@@ -25,9 +25,6 @@
 /* preorder - produced to order, so no stock figure */
 .robey-cell--preorder .robey-cell__input { border-top-color: var(--robey-color-blue); background: var(--robey-color-white); font-weight: 500; }
 .robey-cell--preorder.is-filled .robey-cell__input { background: var(--robey-color-blue-tint); font-weight: 700; }
-/* size does not exist in this colour, or sold out without replenishment */
-.robey-cell--unavailable { box-shadow: none; }
-.robey-cell--unavailable .robey-cell__input { border-top-color: var(--robey-color-gray-2); background: var(--robey-color-gray-1); color: var(--robey-color-gray-4); }
 
 /* ---------------------------------------------------------------- buttons
    Gold is reserved: only cart and checkout. Everything else is black, or

@@ -108,9 +108,6 @@
 /* preorder - produced to order, so no stock figure */
 .robey-cell--preorder .robey-cell__input { border-top-color: var(--robey-color-blue); background: var(--robey-color-white); font-weight: 500; }
 .robey-cell--preorder.is-filled .robey-cell__input { background: var(--robey-color-blue-tint); font-weight: 700; }
-/* size does not exist in this colour, or sold out without replenishment */
-.robey-cell--unavailable { box-shadow: none; }
-.robey-cell--unavailable .robey-cell__input { border-top-color: var(--robey-color-gray-2); background: var(--robey-color-gray-1); color: var(--robey-color-gray-4); }
 
 /* ---------------------------------------------------------------- buttons
    Gold is reserved: only cart and checkout. Everything else is black, or
@@ -235,9 +232,13 @@ img { display:block; max-width:100%; }
 .rb-vlag { width:16px; height:11px; border-radius:1px; background:linear-gradient(#AE1C28 0 33%, #ffffff 33% 66%, #21468B 66%); display:inline-block; }
 
 /* ============================================================ witte balk
-   <900: compacte balk met hamburger en een eigen zoekrij (76px mobiel, 72px tablet)
-   900-1199: compacte balk met navlinks en het zoekveld in de balk
-   1200+: volle balk van 86px, inhoud in de wrap van 1320, hoverpanelen */
+   <1200: compacte balk met hamburger en een eigen zoekrij (76px mobiel, 72px tablet)
+   1200+: volle balk van 86px, inhoud in de wrap van 1320, hoverpanelen
+   De balk met navlinks past niet smaller dan 1200. Gerekend met de echte maten: 40 marge + 36 logo + 298 navlinks
+   + 262 knoppen + 3 x 56 tussenruimte + 40 marge laat 352 over voor de zoekbalk, en dat is precies het minimum
+   waarbij 'Zoek op product of artikelnummer' nog heel in beeld staat (28 links + 242 tekst + 28 + 20 icoon + 20 rechts).
+   Samen 1196. Daaronder dus de hamburgerbalk; een tussenvariant met een kleiner logo is bewust geschrapt
+   (besluit Dennis, 20 september). */
 .rb-header { background:var(--robey-color-white); position:sticky; top:0; z-index:var(--robey-layer-bar); transition:transform .22s ease, box-shadow .22s ease; }
 body.rb-kop-weg .rb-header { transform:translateY(-100%); }
 body.rb-gescrold:not(.rb-kop-weg) .rb-header { box-shadow:0 2px 6px rgba(18,18,18,.1); }   /* geen schaduw als de balk weggeschoven is: die bleef anders bovenaan staan */
@@ -1069,20 +1070,6 @@ body.rb-lb-open { overflow:hidden; }
 
 /* ============================================================ 900: tablet liggend ============================================================ */
 @media (min-width: 900px) {
-  /* de balk met navlinks en het zoekveld erin: geen hamburger en geen aparte zoekrij meer */
-  .rb-topbar__links > svg { display:block; }
-  .rb-header__rij { height:72px; gap:22px; }
-  .rb-logo { flex:0 0 auto; }
-  .rb-logo img { height:44px; }
-  .rb-nav { display:flex; }
-  .rb-hamburger { display:none; }
-  .rb-header__acties { gap:12px; }
-  .rb-pil { height:44px; padding:0 14px; gap:8px; font-size:var(--robey-text-14); }
-  .rb-pil--goud { padding:0 14px; }
-  .rb-header__zoek { display:flex; flex:1; min-width:0; justify-content:flex-end; }
-  .rb-zoek { max-width:300px; }
-  .rb-header__zoekrij { display:none; }
-  .rb-menu { display:none !important; }
   .rb-wrap { padding-left:32px; padding-right:32px; }
   .rb-wk__rij, .rb-wk__rij:first-child { grid-template-columns:100px minmax(0,1fr) 130px; gap:14px; padding:14px 20px; }
   .rb-wk__body { padding:12px 20px 4px; }
@@ -1132,7 +1119,14 @@ body.rb-lb-open { overflow:hidden; }
 
 /* ============================================================ 1200: desktop ============================================================ */
 @media (min-width: 1200px) {
-  /* vanaf hier de catalogus met filterkolom */
+  /* vanaf hier de balk met navlinks en het zoekveld erin, en de catalogus met filterkolom */
+  .rb-topbar__links > svg { display:block; }
+  .rb-logo { flex:0 0 auto; }
+  .rb-nav { display:flex; }
+  .rb-hamburger { display:none; }
+  .rb-header__zoek { display:flex; flex:1; min-width:0; }
+  .rb-header__zoekrij { display:none; }
+  .rb-menu { display:none !important; }
   .rb-tb--filters, .rb-fchips { display:none; }
   .rb-plp { display:grid; grid-template-columns:220px minmax(0,1fr); gap:32px; align-items:start; }
   .rb-filters { position:static; display:block; padding:0; overflow:visible; z-index:auto; }
