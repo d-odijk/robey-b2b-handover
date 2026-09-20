@@ -699,7 +699,7 @@ body.rb-lb-open { overflow:hidden; }
 .rb-legen__kop { font-size:var(--robey-text-18); font-weight:800; letter-spacing:var(--robey-amount-tracking); }
 .rb-legen__tekst { margin:8px 0 18px; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); line-height:1.6; }
 .rb-legen__knoppen { display:flex; flex-wrap:wrap; gap:10px; justify-content:flex-end; }
-.rb-legen__knoppen .robey-button { flex:1 1 auto; padding:0 18px; }  /* mobiel: samen de breedte, of onder elkaar als ze niet passen */
+.rb-legen__knoppen .robey-button { flex:1 1 0; padding:0 18px; }  /* twee even brede knoppen die samen de kaartbreedte vullen, zodat ze met de tekst uitlijnen (20 september) */
 .rb-legen__ja { background:var(--robey-color-red); color:var(--robey-color-white); }
 /* weergave-menu */
 .rb-weergave { position:relative; display:inline-block; }
@@ -902,7 +902,6 @@ body.rb-lb-open { overflow:hidden; }
   .rb-wagen__kop { gap:14px; }
   .rb-wagen__kop .robey-cart-label { top:-3px; }
   .rb-legen__kaart { padding:26px 28px 24px; }
-  .rb-legen__knoppen .robey-button { flex:0 0 auto; padding:0 24px; }
   .rb-wagen__koprij { display:flex; align-items:center; gap:8px; }
   .rb-wagen__links { display:contents; }
   .rb-cart__legen--kop { display:none; }
