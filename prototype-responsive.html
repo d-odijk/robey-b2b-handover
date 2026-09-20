@@ -11,7 +11,7 @@
   /* Colour */
   --robey-color-white: #FFFFFF;  /* Background, cards, buttons */
   --robey-color-gray-1: #F3F3F3;  /* Surfaces: personal blocks, card headers, matrix labels, filter chips, photo background */
-  --robey-color-gray-2: #E4E4E4;  /* Borders and dividers */
+  --robey-color-gray-2: #E4E4E4;  /* Borders and dividers; also the fill of the free-shipping label in the cost summary */
   --robey-color-gray-3: #C4C4C4;  /* Borders of inputs and checkboxes, hover border of header buttons */
   --robey-color-gray-4: #B0B0B0;  /* Placeholders, such as the 0 in an empty matrix cell */
   --robey-color-gray-5: #898989;  /* Decorative gray: icons, struck-through prices */
@@ -23,8 +23,7 @@
   --robey-color-gold-hover: #9F751D;  /* Hover of gold */
   --robey-color-red: #D90606;  /* Reduced: price and Outlet label; the Outlet nav link */
   --robey-color-green: #46973A;  /* Stock: indicator line, dot, label */
-  --robey-color-green-tint: #E4FDE1;  /* Filled cell from stock; cart label Stock; free-shipping label in the cost summary */
-  --robey-color-green-tint-border: #9AD08F;  /* Border of the free-shipping label, so the tint reads as a label and not as a surface */
+  --robey-color-green-tint: #E4FDE1;  /* Filled cell from stock; cart label Stock */
   --robey-color-orange: #FD7E14;  /* Size sold out, will be backordered: indicator line, dot */
   --robey-color-orange-tint: #FFEDDD;  /* Cell of a size that is sold out, also when empty */
   --robey-color-blue: #1155CC;  /* Preorder: indicator line, dot, counter */
@@ -162,17 +161,19 @@
 /* ---------------------------------------------------------------- notices
    Two kinds, same box, different meaning. Yellow asks the dealer to correct
    something (a size over its maximum, a preorder product under fifteen
-   pieces). Green is an opportunity, not a correction: the amount still
-   missing before shipping is free. Green also marks stock elsewhere, which
-   is accepted: both readings are positive, and the border keeps the label
-   from reading as a filled cell. Never use yellow for an opportunity or
-   green for a correction. */
+   pieces). Gray is an opportunity, not a correction: the amount still
+   missing before shipping is free. Gray deliberately, because it carries no
+   status: the status colours green, orange and blue say something about a
+   size, and this says something about the order. It is gray-2 on the gray-1
+   card, so it reads as an element without demanding attention; the padding
+   is one pixel larger because there is no border. Never use yellow for an
+   opportunity, and never give this label a status colour. */
 .robey-notice { display: inline-flex; align-items: center; padding: 2px 8px;
   border-radius: var(--robey-radius-small); font-size: var(--robey-text-12); font-weight: 400;
   line-height: 1.5; color: var(--robey-color-black); }
 .robey-notice b { font-weight: 700; }
 .robey-notice--correction { background: var(--robey-color-notice); border: 1px solid var(--robey-color-notice-border); }
-.robey-notice--opportunity { background: var(--robey-color-green-tint); border: 1px solid var(--robey-color-green-tint-border); }
+.robey-notice--opportunity { background: var(--robey-color-gray-2); padding: 3px 9px; }
 
 /* ---------------------------------------------------------------- tile photo
    Always 4:5 on gray-1, even if the source photo differs. Object-fit cover,
@@ -697,7 +698,7 @@ body.rb-lb-open { overflow:hidden; }
    (bovengrens per maat, minimum in Voorverkoop); gratis levering is een kans, en goud is de kleur van winkelwagen en
    afrekenen. Alleen de rand is goud: een gevuld goud vlak leest als een tweede knop naast Afrekenen, en gouden tekst
    op wit haalt op 12 px het contrast niet */
-.rb-ko__lever { display:inline-flex; align-self:flex-start; align-items:center; padding:2px 8px; background:var(--robey-color-green-tint); border:1px solid var(--robey-color-green-tint-border); border-radius:var(--robey-radius-small); font-size:var(--robey-text-12); font-weight:400; color:var(--robey-color-black); line-height:1.5; margin:-3px 0 6px; }   /* groen, niet geel: geel vraagt om een correctie, dit is een kans (besluit Dennis, 20 september) */
+.rb-ko__lever { display:inline-flex; align-self:flex-start; align-items:center; padding:3px 9px; background:var(--robey-color-gray-2); border-radius:var(--robey-radius-small); font-size:var(--robey-text-12); font-weight:400; color:var(--robey-color-black); line-height:1.5; margin:-3px 0 6px; }   /* grijs, niet geel en niet groen: geel vraagt om een correctie, groen is een statuskleur, en dit is een kans (besluit Dennis, 20 september) */
 .rb-ko__lever[hidden] { display:none; }
 .rb-ko__lever b { font-weight:700; }
 

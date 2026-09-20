@@ -6,7 +6,7 @@
   /* Colour */
   --robey-color-white: #FFFFFF;  /* Background, cards, buttons */
   --robey-color-gray-1: #F3F3F3;  /* Surfaces: personal blocks, card headers, matrix labels, filter chips, photo background */
-  --robey-color-gray-2: #E4E4E4;  /* Borders and dividers */
+  --robey-color-gray-2: #E4E4E4;  /* Borders and dividers; also the fill of the free-shipping label in the cost summary */
   --robey-color-gray-3: #C4C4C4;  /* Borders of inputs and checkboxes, hover border of header buttons */
   --robey-color-gray-4: #B0B0B0;  /* Placeholders, such as the 0 in an empty matrix cell */
   --robey-color-gray-5: #898989;  /* Decorative gray: icons, struck-through prices */
@@ -18,8 +18,7 @@
   --robey-color-gold-hover: #9F751D;  /* Hover of gold */
   --robey-color-red: #D90606;  /* Reduced: price and Outlet label; the Outlet nav link */
   --robey-color-green: #46973A;  /* Stock: indicator line, dot, label */
-  --robey-color-green-tint: #E4FDE1;  /* Filled cell from stock; cart label Stock; free-shipping label in the cost summary */
-  --robey-color-green-tint-border: #9AD08F;  /* Border of the free-shipping label, so the tint reads as a label and not as a surface */
+  --robey-color-green-tint: #E4FDE1;  /* Filled cell from stock; cart label Stock */
   --robey-color-orange: #FD7E14;  /* Size sold out, will be backordered: indicator line, dot */
   --robey-color-orange-tint: #FFEDDD;  /* Cell of a size that is sold out, also when empty */
   --robey-color-blue: #1155CC;  /* Preorder: indicator line, dot, counter */

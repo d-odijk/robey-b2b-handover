@@ -79,17 +79,19 @@
 /* ---------------------------------------------------------------- notices
    Two kinds, same box, different meaning. Yellow asks the dealer to correct
    something (a size over its maximum, a preorder product under fifteen
-   pieces). Green is an opportunity, not a correction: the amount still
-   missing before shipping is free. Green also marks stock elsewhere, which
-   is accepted: both readings are positive, and the border keeps the label
-   from reading as a filled cell. Never use yellow for an opportunity or
-   green for a correction. */
+   pieces). Gray is an opportunity, not a correction: the amount still
+   missing before shipping is free. Gray deliberately, because it carries no
+   status: the status colours green, orange and blue say something about a
+   size, and this says something about the order. It is gray-2 on the gray-1
+   card, so it reads as an element without demanding attention; the padding
+   is one pixel larger because there is no border. Never use yellow for an
+   opportunity, and never give this label a status colour. */
 .robey-notice { display: inline-flex; align-items: center; padding: 2px 8px;
   border-radius: var(--robey-radius-small); font-size: var(--robey-text-12); font-weight: 400;
   line-height: 1.5; color: var(--robey-color-black); }
 .robey-notice b { font-weight: 700; }
 .robey-notice--correction { background: var(--robey-color-notice); border: 1px solid var(--robey-color-notice-border); }
-.robey-notice--opportunity { background: var(--robey-color-green-tint); border: 1px solid var(--robey-color-green-tint-border); }
+.robey-notice--opportunity { background: var(--robey-color-gray-2); padding: 3px 9px; }
 
 /* ---------------------------------------------------------------- tile photo
    Always 4:5 on gray-1, even if the source photo differs. Object-fit cover,
