@@ -223,7 +223,7 @@ img { display:block; max-width:100%; }
    1200+: volle balk van 86px, inhoud in de wrap van 1320, hoverpanelen */
 .rb-header { background:var(--robey-color-white); position:sticky; top:0; z-index:var(--robey-layer-bar); transition:transform .22s ease, box-shadow .22s ease; }
 body.rb-kop-weg .rb-header { transform:translateY(-100%); }
-body.rb-gescrold .rb-header { box-shadow:0 2px 6px rgba(18,18,18,.1); }
+body.rb-gescrold:not(.rb-kop-weg) .rb-header { box-shadow:0 2px 6px rgba(18,18,18,.1); }   /* geen schaduw als de balk weggeschoven is: die bleef anders bovenaan staan */
 .rb-header__zoekrij { position:relative; z-index:2; }
 .rb-header__rij { display:flex; align-items:center; gap:6px; height:76px; padding:0 16px; }
 .rb-logo { flex:1; min-width:0; display:flex; align-items:center; }
@@ -1299,7 +1299,7 @@ body.rb-lb-open { overflow:hidden; }
   .rb-pil__lang, .rb-pil__pijl, .rb-pil__haak { display:inline; }
   .rb-pil__pijl { display:inline-block; }
   /* hoverpanelen, zoals in het desktopontwerp: mega op Catalogus, account op de accountknop, minicart op goud */
-  .rb-header, body.rb-gescrold .rb-header { box-shadow:var(--robey-shadow-bar); }
+  body:not(.rb-kop-weg) .rb-header { box-shadow:var(--robey-shadow-bar); }   /* op desktop staat de schaduw er altijd, behalve als de balk weggeschoven is */
   .rb-paneel { position:absolute; top:100%; left:0; right:0; display:none; pointer-events:none; }
   .rb-paneel > * { pointer-events:auto; }
   .rb-zoekhouder { position:relative; flex:1; min-width:0; }

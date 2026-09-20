@@ -7,7 +7,7 @@ This package contains the design of the new Robey B2B portal (headless on Shopif
 Open the file in Chrome, Safari or Edge. It is a single 7 MB file with every image embedded; only the Inter typeface is loaded from Google Fonts, so offline you will see a system font instead.
 
 - Resize the window: mobile (below 768 px), tablet portrait (768 to 899), tablet landscape (900 to 1199) and desktop (1200 and up) all live in the same file. The indicator in the bottom-right corner tells you which breakpoint you are in.
-- Press **B** (or click that indicator) for a navigation bar with all twenty-one screens.
+- Press **S** (or click that indicator) for a navigation bar with all twenty-one screens.
 - Everything that looks clickable works: menu, search with suggestions, filters, colour swatches on tiles and product pages, the size matrix (type quantities), the cart with cost summary, the account pages, the gallery view (click the large product photo).
 - Quantities typed on a product page appear in the cart immediately; there is deliberately no "Add to cart" button.
 - The data is sample data and not authoritative. The on-screen copy is Dutch: the portal is for Dutch dealers, and the wording is part of the design.
