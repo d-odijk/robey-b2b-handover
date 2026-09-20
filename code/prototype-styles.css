@@ -280,7 +280,7 @@ body.rb-gescrold:not(.rb-kop-weg) .rb-header { box-shadow:0 2px 6px rgba(18,18,1
 .rb-pil:hover { background:var(--robey-color-gray-1); border-color:var(--robey-color-gray-3); }
 .rb-pil--goud { background:var(--robey-color-gold); border-color:var(--robey-color-gold); color:var(--robey-color-white); padding:0 11px 0 10px; margin:0 4px; }
 .rb-pil--goud:hover { background:var(--robey-color-gold-hover); border-color:var(--robey-color-gold-hover); color:var(--robey-color-white); }
-.rb-pil__lang, .rb-pil__pijl, .rb-pil__haak { display:none; }
+.rb-pil__pijl, .rb-pil__haak { display:none; }
 .rb-pil svg:first-child { width:18px; height:18px; }
 .rb-pil--goud svg:first-child { width:20px; height:20px; }
 .rb-hamburger { width:40px; height:40px; display:flex; align-items:center; justify-content:center; margin-right:-8px; }
@@ -1085,13 +1085,12 @@ body.rb-lb-open { overflow:hidden; }
   .rb-nav__link { padding:0 2px; }
   .rb-hamburger { display:none; }
   .rb-menu { display:none !important; }
-  .rb-header__acties { gap:10px; }
+  .rb-header__acties { gap:10px; margin-left:auto; }   /* tot 1200 staat er geen zoekveld in de balk dat de ruimte opvult, dus duwt deze marge de knoppen naar rechts */
   .rb-pil { height:var(--robey-size-button); padding:0 18px; gap:9px; font-size:var(--robey-text-14); }
   .rb-pil--goud { padding:0 18px; margin:0; }
   .rb-pil svg:first-child { width:21px; height:21px; }
   .rb-pil--goud svg:first-child { width:22px; height:22px; }
-  .rb-pil__kort { display:none; }
-  .rb-pil__lang, .rb-pil__pijl, .rb-pil__haak { display:inline; }
+  .rb-pil__pijl, .rb-pil__haak { display:inline; }
   .rb-pil__pijl { display:inline-block; }
   /* dezelfde panelen als op desktop: megamenu, account en minicart hangen onder de balk */
   .rb-paneel { position:absolute; top:100%; left:0; right:0; display:none; pointer-events:none; }
