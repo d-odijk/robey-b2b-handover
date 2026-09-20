@@ -221,10 +221,14 @@ img { display:block; max-width:100%; }
 .rb-kruimel__sep { opacity:.5; }
 .rb-kruimel__hier { color:var(--robey-color-black); }
 
-/* ============================================================ zwarte balk: 34px op mobiel, 36 op tablet, 37 op desktop */
+/* ============================================================ zwarte balk: 34px tot 1200, 37 daarboven.
+   Zit sinds 20 september IN de header. Onder 768 plakt hij mee met de slimme balk; vanaf 768 wordt hij met een
+   negatieve sticky-top uit beeld gepind, zodat alleen de witte balk blijft staan - precies zoals het eerder was.
+   LET OP: er stond hier '36 op tablet', maar die regel stond in het 1200-blok en werd daar meteen door 37 overschreven;
+   de zwarte balk is dus altijd 34 geweest tot 1200. Dat is zo gelaten, niet stilletjes veranderd (20 september). */
 .rb-topbar { background:var(--robey-color-black); color:var(--robey-color-white); font-size:var(--robey-text-12); }
 .rb-topbar__rechts i { width:1px; height:16px; background:rgba(255,255,255,.15); flex-shrink:0; }
-.rb-topbar__in { height:34px; display:flex; align-items:center; justify-content:center; padding:0 16px; }
+.rb-topbar__in { height:var(--rb-topbar-h); display:flex; align-items:center; justify-content:center; padding:0 16px; }
 .rb-topbar__links { display:inline-flex; align-items:center; gap:6px; opacity:.85; }
 .rb-topbar__links > svg { display:none; }
 .rb-topbar__links b { font-weight:700; }
@@ -238,7 +242,7 @@ img { display:block; max-width:100%; }
    <900: compacte balk met hamburger en een eigen zoekrij (76px mobiel, 72px tablet)
    900-1199: compacte balk met navlinks en het zoekveld in de balk
    1200+: volle balk van 86px, inhoud in de wrap van 1320, hoverpanelen */
-.rb-header { background:var(--robey-color-white); position:sticky; top:0; z-index:var(--robey-layer-bar); transition:transform .22s ease, box-shadow .22s ease; }
+.rb-header { --rb-topbar-h:34px; background:var(--robey-color-white); position:sticky; top:0; z-index:var(--robey-layer-bar); transition:transform .22s ease, box-shadow .22s ease; }   /* de zwarte balk zit IN de header: onder 768 plakt hij mee (top:0), daarboven wordt hij met een negatieve top uit beeld gepind (20 september) */
 body.rb-kop-weg .rb-header { transform:translateY(-100%); }
 body.rb-gescrold:not(.rb-kop-weg) .rb-header { box-shadow:0 2px 6px rgba(18,18,18,.1); }   /* geen schaduw als de balk weggeschoven is: die bleef anders bovenaan staan */
 .rb-header__zoekrij { position:relative; z-index:2; }
@@ -1017,6 +1021,7 @@ body.rb-lb-open { overflow:hidden; }
   .robey-cell--compact .robey-cell__head { font-size:var(--robey-text-12); padding:4px 5px; }
   .robey-cell--compact .robey-cell__stock { font-size:10px; padding:0 5px 4px; min-height:24px; }
   .robey-cell--compact .robey-cell__input { height:44px; }
+  .rb-header { top:calc(-1 * var(--rb-topbar-h)); }   /* vanaf tablet scrollt de zwarte balk weg en plakt alleen de witte, zoals op de artboards; onder 768 plakken ze samen */
   .rb-topbar__in, .rb-header__rij { padding:0 24px; }
   .rb-header__zoekrij { padding:0 24px 10px; }
   .rb-filters { padding-left:32px; padding-right:32px; }
@@ -1211,7 +1216,7 @@ body.rb-lb-open { overflow:hidden; }
 @media (min-width: 1200px) {
   /* vanaf hier de desktopkop met navigatie en zoekbalk in de balk, en de catalogus met filterkolom */
   .rb-topbar__links > svg { display:block; }
-  .rb-topbar__in { height:36px; padding:0 32px; }
+  .rb-topbar__in { padding:0 32px; }
   .rb-header__rij { height:72px; padding:0 32px; gap:22px; }
   .rb-logo img { height:44px; }
   .rb-header__acties { gap:12px; }
@@ -1298,7 +1303,8 @@ body.rb-lb-open { overflow:hidden; }
   .rb-paginering > span:first-child { display:block; }
   .rb-wrap { padding:0 var(--robey-size-wrap-gutter); }
   .rb-topbar { font-size:var(--robey-text-13); }
-  .rb-topbar__in { height:37px; max-width:var(--robey-size-wrap); margin:0 auto; padding:0 40px; justify-content:space-between; gap:24px; }
+  .rb-header { --rb-topbar-h:37px; }
+  .rb-topbar__in { max-width:var(--robey-size-wrap); margin:0 auto; padding:0 40px; justify-content:space-between; gap:24px; }
   .rb-topbar__rechts { display:inline-flex; }
   .rb-topbar__links b { font-weight:600; }
   .rb-header__rij { height:var(--robey-size-bar); max-width:var(--robey-size-wrap); margin:0 auto; padding:0 40px; gap:56px; }
