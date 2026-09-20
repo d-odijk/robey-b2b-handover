@@ -682,7 +682,11 @@ body.rb-lb-open { overflow:hidden; }
 /* leverregel: lichtgeel meldinglabel (token melding, bewust geen statuskleur), geen icoon; alleen het bedrag vet */
 .rb-ko__lever { display:inline-flex; align-self:flex-start; align-items:center; padding:2px 8px; background:var(--robey-color-notice); border:1px solid var(--robey-color-notice-border); border-radius:var(--robey-radius-small); font-size:var(--robey-text-12); font-weight:400; color:var(--robey-color-black); line-height:1.5; margin:-3px 0 6px; }
 .rb-ko__lever[hidden] { display:none; }
-.rb-ko__lever b { font-weight:700; }
+.rb-ko__lever b, .rb-ko__mintekst b { font-weight:700; }
+/* minimummelding voorverkoop: onder de knop Afrekenen, zodat de knop niet opzij geduwd wordt (20 september) */
+.rb-ko__min { display:flex; justify-content:flex-end; margin-top:10px; }
+.rb-ko__min[hidden] { display:none; }
+.rb-ko__mintekst { display:inline-block; padding:2px 8px; background:var(--robey-color-notice); border:1px solid var(--robey-color-notice-border); border-radius:var(--robey-radius-small); font-size:var(--robey-text-12); line-height:1.5; color:var(--robey-color-black); }
 .rb-ko__item--totaal { margin-top:6px; padding-top:10px; border-top:1px solid var(--robey-color-gray-3); font-weight:800; }
 .rb-ko__item--totaal .rb-ko__lbl { color:var(--robey-color-black); font-size:var(--robey-text-15); font-weight:800; }
 .rb-ko__item--totaal .rb-ko__val { font-size:var(--robey-text-18); font-weight:800; }
@@ -1442,6 +1446,7 @@ body.rb-lb-open { overflow:hidden; }
   .rb-ko__item--totaal .rb-ko__lbl { font-size:var(--robey-text-12); font-weight:400; color:var(--robey-color-gray-6); }
   .rb-ko__item--totaal .rb-ko__val { font-size:var(--robey-text-20); }
   .rb-ko__knop { width:auto; min-width:170px; margin:0; height:46px; }
+  .rb-ko__min { flex:0 0 100%; order:2; margin:0; }   /* eigen regel onder de knop */
 }
 @media (min-width: 1340px) {
   /* productpagina volgens schets D: vijf cellen van 105 per rij (150 + 5 x 105 + 4 x 6 + 180 = 879), de fotokolom krijgt wat overblijft */
