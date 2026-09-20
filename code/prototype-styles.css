@@ -205,7 +205,6 @@ img { display:block; max-width:100%; }
 .rb-wrap { max-width:var(--robey-size-wrap); margin:0 auto; padding:0 16px; }
 .rb-scherm { display:none; }
 .rb-scherm.is-aan { display:block; }
-.rb-univers { font-family:var(--robey-font-heading); font-weight:800; text-transform:uppercase; letter-spacing:var(--robey-heading-tracking); }
 .rb-kop1 { font-family:var(--robey-font-heading); font-weight:800; text-transform:uppercase; letter-spacing:var(--robey-heading-tracking); font-size:22px; line-height:28px; margin:2px 0 6px; }
 .rb-kop1--telling { margin-bottom:14px; }
 .rb-kop1__tel { font-family:var(--robey-font-text); font-size:var(--robey-text-14); font-weight:400; color:var(--robey-color-gray-6); text-transform:none; letter-spacing:0; }
@@ -327,14 +326,13 @@ body.rb-gescrold:not(.rb-kop-weg) .rb-header { box-shadow:0 2px 6px rgba(18,18,1
 .rb-banner__schaduw { position:absolute; inset:0; background:linear-gradient(to top, rgba(18,18,18,.55) 0%, rgba(18,18,18,.1) 55%, rgba(18,18,18,0) 100%); }
 .rb-banner__tekst { position:absolute; left:18px; right:18px; bottom:18px; color:var(--robey-color-white); }
 .rb-banner__boven { margin:0 0 4px; font-size:var(--robey-text-13); opacity:.9; }
-.rb-banner__kop { margin:0 0 12px; font-family:var(--robey-font-heading); font-weight:800; text-transform:uppercase; font-size:26px; line-height:30px; letter-spacing:-0.2px; }
+.rb-banner__kop { margin:0 0 12px; font-family:var(--robey-font-heading); font-weight:800; text-transform:uppercase; font-size:var(--robey-text-26); line-height:30px; letter-spacing:-0.2px; }
 .rb-banner__knop { display:inline-block; background:var(--robey-color-black); color:var(--robey-color-white); font-size:var(--robey-text-14); font-weight:600; line-height:20px; padding:10px 18px; border-radius:var(--robey-radius-small); }
 
 /* ============================================================ homepage-secties */
 .rb-sectie { padding-top:44px; }
 .rb-sectie--welkom { padding-top:36px; }
 .rb-sectie--cats { padding-bottom:0; }
-.rb-sectie--laatst { padding-bottom:40px; }
 .rb-hkop { margin:0 0 12px; font-size:var(--robey-text-18); font-weight:400; letter-spacing:var(--robey-amount-tracking); }
 .rb-hkop b { font-weight:700; }
 .rb-welkom { margin-bottom:12px; }
@@ -568,7 +566,7 @@ body.rb-lb-open { overflow:hidden; }
 .rb-ordertype .rb-sectiekop { margin:0 0 8px; }
 .rb-modusrij { display:grid; grid-template-columns:1fr 1fr; gap:2px; padding:4px; background:var(--robey-color-gray-1); border-radius:var(--robey-radius-large); }
 .rb-modus { display:flex; align-items:center; justify-content:center; gap:8px; height:40px; padding:0 12px; border-radius:6px; font-size:var(--robey-text-14); font-weight:600; color:var(--robey-color-gray-6); white-space:nowrap; }
-.rb-modus.is-aan { background:var(--robey-color-white); box-shadow:0 1px 2px rgba(0,0,0,.12); color:var(--robey-color-black); }
+.rb-modus.is-aan { background:var(--robey-color-white); box-shadow:var(--robey-shadow-button-active); color:var(--robey-color-black); }
 .rb-modus .robey-dot { width:9px; height:9px; }
 .rb-modus__badge { background:var(--robey-color-green); color:var(--robey-color-white); font-size:var(--robey-text-11); font-weight:700; line-height:1; padding:4px 7px; border-radius:var(--robey-radius-round); }
 .rb-modus[data-modus="voorverkoop"] .rb-modus__badge { background:var(--robey-color-blue); }
@@ -755,21 +753,16 @@ body.rb-lb-open { overflow:hidden; }
 .rb-okaart { display:flex; flex-direction:column; gap:6px; border:1px solid var(--robey-color-gray-2); border-radius:var(--robey-radius-cell); padding:12px 14px; }
 .rb-okaart:hover { color:inherit; }
 .rb-okaart__boven { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
-.rb-okaart__artikel { display:flex; gap:12px; min-width:0; }
-.rb-okaart__foto { width:40px; height:50px; border-radius:var(--robey-radius-small); overflow:hidden; background:var(--robey-color-gray-1); flex-shrink:0; display:block; }
-.rb-okaart__foto img { width:100%; height:100%; object-fit:cover; display:block; }
 .rb-okaart__nr { display:block; font-size:var(--robey-text-15); font-weight:700; line-height:1.3; }
 .rb-okaart__web { display:block; font-size:var(--robey-text-12); color:var(--robey-color-gray-6); line-height:1.5; }
 .rb-okaart__bedrag { font-size:var(--robey-text-15); font-weight:800; letter-spacing:var(--robey-amount-tracking); white-space:nowrap; }
-.rb-okaart__bedrag--klein { font-size:var(--robey-text-14); }
 .rb-okaart__ref { font-size:var(--robey-text-14); line-height:1.4; }
 .rb-okaart__onder { display:flex; align-items:center; flex-wrap:wrap; gap:6px 10px; margin-top:2px; min-height:22px; }
 .rb-okaart__stuks { font-size:var(--robey-text-13); color:var(--robey-color-gray-6); }
-.rb-okaart__pijl, .rb-okaart__acties { margin-left:auto; display:inline-flex; }
+.rb-okaart__pijl { margin-left:auto; display:inline-flex; }
 .rb-okaart__lnk { font-size:var(--robey-text-12); }
 .rb-okaart__rechts { margin-left:auto; display:inline-flex; align-items:center; gap:12px; }
 .rb-okaart__rechts .rb-okaart__pijl { margin-left:0; }
-.rb-okaart__acties .rb-tb { height:34px; font-size:var(--robey-text-13); padding:0 12px; }
 .rb-lnk { color:var(--robey-color-gray-6); text-decoration:underline; text-underline-offset:2px; }
 .rb-pdf { display:inline-flex; align-items:center; gap:5px; font-size:var(--robey-text-11); font-weight:700; letter-spacing:.03em; border:1px solid var(--robey-color-gray-3); border-radius:var(--robey-radius-small); padding:3px 7px; color:var(--robey-color-black); white-space:nowrap; }
 .rb-pdf:hover { border-color:var(--robey-color-black); }
@@ -804,8 +797,6 @@ body.rb-lb-open { overflow:hidden; }
 .rb-order__kop { display:flex; align-items:center; flex-wrap:wrap; gap:4px 12px; margin-top:8px; }
 .rb-order__kop .rb-kop1 { margin:0; }
 .rb-order__kop .rb-ostat { font-weight:600; }
-.rb-order__sub { margin:4px 0 0; font-size:var(--robey-text-13); color:var(--robey-color-gray-6); line-height:1.5; }
-.rb-order__breek { display:block; height:0; overflow:hidden; }
 .rb-order__knoppen { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
 .rb-order__knoppen .rb-tb { flex:1; justify-content:center; }
 .rb-order__knoppen .rb-tb--opnieuw { flex:1 0 100%; height:44px; border-color:var(--robey-color-black); font-weight:600; }
@@ -851,58 +842,9 @@ body.rb-lb-open { overflow:hidden; }
 .rb-oc__kop { background:var(--robey-color-searchbar); padding:4px 7px; font-size:var(--robey-text-13); font-weight:700; line-height:18px; }
 .rb-oc__st { background:var(--robey-color-searchbar); padding:0 7px 4px; min-height:22px; font-size:var(--robey-text-11); font-weight:600; line-height:18px; color:var(--robey-color-gray-6); }
 .rb-oc__w { height:44px; line-height:44px; text-align:center; font-size:var(--robey-text-14); font-weight:700; border-top:2px solid var(--robey-color-green); }
-.rb-oc--leeg .rb-oc__w { color:var(--robey-color-gray-4); font-weight:500; border-top-color:var(--robey-color-gray-2); }
 .rb-oc--volgt .rb-oc__w { border-top-color:var(--robey-color-orange); background:var(--robey-color-orange-tint); }
 .rb-oc--volgt .rb-oc__st { color:var(--robey-color-orange); }
 .rb-ko--order { margin-top:28px; }
-
-/* ---- retourneren en klantenservice (mobiel): één kolom; maten afgeleid van RetourA/ServiceA, er is geen mobiel artboard ---- */
-.rb-sv__sub { margin-top:6px; }
-.rb-sv__knoppen { display:flex; flex-direction:column; gap:10px; margin-top:20px; }
-.rb-sv__knoppen .robey-button { width:100%; }
-.rb-sv__stappen { display:grid; gap:18px; margin-top:32px; }
-.rb-sv__stap { border-top:2px solid var(--robey-color-black); padding-top:12px; }
-.rb-sv__nr { display:block; font-size:var(--robey-text-12); font-weight:700; letter-spacing:var(--robey-label-tracking); color:var(--robey-color-gray-6); }
-.rb-sv__tt { display:block; font-size:var(--robey-text-16); font-weight:700; margin:4px 0; letter-spacing:var(--robey-amount-tracking); }
-.rb-sv__stap p { margin:0; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); line-height:1.6; }
-.rb-sv__kaarten { display:grid; gap:14px; margin-top:32px; }
-.rb-svkaart { border:1px solid var(--robey-color-gray-2); border-radius:6px; padding:18px 18px 20px; background:var(--robey-color-white); }
-.rb-svkaart h2 { margin:0 0 10px; font-size:var(--robey-text-16); font-weight:700; letter-spacing:var(--robey-amount-tracking); }
-.rb-svkaart p { margin:0 0 8px; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); line-height:1.6; }
-.rb-svkaart p:last-child { margin-bottom:0; }
-.rb-sv__contact b { color:var(--robey-color-black); }
-.rb-svkaart .rb-lnk { font-size:var(--robey-text-13); }
-.rb-sv__lijst { margin:0; padding:0; list-style:none; }
-.rb-sv__lijst li { position:relative; padding-left:22px; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); line-height:1.6; margin-bottom:8px; }
-.rb-sv__lijst li:last-child { margin-bottom:0; }
-.rb-sv__lijst li::before { content:''; position:absolute; left:2px; top:9px; width:7px; height:7px; border-radius:var(--robey-radius-round); background:var(--robey-color-gray-3); }
-.rb-sv__tegels { display:grid; gap:12px; margin-top:24px; }
-.rb-svtegel { border:1px solid var(--robey-color-gray-2); border-radius:6px; padding:18px 18px; display:flex; flex-direction:column; gap:4px; background:var(--robey-color-white); }
-.rb-svtegel:hover { color:inherit; border-color:var(--robey-color-gray-3); background:#FAFAFA; }
-.rb-svtegel__tt { font-size:var(--robey-text-16); font-weight:700; letter-spacing:var(--robey-amount-tracking); }
-.rb-svtegel__uit { font-size:var(--robey-text-13); color:var(--robey-color-gray-6); line-height:1.5; }
-.rb-svtegel__lnk { font-size:var(--robey-text-13); text-decoration:underline; text-underline-offset:3px; margin-top:4px; }
-.rb-sv__h2 { margin:40px 0 0; font-size:var(--robey-text-20); font-weight:700; letter-spacing:var(--robey-amount-tracking); }
-.rb-sv__zoek { margin:16px 0 4px; }
-.rb-sv__groep { margin:24px 0 6px; }
-.rb-sv__vraag { display:flex; align-items:center; gap:14px; width:100%; padding:13px 2px; border:0; border-bottom:1px solid var(--robey-color-gray-2); background:none; font:inherit; font-size:var(--robey-text-15); font-weight:600; color:inherit; text-align:left; cursor:pointer; }
-.rb-sv__vraag span { flex:1; min-width:0; }
-.rb-sv__min, .rb-sv__item.is-open .rb-sv__plus { display:none; }
-.rb-sv__item.is-open .rb-sv__min { display:block; }
-.rb-sv__antwoord { display:none; padding:2px 2px 14px; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); line-height:1.65; border-bottom:1px solid var(--robey-color-gray-2); max-width:820px; }
-.rb-sv__item.is-open .rb-sv__antwoord { display:block; }
-.rb-sv__item[hidden], .rb-sv__groep[hidden] { display:none; }
-.rb-sv__leeg { margin:14px 0 0; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); }
-.rb-sv__leeg[hidden] { display:none; }
-.rb-sv__formulier { display:grid; gap:28px; margin-top:20px; align-items:start; }
-.rb-sv__tweekol { display:grid; gap:0; }
-.rb-sv__veld { display:block; margin-bottom:14px; }
-.rb-sv__veld > span { display:block; font-size:var(--robey-text-13); font-weight:600; margin-bottom:6px; }
-.rb-sv__veld input, .rb-sv__veld select, .rb-sv__veld textarea { width:100%; height:44px; border:1px solid var(--robey-color-gray-3); border-radius:var(--robey-radius-small); background:var(--robey-color-white); padding:0 13px; font:inherit; font-size:var(--robey-text-14); color:var(--robey-color-black); }
-.rb-sv__veld textarea { height:128px; line-height:1.6; padding:11px 13px; resize:vertical; }
-.rb-sv__hint { font-size:var(--robey-text-12); color:var(--robey-color-gray-5); font-weight:400; margin-left:6px; }
-.rb-sv__verstuur { width:100%; margin-top:4px; }
-.rb-sv__contact { display:grid; gap:14px; }
 
 /* ---- downloads: logo's en campagnes (mobiel) ---- */
 .rb-dlkop .rb-kop1 { margin-bottom:0; }
@@ -994,9 +936,9 @@ body.rb-lb-open { overflow:hidden; }
   .rb-mx__voet { grid-column:3; grid-row:1; display:block; margin:0; padding:14px 12px 12px 8px; border-top:0; font-size:var(--robey-text-13); }
   .rb-mx__voetrij { justify-content:space-between; line-height:1.7; }
   .rb-mx__voet b { font-size:inherit; }
-  .robey-cell--compact .robey-cell__head { background:var(--robey-color-gray-1); padding:4px 6px; }
-  .robey-cell--compact .robey-cell__stock { background:var(--robey-color-gray-1); padding:4px 6px; }
-  .robey-cell--compact .robey-cell__input { font-size:var(--robey-text-14); }
+  .robey-cell--compact .robey-cell__head { background:var(--robey-color-gray-1); font-size:var(--robey-text-12); padding:4px 5px; }
+  .robey-cell--compact .robey-cell__stock { background:var(--robey-color-gray-1); font-size:10px; padding:0 5px 4px; min-height:24px; }
+  .robey-cell--compact .robey-cell__input { font-size:var(--robey-text-14); height:44px; }
   .rb-sectie.rb-pdp__vaak { padding-top:44px; }
   .rb-modusrij { display:inline-flex; }
   .rb-modus { height:36px; padding:0 18px; gap:9px; justify-content:flex-start; }
@@ -1015,9 +957,6 @@ body.rb-lb-open { overflow:hidden; }
   .rb-tegel__sku { line-height:1.4; }
   .rb-zoekveld { max-width:none; }
   .rb-pdp__boven { gap:0 24px; }
-  .robey-cell--compact .robey-cell__head { font-size:var(--robey-text-12); padding:4px 5px; }
-  .robey-cell--compact .robey-cell__stock { font-size:10px; padding:0 5px 4px; min-height:24px; }
-  .robey-cell--compact .robey-cell__input { height:44px; }
   .rb-topbar__in, .rb-header__rij { padding:0 24px; }
   .rb-header__zoekrij { padding:0 24px 10px; }
   .rb-filters { padding-left:32px; padding-right:32px; }
@@ -1070,27 +1009,6 @@ body.rb-lb-open { overflow:hidden; }
   .rb-dlkop__knop { width:auto; margin-top:0; padding:0 20px; }
   .rb-dlkop + .rb-sub { margin-top:8px; }
 
-  /* retourneren en klantenservice tablet: stappen en tegels naast elkaar, knoppen op natuurlijke breedte */
-  .rb-sv__knoppen { flex-direction:row; align-items:center; gap:14px; margin-top:24px; }
-  .rb-sv__knoppen .robey-button { width:auto; }
-  .rb-sv__stappen { grid-template-columns:repeat(3, minmax(0,1fr)); gap:24px; margin-top:36px; }
-  .rb-sv__stap { padding-top:16px; }
-  .rb-sv__tt { font-size:17px; margin:6px 0; }
-  .rb-sv__kaarten { grid-template-columns:repeat(2, minmax(0,1fr)); gap:20px; margin-top:40px; max-width:1000px; }
-  .rb-svkaart { padding:22px 24px; }
-  .rb-svkaart h2 { font-size:var(--robey-text-18); margin-bottom:12px; }
-  .rb-sv__tegels { grid-template-columns:repeat(3, minmax(0,1fr)); gap:20px; margin-top:30px; max-width:1000px; }
-  .rb-svtegel { padding:22px 24px; gap:6px; }
-  .rb-sv__h2 { margin-top:52px; font-size:var(--robey-text-22); }
-  .rb-sv__zoek { margin:22px 0 10px; max-width:520px; }
-  .rb-sv__groep { margin:30px 0 10px; }
-  .rb-sv__vraag { padding:15px 4px; gap:16px; }
-  .rb-sv__antwoord { padding:2px 4px 16px; }
-  .rb-sv__tweekol { grid-template-columns:1fr 1fr; gap:0 20px; }
-  .rb-sv__veld { margin-bottom:16px; }
-  .rb-sv__verstuur { width:auto; }
-  .rb-sv__contact { gap:20px; }
-
   /* mijn account tablet: tabellen in plaats van kaarten, tabs met de zijmarge van de pagina */
   .rb-atabs { margin:0 -24px; padding:0 24px; }
   .rb-account .rb-kop1 { margin:20px 0 0; }
@@ -1114,12 +1032,7 @@ body.rb-lb-open { overflow:hidden; }
   .rb-otab__lang, .rb-otab__klein--lang { display:none; }
   .rb-otab__klein .rb-ostat { font-size:var(--robey-text-11); }
   .rb-otab td.rb-otab__pijl { width:24px; padding-right:0; }
-  .rb-otab td.rb-otab__status { white-space:normal; min-width:96px; }
-  .rb-otab td.rb-otab__status .rb-ostat { white-space:normal; }
   .rb-otab td.rb-otab__acties { padding-right:0; }
-  .rb-otab__art { display:flex; align-items:center; gap:10px; }
-  .rb-otab__foto { width:32px; height:40px; border-radius:var(--robey-radius-small); overflow:hidden; background:var(--robey-color-gray-1); flex-shrink:0; display:block; }
-  .rb-otab__foto img { width:100%; height:100%; object-fit:cover; display:block; }
   .rb-apager { display:flex; align-items:center; justify-content:space-between; margin-top:16px; font-size:var(--robey-text-13); color:var(--robey-color-gray-6); }
   .rb-apager__knoppen { display:flex; gap:8px; }
   .rb-acties__knop { height:32px; font-size:var(--robey-text-12); padding:0 10px; }
@@ -1128,8 +1041,6 @@ body.rb-lb-open { overflow:hidden; }
   /* orderdetail tablet */
   .rb-terug { margin-top:16px; }
   .rb-order__kop { gap:14px; }
-  .rb-order__sub { line-height:1.6; }
-  .rb-order__breek { display:inline; height:auto; }
   .rb-order__knoppen { margin-top:14px; }
   .rb-order__knoppen .rb-tb, .rb-order__knoppen .rb-tb--opnieuw { flex:0 0 auto; height:36px; border-color:var(--robey-color-gray-3); font-weight:500; }
   .rb-ometa { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px 20px; padding:18px 20px; }
@@ -1158,6 +1069,20 @@ body.rb-lb-open { overflow:hidden; }
 
 /* ============================================================ 900: tablet liggend ============================================================ */
 @media (min-width: 900px) {
+  /* de balk met navlinks en het zoekveld erin: geen hamburger en geen aparte zoekrij meer */
+  .rb-topbar__links > svg { display:block; }
+  .rb-header__rij { height:72px; gap:22px; }
+  .rb-logo { flex:0 0 auto; }
+  .rb-logo img { height:44px; }
+  .rb-nav { display:flex; }
+  .rb-hamburger { display:none; }
+  .rb-header__acties { gap:12px; }
+  .rb-pil { height:44px; padding:0 14px; gap:8px; font-size:var(--robey-text-14); }
+  .rb-pil--goud { padding:0 14px; }
+  .rb-header__zoek { display:flex; flex:1; min-width:0; justify-content:flex-end; }
+  .rb-zoek { max-width:300px; }
+  .rb-header__zoekrij { display:none; }
+  .rb-menu { display:none !important; }
   .rb-wrap { padding-left:32px; padding-right:32px; }
   .rb-wk__rij, .rb-wk__rij:first-child { grid-template-columns:100px minmax(0,1fr) 130px; gap:14px; padding:14px 20px; }
   .rb-wk__body { padding:12px 20px 4px; }
@@ -1169,14 +1094,13 @@ body.rb-lb-open { overflow:hidden; }
   .rb-ko__item { gap:28px; }
   .rb-ko__eind { flex:0 0 250px; margin-left:auto; }
   .rb-topbar__in, .rb-header__rij { padding-left:32px; padding-right:32px; }
-  .rb-header__zoekrij { padding:0 32px 10px; }
   .rb-sl--col .rb-col { width:229px; }
   .rb-zoekveld { max-width:520px; }
   .rb-zoekveld input, .rb-zoekveld .robey-button { height:44px; }
   .rb-pdp__boven { gap:0 32px; }
   .robey-cell--compact .robey-cell__head { font-size:var(--robey-text-13); padding:4px 6px; }
   .robey-cell--compact .robey-cell__stock { font-size:var(--robey-text-11); padding:0 6px 4px; min-height:24px; }
-  .rb-kop1, .rb-kop1--telling { font-size:26px; line-height:32px; margin:0 0 10px; }
+  .rb-kop1, .rb-kop1--telling { font-size:var(--robey-text-26); line-height:32px; margin:0 0 10px; }
   .rb-sl__track { margin:0 -32px; padding:2px 32px 6px; }
   .rb-voet { padding:40px 0 28px; }
   .rb-voet__raster { grid-template-columns:1.3fr 1fr 1fr 1fr; }
@@ -1198,8 +1122,6 @@ body.rb-lb-open { overflow:hidden; }
   .rb-breedte::before { content:'tablet liggend · '; }
   .rb-paneel__in { padding:0 32px; }
 
-  .rb-sv__formulier { grid-template-columns:minmax(0,1fr) 300px; gap:40px; }
-
   .rb-atabs { margin:0 -32px; padding:0 32px; }
   .rb-modus__stuks { display:inline; }
   .rb-otab td.rb-otab__ref { max-width:170px; }
@@ -1210,22 +1132,7 @@ body.rb-lb-open { overflow:hidden; }
 
 /* ============================================================ 1200: desktop ============================================================ */
 @media (min-width: 1200px) {
-  /* vanaf hier de desktopkop met navigatie en zoekbalk in de balk, en de catalogus met filterkolom */
-  .rb-topbar__links > svg { display:block; }
-  .rb-topbar__in { padding:0 32px; }
-  .rb-header__rij { height:72px; padding:0 32px; gap:22px; }
-  .rb-logo img { height:44px; }
-  .rb-header__acties { gap:12px; }
-  .rb-pil { height:44px; padding:0 14px; gap:8px; font-size:var(--robey-text-14); }
-  .rb-pil--goud { padding:0 14px; }
-  .rb-header__zoekrij { padding:0 32px 14px; }
-  .rb-logo { flex:0 0 auto; }
-  .rb-nav { display:flex; }
-  .rb-hamburger { display:none; }
-  .rb-header__zoek { display:flex; flex:1; min-width:0; justify-content:flex-end; }
-  .rb-zoek { max-width:300px; }
-  .rb-header__zoekrij { display:none; }
-  .rb-menu { display:none !important; }
+  /* vanaf hier de catalogus met filterkolom */
   .rb-tb--filters, .rb-fchips { display:none; }
   .rb-plp { display:grid; grid-template-columns:220px minmax(0,1fr); gap:32px; align-items:start; }
   .rb-filters { position:static; display:block; padding:0; overflow:visible; z-index:auto; }
@@ -1353,7 +1260,7 @@ body.rb-lb-open { overflow:hidden; }
   .rb-banner__schaduw { background:linear-gradient(to right, rgba(18,18,18,.20) 0%, rgba(18,18,18,.10) 50%, rgba(18,18,18,.05) 100%); }
   .rb-banner__tekst { left:44px; bottom:44px; right:auto; max-width:520px; }
   .rb-banner__boven { margin-bottom:13px; font-size:var(--robey-text-15); line-height:1.5; }
-  .rb-banner__kop { margin-bottom:16px; font-size:41px; line-height:48px; letter-spacing:-0.3px; }
+  .rb-banner__kop { margin-bottom:16px; font-size:var(--robey-text-41); line-height:48px; letter-spacing:-0.3px; }
   .rb-banner__knop { font-size:var(--robey-text-15); line-height:22px; padding:11px 26px 13px; }
   .rb-bannerwrap { padding-bottom:48px; }
   .rb-sectie { padding-top:0; padding-bottom:48px; }
@@ -1375,7 +1282,6 @@ body.rb-lb-open { overflow:hidden; }
   .rb-sl__vp { overflow:hidden; }
   .rb-sl .rb-sl__track { display:flex; gap:var(--g); overflow:visible; margin:0; padding:0; transition:transform .35s ease; }
   .rb-sl .rb-sl__track > * { flex:0 0 calc((100% - (var(--n) - 1) * var(--g)) / var(--n)); width:auto; }
-  .rb-sl__track--vast { flex-wrap:wrap; }
   .rb-sl__pijl { position:absolute; width:40px; height:40px; border-radius:var(--robey-radius-round); background:var(--robey-color-white); box-shadow:0 4px 14px rgba(18,18,18,.22); display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:2; }
   .rb-sl__pijl--next { right:-14px; }
   .rb-sl__pijl--prev { left:-14px; }
@@ -1437,15 +1343,6 @@ body.rb-lb-open { overflow:hidden; }
   .rb-dl--bestand { padding:14px 22px 14px 14px; }
   .rb-dl--bestand .rb-dl__naam { font-size:var(--robey-text-14); font-weight:600; }
 
-  /* retourneren en klantenservice desktop: RetourA en ServiceA */
-  .rb-sv__sub { margin-top:10px; font-size:var(--robey-text-15); max-width:700px; }
-  .rb-sv__sub--vraag { font-size:var(--robey-text-14); }
-  .rb-sv__knoppen { margin-top:26px; }
-  .rb-sv__kaarten { margin-top:44px; }
-  .rb-svkaart { padding:24px 26px; }
-  .rb-sv__h2 { margin-top:56px; }
-  .rb-sv__faq { max-width:900px; }
-  .rb-sv__formulier { grid-template-columns:minmax(0,1fr) 320px; gap:48px; max-width:1100px; margin-top:26px; }
 }
 @media (min-width: 1240px) {
   /* kostenoverzicht desktop (CartD): één regel met de bedragen naast elkaar en de knop rechts */
@@ -1474,7 +1371,6 @@ body.rb-lb-open { overflow:hidden; }
   .rb-otab { font-size:var(--robey-text-14); }
   .rb-otab th { padding:0 12px 10px; }
   .rb-otab td { padding:13px 12px; }
-  .rb-otab td.rb-otab__status, .rb-otab td.rb-otab__status .rb-ostat { white-space:nowrap; }
 
   /* mijn account desktop: zijnavigatie van 220 px naast de inhoud, volledig kruimelpad; uit AccountA */
   .rb-account .rb-kruimel__lang { display:inline; }
@@ -1501,7 +1397,6 @@ body.rb-lb-open { overflow:hidden; }
   .rb-atool .rb-tb { height:40px; padding:0 14px; font-size:var(--robey-text-14); }
   .rb-azoek { flex:1 1 auto; max-width:420px; gap:12px; }
   .rb-otab { margin-top:0; }
-  .rb-otab td.rb-otab__status { white-space:normal; }
   .rb-otab th.rb-otab__breed { width:34%; }
   .rb-otab td.rb-otab__ref { max-width:none; }
   .rb-otab__lang { display:table-cell; }
@@ -1509,7 +1404,6 @@ body.rb-lb-open { overflow:hidden; }
   .rb-otab__klein--kort { display:none; }
   .rb-otab td.rb-otab__pijl { width:30px; padding-right:4px; }
   .rb-otab td.rb-otab__acties { width:100px; padding-right:12px; }
-  .rb-otab__art { gap:12px; }
   .rb-otab__klein .rb-ostat { font-size:var(--robey-text-11); }
   .rb-apager { margin-top:18px; }
   .rb-apager .rb-tb { height:36px; font-size:var(--robey-text-14); padding:0 14px; }
@@ -1527,7 +1421,6 @@ body.rb-lb-open { overflow:hidden; }
   .rb-order__boven { display:flex; align-items:flex-start; justify-content:space-between; gap:24px; margin-bottom:26px; }
   .rb-order__kop { gap:16px; margin-top:0; }
   .rb-order__kop .rb-ostat { font-size:var(--robey-text-14); }
-  .rb-order__sub { font-size:var(--robey-text-14); }
   .rb-order__knoppen { margin-top:0; gap:10px; flex-shrink:0; }
   .rb-order__knoppen .rb-tb, .rb-order__knoppen .rb-tb--opnieuw { height:44px; padding:0 18px; font-size:var(--robey-text-14); font-weight:600; }
   .rb-ometa { margin:0 0 34px; padding:20px 22px; gap:18px 28px; }
