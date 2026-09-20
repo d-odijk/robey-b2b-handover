@@ -189,8 +189,8 @@
    Mobile-first. Elke waarde hieronder komt uit het vaste artboard van dat formaat:
    <768 uit Mobiel*, 768 uit Tablet*768, 900 uit Tablet* (liggend), 1200 uit de desktop-artboards. */
 * { box-sizing:border-box; }
-html { -webkit-text-size-adjust:100%; }
-body { margin:0; font-family:var(--robey-font-text); font-size:var(--robey-text-15); line-height:1.6; color:var(--robey-color-black); background:var(--robey-color-white); -webkit-font-smoothing:antialiased; }
+html { -webkit-text-size-adjust:100%; background:var(--robey-color-black); }   /* de achtergrond van het DOCUMENT, niet van de pagina: iOS Safari kleurt het statusgebied bovenin hiermee, en de rubberband onderaan sluit aan op de zwarte voet. Zolang html een eigen achtergrond heeft, gaat die van body niet meer naar het canvas (20 september) */
+body { margin:0; min-height:100vh; font-family:var(--robey-font-text); font-size:var(--robey-text-15); line-height:1.6; color:var(--robey-color-black); background:var(--robey-color-white); -webkit-font-smoothing:antialiased; }   /* min-height zodat het wit ook op een korte pagina tot onderaan doorloopt en het zwart van html alleen bij de randen te zien is */
 a { color:inherit; text-decoration:none; }
 a:hover { color:var(--robey-color-gold); }
 .rb-nav__link:hover, .rb-topbar a:hover, .rb-pil:hover, .rb-banner__knop:hover, .rb-col:hover, .rb-pblok:hover, .rb-tegel:hover, .rb-dl:hover, .rb-menu a:hover, .rb-cat:hover, .rb-voet__knop:hover, .robey-button:hover, .rb-mc__order:hover, .rb-pag:hover, .rb-toonmeer:hover { color:inherit; }
