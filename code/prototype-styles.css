@@ -1,0 +1,1528 @@
+/* Robey B2B: the complete stylesheet of the prototype, for reading.
+   This is design code (one DOM, media queries at 768, 900, 1200, 1240 and 1340), not production code.
+   First code/tokens.css and code/componenten.css (which are adopted), then the prototype styles with rb- classes.
+   In the browser: right-click an element, Inspect; classes are named rb-<component>__<part> and values refer to the tokens.
+   Class names are Dutch abbreviations; see the glossary in the dossier. */
+/* ---- code/tokens.css ---- */
+/* Robey B2B - design tokens.
+   Generated from bouw-tokens.py; do not edit by hand.
+   Every value has been checked against the design artboards. */
+
+:root {
+  /* Colour */
+  --robey-color-white: #FFFFFF;  /* Background, cards, buttons */
+  --robey-color-gray-1: #F3F3F3;  /* Surfaces: personal blocks, card headers, matrix labels, filter chips, photo background */
+  --robey-color-gray-2: #E4E4E4;  /* Borders and dividers */
+  --robey-color-gray-3: #C4C4C4;  /* Borders of inputs and checkboxes, hover border of header buttons */
+  --robey-color-gray-4: #B0B0B0;  /* Placeholders, such as the 0 in an empty matrix cell */
+  --robey-color-gray-5: #898989;  /* Decorative gray: icons, struck-through prices */
+  --robey-color-gray-6: #5C5C5C;  /* Secondary text */
+  --robey-color-black: #121212;  /* Text, black bar, footer */
+  --robey-color-searchbar: #EDEDED;  /* Exception: lighter than gray-1 so the search bar does not read as a surface */
+  --robey-color-block-hover: #E9E9E9;  /* Exception: hover tint of the personal blocks */
+  --robey-color-gold: #B58521;  /* ONLY cart and checkout, plus link hover in panels */
+  --robey-color-gold-hover: #9F751D;  /* Hover of gold */
+  --robey-color-red: #D90606;  /* Reduced: price and Outlet label; the Outlet nav link */
+  --robey-color-green: #46973A;  /* Stock: indicator line, dot, label */
+  --robey-color-green-tint: #E4FDE1;  /* Filled cell from stock; cart label Stock */
+  --robey-color-orange: #FD7E14;  /* Size sold out, will be backordered: indicator line, dot */
+  --robey-color-orange-tint: #FFEDDD;  /* Cell of a size that is sold out, also when empty */
+  --robey-color-blue: #1155CC;  /* Preorder: indicator line, dot, counter */
+  --robey-color-blue-tint: #E3ECFB;  /* Filled preorder cell; cart label Preorder */
+  --robey-color-notice: #FFF4C2;  /* Notice that is not a status: free-shipping threshold, per-size maximum, preorder minimum (light yellow, deliberately outside the status colours) */
+  --robey-color-notice-border: #F0DC8C;  /* Border of a notice */
+
+  /* Radius */
+  --robey-radius-round: 999px;  /* Search bar, dots, swatches, category circles, counter badge, "+N" button */
+  --robey-radius-large: 10px;  /* Header buttons, dropdown panels, personal blocks, toggle, cost summary */
+  --robey-radius-cell: 5px;  /* Matrix cells, colour rows in the cart, shipment rows */
+  --robey-radius-small: 3px;  /* Filled text buttons, labels, size buttons, chips, checkboxes, notices */
+
+  /* Shadow */
+  --robey-shadow-bar: 0 2px 6px rgba(18,18,18,.1);  /* White bar (header), only after scrolling */
+  --robey-shadow-panel: 0 14px 30px -10px rgba(18,18,18,.28);  /* Dropdown panels: account, minicart, search */
+  --robey-shadow-mega: 0 18px 30px -22px rgba(18,18,18,.4);  /* Mega menu, with border-bottom gray-2 */
+  --robey-shadow-cell: 0 1px 2px rgba(0,0,0,.16);  /* Matrix cell */
+  --robey-shadow-button-active: 0 1px 2px rgba(0,0,0,.12);  /* Active button in the toggle */
+
+  /* Text size */
+  --robey-text-11: 11px;  /* Uppercase labels (700, letter-spacing .07em) and the stock line in a cell */
+  --robey-text-12: 12px;  /* Article number, RRP, meta */
+  --robey-text-13: 13px;  /* Links, chips, secondary lines */
+  --robey-text-14: 14px;  /* Tables, form labels, specifications */
+  --robey-text-15: 15px;  /* Base, line-height 1.6 */
+  --robey-text-16: 16px;  /* Price on the tile */
+  --robey-text-18: 18px;  /* Card header in the cart */
+  --robey-text-20: 20px;  /* Amount in a card header */
+  --robey-text-22: 22px;  /* Section heading, line-height 32 */
+  --robey-text-26: 26px;  /* Sub heading */
+  --robey-text-30: 30px;  /* Page heading, line-height 36 */
+  --robey-text-41: 41px;  /* Banner heading, line-height 48 */
+
+  /* Size */
+  --robey-size-wrap: 1320px;  /* Maximum content width (content 1240 with the gutters) */
+  --robey-size-wrap-gutter: 40px;  /* Side gutter of the content on desktop */
+  --robey-size-bar: 86px;  /* Height of the white bar */
+  --robey-size-button: 48px;  /* Search bar and header buttons */
+  --robey-size-navlink: 46px;  /* Height of a nav link */
+  --robey-size-cell: 45px;  /* Input field in a matrix cell */
+  --robey-size-cell-width: 105px;  /* Width of a matrix cell from 768 px */
+
+  /* Layer (z-index) */
+  --robey-layer-bar: 20;  /* White bar */
+  --robey-layer-search-panel: 26;  /* Must come out above the shadow of the bar */
+
+  /* Font */
+  --robey-font-heading: 'Univers Black', 'Arial Black', Helvetica, sans-serif;
+  --robey-font-text: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --robey-heading-tracking: -0.15px;
+  --robey-amount-tracking: -0.005em;
+  --robey-label-tracking: .07em;
+}
+
+/* ---- code/componenten.css ---- */
+/* Robey B2B - the parts with so many states that guessing goes wrong.
+   Generated from bouw-tokens.py; uses the tokens from tokens.css.
+   This is not a complete stylesheet: these are the places where the design is exact. */
+
+/* ---------------------------------------------------------------- size cell
+   Three layers: size label with info icon, stock line, input field.
+   The indicator line above the field says what the size does; the fill says
+   whether anything has been ordered. All combinations are below. */
+.robey-cell { border-radius: var(--robey-radius-cell); overflow: hidden; box-shadow: var(--robey-shadow-cell); }
+.robey-cell__head { background: var(--robey-color-gray-1); padding: 4px 6px; display: flex; align-items: center;
+  justify-content: space-between; gap: 4px; font-size: var(--robey-text-14); font-weight: 700; line-height: 18px; }
+.robey-cell__stock { background: var(--robey-color-gray-1); padding: 4px 6px; min-height: 26px;
+  font-size: var(--robey-text-11); font-weight: 600; color: var(--robey-color-gray-6); line-height: 18px; }
+.robey-cell__input { display: block; width: 100%; height: var(--robey-size-cell); text-align: center;
+  font-size: var(--robey-text-14); font-family: inherit; border: 0; border-top: 2px solid; padding: 0;
+  border-radius: 0; outline: none; color: var(--robey-color-black); }
+.robey-cell__input::placeholder { color: var(--robey-color-gray-4); }
+
+/* stock - empty, filled */
+.robey-cell--stock .robey-cell__input { border-top-color: var(--robey-color-green); background: var(--robey-color-white); font-weight: 500; }
+.robey-cell--stock.is-filled .robey-cell__input { background: var(--robey-color-green-tint); font-weight: 700; }
+/* size sold out, will be backordered - the cell is tinted even when empty */
+.robey-cell--backorder .robey-cell__input { border-top-color: var(--robey-color-orange); background: var(--robey-color-orange-tint); font-weight: 500; }
+.robey-cell--backorder.is-filled .robey-cell__input { font-weight: 700; }
+/* preorder - produced to order, so no stock figure */
+.robey-cell--preorder .robey-cell__input { border-top-color: var(--robey-color-blue); background: var(--robey-color-white); font-weight: 500; }
+.robey-cell--preorder.is-filled .robey-cell__input { background: var(--robey-color-blue-tint); font-weight: 700; }
+/* size does not exist in this colour, or sold out without replenishment */
+.robey-cell--unavailable { box-shadow: none; }
+.robey-cell--unavailable .robey-cell__input { border-top-color: var(--robey-color-gray-2); background: var(--robey-color-gray-1); color: var(--robey-color-gray-4); }
+
+/* ---------------------------------------------------------------- buttons
+   Gold is reserved: only cart and checkout. Everything else is black, or
+   white with a border. A second gold button on a page is a mistake. */
+.robey-button { display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  height: var(--robey-size-button); padding: 0 24px; border-radius: var(--robey-radius-small);
+  font-size: var(--robey-text-15); font-weight: 700; border: 0; cursor: pointer; font-family: inherit; }
+.robey-button--gold { background: var(--robey-color-gold); color: var(--robey-color-white); }
+.robey-button--gold:hover { background: var(--robey-color-gold-hover); }
+.robey-button--black { background: var(--robey-color-black); color: var(--robey-color-white); }
+.robey-button--outline { background: var(--robey-color-white); color: var(--robey-color-black);
+  border: 1px solid var(--robey-color-gray-3); font-weight: 600; padding: 0 22px; }
+.robey-button--outline:hover { border-color: var(--robey-color-black); }
+
+/* ---------------------------------------------------------------- labels
+   Bottom-left on the photo. Black is a season label, red is outlet.
+   No gold: that belongs to the cart. */
+.robey-label { position: absolute; left: 10px; bottom: 10px; font-size: var(--robey-text-11);
+  font-weight: 700; padding: 3px 8px; background: var(--robey-color-black); color: var(--robey-color-white); }
+.robey-label--outlet { background: var(--robey-color-red); }
+
+/* ---------------------------------------------------------------- price
+   Reduced: new price red, old price struck through in gray-5 next to it.
+   With a price break between junior and senior sizes both are ranges. */
+.robey-price { font-size: var(--robey-text-16); font-weight: 700; }
+.robey-price--reduced { color: var(--robey-color-red); }
+.robey-price__old { font-size: var(--robey-text-13); font-weight: 500; color: var(--robey-color-gray-5);
+  text-decoration: line-through; margin-left: 8px; }
+.robey-rrp { font-size: var(--robey-text-12); color: var(--robey-color-gray-6); }
+
+/* ---------------------------------------------------------------- order type
+   Dot plus name. Stock green, preorder blue, backorder orange. The same
+   colours return in the indicator line of a cell and in the cart. */
+.robey-dot { width: 9px; height: 9px; border-radius: var(--robey-radius-round); flex-shrink: 0; display: inline-block; }
+.robey-dot--stock { background: var(--robey-color-green); }
+.robey-dot--backorder { background: var(--robey-color-orange); }
+.robey-dot--preorder { background: var(--robey-color-blue); }
+.robey-cart-label { display: inline-flex; align-items: center; gap: 7px; height: 26px; padding: 0 10px;
+  border-radius: var(--robey-radius-small); font-size: var(--robey-text-13); font-weight: 600; }
+.robey-cart-label--stock { background: var(--robey-color-green-tint); }
+.robey-cart-label--preorder { background: var(--robey-color-blue-tint); }
+
+/* ---------------------------------------------------------------- amounts
+   Columns of figures align on tabular-nums; without it a total jumps under
+   a subtotal. Notation: EUR 2.246,40 - space after the sign, dot as
+   thousands separator, comma as decimal separator. */
+.robey-amount { font-weight: 800; letter-spacing: var(--robey-amount-tracking); font-variant-numeric: tabular-nums; }
+
+/* ---------------------------------------------------------------- tile photo
+   Always 4:5 on gray-1, even if the source photo differs. Object-fit cover,
+   never stretched. */
+.robey-photo { width: 100%; aspect-ratio: 4 / 5; background: var(--robey-color-gray-1);
+  position: relative; overflow: hidden; display: block; }
+.robey-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ---- prototype ---- */
+@font-face { font-family:'Univers Black'; src:url(data:font/woff2;base64,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) format('woff2'); font-weight:800; font-style:normal; font-display:swap; }
+/* ============================================================ basis
+   Mobile-first. Elke waarde hieronder komt uit het vaste artboard van dat formaat:
+   <768 uit Mobiel*, 768 uit Tablet*768, 900 uit Tablet* (liggend), 1200 uit de desktop-artboards. */
+* { box-sizing:border-box; }
+html { -webkit-text-size-adjust:100%; }
+body { margin:0; font-family:var(--robey-font-text); font-size:var(--robey-text-15); line-height:1.6; color:var(--robey-color-black); background:var(--robey-color-white); -webkit-font-smoothing:antialiased; }
+a { color:inherit; text-decoration:none; }
+a:hover { color:var(--robey-color-gold); }
+.rb-nav__link:hover, .rb-topbar a:hover, .rb-pil:hover, .rb-banner__knop:hover, .rb-col:hover, .rb-pblok:hover, .rb-tegel:hover, .rb-dl:hover, .rb-menu a:hover, .rb-cat:hover, .rb-voet__knop:hover, .robey-button:hover, .rb-mc__order:hover, .rb-pag:hover, .rb-toonmeer:hover { color:inherit; }
+:root { color-scheme:light; }
+button { font:inherit; color:inherit; background:none; border:0; padding:0; cursor:pointer; }
+input { font:inherit; color:inherit; background:var(--robey-color-white); }
+ul { margin:0; padding:0; list-style:none; }
+p { margin:0; }
+[hidden] { display:none !important; }
+[data-ga] { cursor:pointer; }
+img { display:block; max-width:100%; }
+.rb-wrap { max-width:var(--robey-size-wrap); margin:0 auto; padding:0 16px; }
+.rb-scherm { display:none; }
+.rb-scherm.is-aan { display:block; }
+.rb-univers { font-family:var(--robey-font-heading); font-weight:800; text-transform:uppercase; letter-spacing:var(--robey-heading-tracking); }
+.rb-kop1 { font-family:var(--robey-font-heading); font-weight:800; text-transform:uppercase; letter-spacing:var(--robey-heading-tracking); font-size:22px; line-height:28px; margin:2px 0 6px; }
+.rb-kop1--telling { margin-bottom:14px; }
+.rb-kop1__tel { font-family:var(--robey-font-text); font-size:var(--robey-text-14); font-weight:400; color:var(--robey-color-gray-6); text-transform:none; letter-spacing:0; }
+.rb-kop1__tel--haak { display:none; }
+.rb-kop1__term { text-transform:none; }
+.rb-zoekleeg { grid-column:1 / -1; margin:8px 0 0; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); line-height:1.6; }
+.rb-zoekleeg b { color:var(--robey-color-black); font-weight:600; }
+.rb-sub { font-size:var(--robey-text-13); line-height:1.5; color:var(--robey-color-gray-6); max-width:640px; margin:2px 0 16px; }
+.rb-sub__lang, .rb-knop__lang, .rb-dl__uit--lang { display:none; }
+.rb-sectiekop { font-size:var(--robey-text-11); font-weight:700; letter-spacing:var(--robey-label-tracking); text-transform:uppercase; color:var(--robey-color-gray-6); margin:0 0 10px; }
+.rb-pagina { padding-bottom:0; }
+.rb-kruimel { font-size:var(--robey-text-12); color:var(--robey-color-gray-6); padding:14px 0 12px; }
+.rb-kruimel__sep { opacity:.5; }
+.rb-kruimel__hier { color:var(--robey-color-black); }
+
+/* ============================================================ zwarte balk: 34px op mobiel, 36 op tablet, 37 op desktop */
+.rb-topbar { background:var(--robey-color-black); color:var(--robey-color-white); font-size:var(--robey-text-12); }
+.rb-topbar__rechts i { width:1px; height:16px; background:rgba(255,255,255,.15); flex-shrink:0; }
+.rb-topbar__in { height:34px; display:flex; align-items:center; justify-content:center; padding:0 16px; }
+.rb-topbar__links { display:inline-flex; align-items:center; gap:6px; opacity:.85; }
+.rb-topbar__links > svg { display:none; }
+.rb-topbar__links b { font-weight:700; }
+.rb-topbar__rechts { display:none; align-items:center; gap:12px; }
+.rb-topbar__rechts a { opacity:.85; transition:opacity .12s ease; }
+.rb-topbar__rechts a:hover { opacity:1; text-decoration:underline; text-underline-offset:3px; color:var(--robey-color-white); }
+.rb-topbar__taal { display:inline-flex; align-items:center; gap:7px; opacity:.85; }
+.rb-vlag { width:16px; height:11px; border-radius:1px; background:linear-gradient(#AE1C28 0 33%, #ffffff 33% 66%, #21468B 66%); display:inline-block; }
+
+/* ============================================================ witte balk
+   <900: compacte balk met hamburger en een eigen zoekrij (76px mobiel, 72px tablet)
+   900-1199: compacte balk met navlinks en het zoekveld in de balk
+   1200+: volle balk van 86px, inhoud in de wrap van 1320, hoverpanelen */
+.rb-header { background:var(--robey-color-white); position:sticky; top:0; z-index:var(--robey-layer-bar); transition:transform .22s ease, box-shadow .22s ease; }
+body.rb-kop-weg .rb-header { transform:translateY(-100%); }
+body.rb-gescrold .rb-header { box-shadow:0 2px 6px rgba(18,18,18,.1); }
+.rb-header__zoekrij { position:relative; z-index:2; }
+.rb-header__rij { display:flex; align-items:center; gap:6px; height:76px; padding:0 16px; }
+.rb-logo { flex:1; min-width:0; display:flex; align-items:center; }
+.rb-logo img { height:52px; width:auto; }
+.rb-nav { display:none; gap:24px; }
+.rb-nav__link { font-size:var(--robey-text-15); font-weight:600; line-height:var(--robey-size-navlink); }
+.rb-nav__link:hover { text-decoration:underline; text-underline-offset:7px; text-decoration-thickness:2px; }
+.rb-nav__link--outlet { color:var(--robey-color-red); }
+.rb-header__zoek { display:none; }
+.rb-zoekpaneel { display:none; }
+.rb-header__zoekrij .rb-zoekhouder { position:relative; }
+/* zoekrijen en paneelsecties gelden op elke breedte */
+.rb-zp__art { padding:16px 20px 8px; }
+.rb-zp__kop { font-size:var(--robey-text-11); font-weight:700; letter-spacing:var(--robey-label-tracking); color:var(--robey-color-gray-6); margin:0 0 6px; text-transform:uppercase; }
+.rb-zp__leeg { margin:4px 0 8px; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); }
+.rb-zp__col { border-top:1px solid var(--robey-color-gray-2); padding:12px 20px; }
+.rb-zp__alle { border-top:1px solid var(--robey-color-gray-2); }
+.rb-zp__alle a { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:13px 20px 15px; font-size:var(--robey-text-14); font-weight:600; }
+.rb-zrij { display:flex; align-items:center; gap:12px; padding:6px 8px; margin:0 -8px; border-radius:6px; }
+.rb-zrij:hover { background:var(--robey-color-gray-1); color:var(--robey-color-black); }
+.rb-zrij__foto { width:40px; height:49px; background:var(--robey-color-gray-1); border-radius:var(--robey-radius-small); overflow:hidden; flex-shrink:0; display:block; }
+.rb-zrij__foto img { width:100%; height:100%; object-fit:cover; }
+.rb-zrij__tekst { min-width:0; flex:1; }
+.rb-zrij__naam { display:block; font-size:var(--robey-text-14); font-weight:600; line-height:1.35; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.rb-zrij__sku { display:block; font-size:var(--robey-text-12); color:var(--robey-color-gray-6); line-height:1.5; }
+.rb-zrij__prijs { font-size:var(--robey-text-14); font-weight:700; white-space:nowrap; }
+.rb-zrij__prijs--rood { color:var(--robey-color-red); }
+.rb-header__zoekrij .rb-zoekhouder.is-open .rb-zoekpaneel { display:block; position:absolute; left:0; right:0; top:calc(100% + 6px); z-index:3; background:var(--robey-color-white); padding:6px 0 32px; min-height:420px; }
+.rb-header__acties { display:flex; align-items:center; gap:6px; flex-shrink:0; }
+.rb-zoek { display:flex; align-items:center; justify-content:space-between; gap:10px; height:44px; background:var(--robey-color-searchbar); border-radius:var(--robey-radius-round); padding:0 16px 0 20px; width:100%; transition:background .12s ease; }
+.rb-zoek:hover { background:var(--robey-color-gray-2); }
+.rb-zoek__veld { flex:1; min-width:0; border:0; background:transparent; font:inherit; font-size:var(--robey-text-14); color:var(--robey-color-black); outline:none; }
+.rb-zoek__veld::placeholder { color:var(--robey-color-gray-6); }
+.rb-zoek__icoon { flex-shrink:0; }
+.rb-pil { display:inline-flex; align-items:center; gap:6px; height:40px; padding:0 11px 0 9px; border:1px solid var(--robey-color-gray-2); border-radius:var(--robey-radius-large); background:var(--robey-color-white); font-size:var(--robey-text-13); font-weight:600; white-space:nowrap; transition:background .12s ease, border-color .12s ease; }
+.rb-pil:hover { background:var(--robey-color-gray-1); border-color:var(--robey-color-gray-3); }
+.rb-pil--goud { background:var(--robey-color-gold); border-color:var(--robey-color-gold); color:var(--robey-color-white); padding:0 11px 0 10px; margin:0 4px; }
+.rb-pil--goud:hover { background:var(--robey-color-gold-hover); border-color:var(--robey-color-gold-hover); color:var(--robey-color-white); }
+.rb-pil__lang, .rb-pil__pijl, .rb-pil__haak { display:none; }
+.rb-pil svg:first-child { width:18px; height:18px; }
+.rb-pil--goud svg:first-child { width:20px; height:20px; }
+.rb-hamburger { width:40px; height:40px; display:flex; align-items:center; justify-content:center; margin-right:-8px; }
+.rb-header__zoekrij { padding:0 16px 8px; background:var(--robey-color-white); }
+.rb-paneel { display:none; position:absolute; top:100%; left:0; right:0; z-index:5; }
+.rb-header.is-mc .rb-mc { display:block; }
+.rb-paneel__in { padding:0 16px; display:flex; justify-content:flex-end; }
+.rb-mc__kaart { background:var(--robey-color-white); border-radius:0 0 var(--robey-radius-large) var(--robey-radius-large); box-shadow:var(--robey-shadow-panel); width:100%; max-width:360px; }
+.rb-mc__kop { padding:18px 20px 15px; }
+.rb-mc__titel { font-size:var(--robey-text-16); font-weight:700; line-height:1.3; }
+.rb-mc__sub { font-size:var(--robey-text-13); color:var(--robey-color-gray-6); line-height:1.4; margin-top:2px; }
+.rb-mc__lijst { background:var(--robey-color-gray-1); padding:14px 20px 18px; border-radius:0 0 var(--robey-radius-large) var(--robey-radius-large); display:flex; flex-direction:column; gap:8px; }
+.rb-mc__order { display:flex; align-items:center; gap:12px; padding:12px 14px; background:var(--robey-color-white); border:1px solid var(--robey-color-gray-2); border-radius:var(--robey-radius-cell); transition:background .12s ease, border-color .12s ease; }
+.rb-mc__order:hover { background:#FAFAFA; border-color:var(--robey-color-gray-3); }
+.rb-mc__tekst { min-width:0; flex:1; }
+.rb-mc__naam { display:block; font-size:var(--robey-text-14); font-weight:700; line-height:1.3; }
+.rb-mc__tel { display:block; font-size:var(--robey-text-12); color:var(--robey-color-gray-6); margin-top:2px; white-space:nowrap; }
+.rb-mc__order .robey-cart-label { height:22px; padding:0 8px; font-size:var(--robey-text-12); gap:6px; }
+
+/* menu-overlay (onder 900), zoals MobielMenu: sluitkruis rechtsboven, drie grote regels, de rest onderaan */
+.rb-menu { position:fixed; inset:0; z-index:40; background:var(--robey-color-white); overflow:auto; display:flex; flex-direction:column; }
+.rb-menu__kop { height:56px; display:flex; align-items:center; gap:4px; padding:0 8px 0 16px; border-bottom:1px solid var(--robey-color-gray-2); flex-shrink:0; }
+.rb-menu__sluit { width:40px; height:40px; display:flex; align-items:center; justify-content:center; margin-left:auto; }
+.rb-menu__groot { display:flex; align-items:center; justify-content:space-between; padding:17px 16px; font-size:17px; line-height:24px; font-weight:700; border-bottom:1px solid var(--robey-color-gray-2); }
+.rb-menu__groot--outlet { color:var(--robey-color-red); }
+.rb-menu__rest { margin-top:auto; padding-top:40px; }
+.rb-menu__klein { display:flex; align-items:center; justify-content:space-between; padding:13px 16px; font-size:var(--robey-text-15); font-weight:400; border-top:1px solid var(--robey-color-gray-2); }
+.rb-menu__rest .rb-menu__klein:first-child { border-top:0; }
+.rb-menu__taal { display:flex; align-items:center; gap:10px; }
+.rb-vlag--groot { width:22px; height:15px; border-radius:2px; box-shadow:0 0 0 1px rgba(18,18,18,.12); }
+.rb-schakel { width:34px; height:20px; border-radius:var(--robey-radius-round); background:var(--robey-color-gray-3); flex-shrink:0; display:flex; align-items:center; padding:2px; }
+.rb-schakel span { width:16px; height:16px; border-radius:var(--robey-radius-round); background:var(--robey-color-white); }
+.rb-schakel--groot { width:38px; height:22px; }
+.rb-schakel--groot span { width:18px; height:18px; }
+.rb-menu__acc { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:18px 16px 22px; background:var(--robey-color-gray-1); }
+.rb-menu__winkel { display:block; font-size:var(--robey-text-14); font-weight:600; line-height:1.3; }
+.rb-menu__nr { display:block; font-size:var(--robey-text-12); color:var(--robey-color-gray-6); line-height:1.5; }
+.rb-menu__wissel { font-size:var(--robey-text-13); font-weight:600; text-decoration:underline; text-underline-offset:2px; }
+
+/* ============================================================ banner: 358/240 mobiel, 720/260 tablet, 1240/300 desktop */
+.rb-bannerwrap { padding-top:16px; }
+.rb-banner { position:relative; aspect-ratio:358/240; overflow:hidden; border-radius:var(--robey-radius-large); background:var(--robey-color-black); }
+.rb-banner img { width:100%; height:100%; object-fit:cover; object-position:center 27%; }
+.rb-banner__schaduw { position:absolute; inset:0; background:linear-gradient(to top, rgba(18,18,18,.55) 0%, rgba(18,18,18,.1) 55%, rgba(18,18,18,0) 100%); }
+.rb-banner__tekst { position:absolute; left:18px; right:18px; bottom:18px; color:var(--robey-color-white); }
+.rb-banner__boven { margin:0 0 4px; font-size:var(--robey-text-13); opacity:.9; }
+.rb-banner__kop { margin:0 0 12px; font-family:var(--robey-font-heading); font-weight:800; text-transform:uppercase; font-size:26px; line-height:30px; letter-spacing:-0.2px; }
+.rb-banner__knop { display:inline-block; background:var(--robey-color-black); color:var(--robey-color-white); font-size:var(--robey-text-14); font-weight:600; line-height:20px; padding:10px 18px; border-radius:var(--robey-radius-small); }
+
+/* ============================================================ homepage-secties */
+.rb-sectie { padding-top:44px; }
+.rb-sectie--welkom { padding-top:36px; }
+.rb-sectie--cats { padding-bottom:0; }
+.rb-sectie--laatst { padding-bottom:40px; }
+.rb-hkop { margin:0 0 12px; font-size:var(--robey-text-18); font-weight:400; letter-spacing:var(--robey-amount-tracking); }
+.rb-hkop b { font-weight:700; }
+.rb-welkom { margin-bottom:12px; }
+.rb-welkom .rb-hkop { margin-bottom:0; }
+.rb-hlinks { display:flex; align-items:center; gap:12px; font-size:var(--robey-text-13); font-weight:600; margin-top:14px; }
+.rb-hlinks a:hover { color:var(--robey-color-gold); }
+.rb-hlinks a { text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px; text-decoration-color:var(--robey-color-gray-4); }
+.rb-hlinks span { width:1px; height:12px; background:var(--robey-color-gray-3); }
+.rb-pblokken { display:flex; flex-direction:column; gap:10px; }
+.rb-pblok { display:flex; align-items:flex-start; gap:12px; background:var(--robey-color-gray-1); border-radius:var(--robey-radius-large); padding:14px 14px 14px 16px; transition:background .12s ease; }
+.rb-pblok:hover { background:var(--robey-color-block-hover); }
+.rb-pblok__tekst { min-width:0; flex:1; }
+.rb-pblok__titel { display:block; font-size:var(--robey-text-14); font-weight:700; line-height:1.4; }
+.rb-pblok__sub { display:block; font-size:var(--robey-text-12); color:var(--robey-color-gray-6); line-height:1.5; margin-top:1px; }
+.rb-pblok__thumbs { display:flex; gap:5px; align-items:center; margin-top:8px; }
+.rb-thumb { width:28px; height:34px; border:1px solid var(--robey-color-gray-2); border-radius:var(--robey-radius-small); background:var(--robey-color-white); overflow:hidden; flex-shrink:0; }
+.rb-thumb img { width:100%; height:100%; object-fit:cover; }
+.rb-pblok__meer { font-size:var(--robey-text-12); color:var(--robey-color-gray-6); margin-left:4px; }
+.rb-pblok__pijl { align-self:flex-end; width:30px; height:30px; border-radius:var(--robey-radius-round); background:var(--robey-color-white); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+
+/* slider: onder 1200 een schuifrij (mobiel) of raster (tablet), vanaf 1200 een vaste rij met pijlen */
+.rb-sl { position:relative; }
+.rb-sl__vp { overflow:visible; }
+.rb-sl__track { display:flex; gap:12px; overflow-x:auto; scrollbar-width:none; margin:0 -16px; padding:2px 16px 6px; }
+.rb-sl__track::-webkit-scrollbar { display:none; }
+.rb-sl__track > * { flex-shrink:0; }
+.rb-sl__pijl { display:none; }
+.rb-col { position:relative; display:block; width:272px; aspect-ratio:4/5; overflow:hidden; border-radius:var(--robey-radius-large); background:var(--robey-color-gray-1); }
+.rb-col img { width:100%; height:100%; object-fit:cover; }
+.rb-col__schaduw { position:absolute; inset:0; background:linear-gradient(to top, rgba(18,18,18,.6) 0%, rgba(18,18,18,.12) 55%, rgba(18,18,18,0) 100%); }
+.rb-col__naam { position:absolute; left:18px; bottom:16px; color:var(--robey-color-white); font-family:var(--robey-font-heading); font-weight:800; font-size:var(--robey-text-22); line-height:28px; letter-spacing:var(--robey-heading-tracking); text-transform:uppercase; }
+.rb-sl--prod .rb-tegel { width:235px; }
+.rb-cat { display:flex; flex-direction:column; align-items:center; gap:8px; width:88px; font-size:var(--robey-text-12); font-weight:600; text-align:center; line-height:1.3; }
+.rb-cat__cirkel { width:88px; height:88px; border-radius:var(--robey-radius-round); background:var(--robey-color-gray-1); overflow:hidden; display:block; }
+.rb-cat__cirkel img { width:100%; height:100%; object-fit:cover; }
+.rb-sl--cat .rb-sl__track { gap:18px; }
+
+/* ============================================================ producttegel: 13/15/11 op mobiel, 15/16/12 op desktop */
+.rb-tegels { display:grid; grid-template-columns:1fr 1fr; gap:22px 12px; margin-top:20px; }
+.rb-tegel { display:flex; flex-direction:column; gap:5px; min-width:0; }
+.rb-tegel:hover .rb-tegel__naam { color:var(--robey-color-gold); }
+.rb-tegel__naam { font-size:var(--robey-text-13); font-weight:600; line-height:1.3; }
+.rb-tegel__sku { font-size:var(--robey-text-11); color:var(--robey-color-gray-6); letter-spacing:.03em; line-height:1.2; }
+.rb-tegel__prijs { display:block; line-height:1.6; }
+.rb-tegel__prijs .robey-price { font-size:var(--robey-text-13); }
+.rb-tegel .robey-price__old { display:block; font-size:var(--robey-text-12); color:var(--robey-color-gray-6); text-decoration:line-through; }
+.rb-tegel .robey-rrp { display:block; font-size:var(--robey-text-11); line-height:1.6; }
+/* catalogus op mobiel: zes tegels, dan Toon meer */
+.rb-tegels--meer > .rb-tegel:nth-child(n+7) { display:none; }
+/* de productslider op de homepage toont op mobiel geen kleurstippen (MobielHome) */
+.rb-sl--prod .rb-tegel__stalen { display:none; }
+/* kleine variant voor Vaak samen besteld op de productpagina (MobielPDP: 150 px, zonder adviesprijs) */
+.rb-sl--klein .rb-tegel { width:150px; }
+.rb-sl--klein .robey-rrp { display:none; }
+.rb-sl--klein .rb-tegel__prijs .robey-price { font-size:var(--robey-text-13); }
+.rb-tegel .robey-label { left:8px; bottom:8px; font-size:10px; padding:3px 7px; }
+/* kleurstalen op de tegel (19 september): één regel met zoveel stalen als passen (maximaal negen) en een +N-knop die de rest uitklapt; klik op een staal wisselt de foto */
+.rb-tegel__stalen { display:flex; gap:6px; flex-wrap:wrap; align-items:center; margin-top:8px; min-height:24px; }   /* telefoon: 24 px, maximaal twee regels (aantikbaar) */
+.rb-staal { width:24px; height:24px; border-radius:var(--robey-radius-round); border:1px solid rgba(18,18,18,.2); display:block; box-sizing:border-box; cursor:pointer; flex-shrink:0; }
+.rb-staal[hidden] { display:none; }
+.rb-staal.is-aan { outline:1px solid var(--robey-color-black); outline-offset:2px; }
+.rb-staal-meer { height:24px; min-width:24px; padding:0 6px; border:1px solid var(--robey-color-gray-3); border-radius:var(--robey-radius-round); background:var(--robey-color-white); font-size:var(--robey-text-12); font-weight:600; line-height:22px; color:var(--robey-color-gray-6); display:inline-flex; align-items:center; cursor:pointer; flex-shrink:0; }
+.rb-staal-meer[hidden] { display:none; }
+
+/* ============================================================ catalogus */
+.rb-pagkop { display:flex; flex-direction:column; gap:0; }
+.rb-toolbar { display:flex; gap:8px; align-items:center; }
+/* op mobiel vullen de filter- en sorteerknop samen de breedte (besluit Dennis, 17 september) */
+.rb-toolbar .rb-tb { flex:1 1 0; justify-content:center; }
+.rb-tb { display:inline-flex; align-items:center; gap:7px; height:40px; padding:0 14px; border:1px solid var(--robey-color-gray-3); border-radius:var(--robey-radius-small); background:var(--robey-color-white); font-size:var(--robey-text-14); font-weight:500; white-space:nowrap; }
+.rb-tb--schakel { font:inherit; color:inherit; cursor:pointer; }
+.rb-tb.is-aan { background:var(--robey-color-black); border-color:var(--robey-color-black); color:var(--robey-color-white); }
+.rb-tb.is-aan .rb-tb__badge { background:var(--robey-color-white); color:var(--robey-color-black); }
+.rb-account.is-nafilter .rb-otab__rij:not([data-na]), .rb-account.is-nafilter .rb-okaart:not([data-na]), .rb-account.is-nafilter .rb-apager, .rb-account.is-nafilter .rb-ameer { display:none; }
+.rb-tb__badge { background:var(--robey-color-black); color:var(--robey-color-white); font-size:var(--robey-text-11); font-weight:700; line-height:1; padding:3px 6px; border-radius:var(--robey-radius-round); }
+.rb-toolbar__weergave, .rb-toolbar__sort { display:none; }
+.rb-fchips { display:flex; flex-wrap:wrap; gap:6px; margin-top:16px; align-items:center; }
+.rb-fchip { display:inline-flex; align-items:center; gap:7px; font-size:var(--robey-text-13); background:var(--robey-color-gray-1); border-radius:var(--robey-radius-small); padding:6px 10px; }
+.rb-fchips__wis { font-size:var(--robey-text-12); color:var(--robey-color-black); text-decoration:underline; text-underline-offset:3px; }
+.rb-plp { display:block; }
+.rb-filters { position:fixed; inset:0; z-index:40; background:var(--robey-color-white); overflow:auto; padding:0 16px 100px; display:none; }
+.rb-filters.is-open { display:block; }
+.rb-filters__kop { display:flex; align-items:center; justify-content:space-between; height:76px; font-family:var(--robey-font-heading); font-weight:800; font-size:var(--robey-text-22); text-transform:uppercase; letter-spacing:var(--robey-heading-tracking); }
+.rb-filters__voet { position:fixed; left:0; right:0; bottom:0; padding:12px 16px 20px; background:var(--robey-color-white); box-shadow:0 -6px 20px -12px rgba(18,18,18,.3); }
+.rb-filters__voet .robey-button { width:100%; }
+.rb-fgroep { border-top:1px solid var(--robey-color-gray-2); padding:16px 0 18px; }
+.rb-fgroep--laatst { border-bottom:1px solid var(--robey-color-gray-2); }
+.rb-fgroep__kop { display:flex; align-items:center; justify-content:space-between; margin:0 0 12px; font-size:var(--robey-text-15); font-weight:600; }
+.rb-frij { display:flex; align-items:center; gap:11px; font-size:var(--robey-text-14); padding:4px 0; cursor:pointer; }
+.rb-vink { width:18px; height:18px; border:1.5px solid var(--robey-color-gray-3); border-radius:var(--robey-radius-small); background:var(--robey-color-white); flex-shrink:0; }
+.rb-frij.is-aan .rb-vink { background:var(--robey-color-black); border-color:var(--robey-color-black); background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.4'%3E%3Cpath d='M5 13l4.5 4.5L19 7'/%3E%3C/svg%3E"); background-size:12px; background-position:center; background-repeat:no-repeat; }
+.rb-frij__tel { margin-left:auto; font-size:var(--robey-text-12); color:var(--robey-color-gray-6); }
+.rb-fgroep__meer { display:inline-block; margin-top:8px; font-size:var(--robey-text-13); line-height:1.6; color:var(--robey-color-gray-6); text-decoration:underline; text-underline-offset:3px; }
+.rb-fkleuren { display:flex; flex-wrap:wrap; gap:10px; }
+.rb-fkleur { width:24px; height:24px; border-radius:var(--robey-radius-round); border:1px solid rgba(18,18,18,.18); display:block; cursor:pointer; }
+.rb-fkleur.is-aan { outline:2px solid var(--robey-color-black); outline-offset:2px; }
+.rb-fchips[hidden] { display:none; }
+.rb-fchip { cursor:pointer; }
+.rb-fchip__stip { width:12px; height:12px; border-radius:var(--robey-radius-round); border:1px solid rgba(18,18,18,.2); display:inline-block; }
+.rb-ftoegepast { display:none; }
+.rb-ftoegepast__chips { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 10px; }
+.rb-tegel[hidden] { display:none; }
+.rb-tegels.is-gefilterd > .rb-tegel:not([hidden]) { display:flex; }
+.rb-fmaten { display:flex; flex-wrap:wrap; gap:6px; }
+.rb-fmaat { font-size:var(--robey-text-13); font-weight:500; border:1px solid var(--robey-color-gray-3); border-radius:var(--robey-radius-small); padding:6px 10px; background:var(--robey-color-white); }
+.rb-toonmeer { display:flex; align-items:center; justify-content:center; gap:6px; height:48px; margin-top:26px; border:1px solid var(--robey-color-black); border-radius:var(--robey-radius-small); font-size:var(--robey-text-14); font-weight:600; }
+.rb-toonmeer span { color:var(--robey-color-gray-6); font-weight:500; }
+.rb-paginering { display:none; margin-top:48px; text-align:center; font-size:var(--robey-text-13); color:var(--robey-color-gray-6); }
+.rb-paginering__knoppen { display:inline-flex; gap:6px; align-items:center; margin-top:22px; }
+.rb-pag { display:inline-flex; align-items:center; justify-content:center; min-width:38px; height:38px; padding:0 13px; border:1px solid var(--robey-color-gray-3); border-radius:var(--robey-radius-small); font-size:var(--robey-text-14); font-weight:500; color:var(--robey-color-black); background:var(--robey-color-white); }
+.rb-pag--aan { background:var(--robey-color-black); border-color:var(--robey-color-black); color:var(--robey-color-white); }
+.rb-pag--uit { color:var(--robey-color-gray-4); border-color:var(--robey-color-gray-2); }
+.rb-pag__punt { padding:0 6px; color:var(--robey-color-gray-6); }
+
+/* ============================================================ downloads */
+.rb-zoekveld { display:flex; gap:8px; max-width:520px; margin:0 0 16px; }
+.rb-zoekveld input { flex:1; min-width:0; height:42px; background:var(--robey-color-white); color:var(--robey-color-black); border:1px solid var(--robey-color-gray-3); border-radius:var(--robey-radius-small); padding:0 12px; font:inherit; font-size:var(--robey-text-14); }
+.rb-zoekveld input::placeholder { color:var(--robey-color-gray-5); }
+.rb-zoekveld .robey-button { height:42px; padding:0 16px; flex-shrink:0; font-size:var(--robey-text-14); font-weight:600; }
+.rb-lijst { max-width:1000px; }
+.rb-dl { display:flex; align-items:center; gap:13px; padding:13px 14px; border:1px solid var(--robey-color-gray-2); border-radius:6px; margin-bottom:9px; background:var(--robey-color-white); }
+.rb-dl:hover { border-color:var(--robey-color-gray-3); background:#FAFAFA; }
+.rb-dl__icoon { width:34px; height:34px; flex-shrink:0; border-radius:6px; background:var(--robey-color-gray-1); display:flex; align-items:center; justify-content:center; }
+.rb-dl--map { padding:11px 14px 11px 11px; }
+.rb-dl__thumb { width:74px; height:50px; flex-shrink:0; border-radius:4px; background:var(--robey-color-gray-1); overflow:hidden; }
+.rb-dl__thumb--art { width:42px; height:53px; }
+.rb-dl__thumb img { width:100%; height:100%; object-fit:cover; }
+.rb-dl__tekst { flex:1; min-width:0; }
+.rb-dl__naam { display:block; font-size:var(--robey-text-14); font-weight:700; line-height:1.35; }
+.rb-dl__uit { display:block; font-size:var(--robey-text-12); color:var(--robey-color-gray-6); line-height:1.45; }
+.rb-dl__meta { font-size:var(--robey-text-11); color:var(--robey-color-gray-5); white-space:nowrap; }
+.rb-dl__meta--onder { display:block; margin-top:3px; line-height:1.4; }
+.rb-dl__meta--naast { display:none; }
+.rb-dl__knop { height:34px; padding:0 12px; font-size:var(--robey-text-12); gap:6px; flex-shrink:0; }
+.rb-dl__knoptekst { display:none; }
+.rb-dl-leeg { font-size:var(--robey-text-13); color:var(--robey-color-gray-6); }
+
+/* ============================================================ footer: accordeon op mobiel, kolommen daarboven */
+.rb-voet { background:var(--robey-color-black); color:var(--robey-color-white); padding:30px 0 26px; margin-top:40px; }
+.rb-voet__raster { display:block; }
+.rb-voet__kop { font-size:var(--robey-text-16); font-weight:800; margin:0; }
+.rb-voet__tekst { font-size:var(--robey-text-14); line-height:22px; margin:8px 0 16px; }
+.rb-voet__knop { display:inline-block; background:var(--robey-color-white); color:var(--robey-color-black); font-size:var(--robey-text-14); font-weight:600; line-height:20px; padding:11px 22px; border-radius:var(--robey-radius-small); }
+.rb-voet__kolommen { display:none; }
+.rb-voet__accordeon { margin-top:26px; }
+.rb-voet__rij { display:flex; align-items:center; justify-content:space-between; padding:14px 0; border-top:1px solid rgba(255,255,255,.14); font-size:var(--robey-text-15); font-weight:600; }
+.rb-voet__lijst li { margin-bottom:7.5px; }
+.rb-voet__lijst a { color:inherit; font-size:var(--robey-text-15); line-height:24px; opacity:.85; }
+.rb-voet__lijst a:hover { opacity:1; text-decoration:underline; text-underline-offset:3px; color:var(--robey-color-white); }
+.rb-voet__tussen { display:flex; align-items:center; justify-content:space-between; gap:24px; padding-top:32px; }
+.rb-voet__socials { display:flex; align-items:center; gap:20px; }
+.rb-voet__socials a { color:inherit; display:flex; align-items:center; }
+.rb-voet__socials svg { width:19px; height:19px; }
+.rb-voet__taal { display:inline-flex; align-items:center; gap:9px; border:1px solid rgba(255,255,255,.35); border-radius:3px; padding:9px 14px; font-size:var(--robey-text-14); }
+.rb-voet__onder { font-size:var(--robey-text-12); color:var(--robey-color-gray-5); margin-top:22px; display:flex; align-items:center; gap:8px 24px; justify-content:space-between; }
+.rb-voet__tekst--lang, .rb-voet__jaar, .rb-voet__tussen { display:none; }
+.rb-voet__taalklein { display:flex; align-items:center; gap:8px; color:var(--robey-color-white); }
+.rb-voet__kvk, .rb-voet__onderlinks { display:none; }
+.rb-voet__onderlinks a { margin-left:24px; color:inherit; }
+
+/* ============================================================ prototype-hulp */
+.rb-proto { position:fixed; left:50%; transform:translateX(-50%); bottom:16px; z-index:99; display:flex; gap:4px; padding:5px; background:rgba(18,18,18,.92); border-radius:var(--robey-radius-round); box-shadow:0 8px 24px rgba(0,0,0,.28); max-width:calc(100% - 24px); overflow-x:auto; }
+.rb-proto button { color:var(--robey-color-white); opacity:.6; font-size:12.5px; font-weight:600; padding:8px 14px; border-radius:var(--robey-radius-round); white-space:nowrap; }
+.rb-proto button.is-aan, .rb-proto button:hover { opacity:1; }
+.rb-proto button.is-aan { background:var(--robey-color-white); color:var(--robey-color-black); }
+body.rb-balk-weg .rb-proto { display:none; }
+.rb-breedte { position:fixed; right:12px; bottom:12px; z-index:99; background:rgba(18,18,18,.85); color:var(--robey-color-white); font-size:11px; font-weight:600; padding:7px 10px; border-radius:var(--robey-radius-round); font-variant-numeric:tabular-nums; cursor:pointer; }
+.rb-breedte::before { content:'mobiel · '; opacity:.7; }
+
+/* ============================================================ 768: tablet staand ============================================================ */
+/* ============================================================ productpagina (mobiel: foto met pijlen, kleurkaarten) */
+.rb-pagina.rb-pdp { padding-bottom:0; }
+.rb-pagina.rb-pdp--kaal { padding-bottom:40px; }  /* zonder Vaak samen besteld (MainE) */
+.rb-gal { display:none; }
+.rb-gal.is-aan { display:block; }
+.rb-gal__foto { position:relative; width:100%; aspect-ratio:4/5; background:var(--robey-color-gray-1); overflow:hidden; }
+.rb-gal__foto img { cursor:zoom-in; }
+/* galerijweergave (19 september): klik op de grote foto opent de foto's van de gekozen kleur groot, met pijlen en miniaturen */
+.rb-lb { position:fixed; inset:0; z-index:100; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:72px 16px 20px; }
+.rb-lb[hidden] { display:none; }
+.rb-lb__achter { position:absolute; inset:0; background:rgba(18,18,18,.94); }
+.rb-lb__img { position:relative; max-width:min(92vw, 720px); max-height:calc(100vh - 200px); object-fit:contain; background:var(--robey-color-gray-1); border-radius:4px; }
+.rb-lb__sluit, .rb-lb__pijl { position:absolute; width:44px; height:44px; border-radius:var(--robey-radius-round); background:var(--robey-color-white); display:flex; align-items:center; justify-content:center; box-shadow:0 1px 6px rgba(0,0,0,.3); }
+.rb-lb__sluit { top:16px; right:16px; }
+.rb-lb__pijl { top:50%; margin-top:-22px; }
+.rb-lb__pijl--l { left:12px; } .rb-lb__pijl--r { right:12px; }
+.rb-lb__thumbs { position:relative; display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+.rb-lb__thumb { width:52px; height:65px; background:var(--robey-color-gray-1); overflow:hidden; border-radius:3px; opacity:.6; }
+.rb-lb__thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.rb-lb__thumb.is-aan { opacity:1; outline:2px solid var(--robey-color-white); }
+body.rb-lb-open { overflow:hidden; }
+.rb-gal__foto img, .rb-gal__thumb img, .rb-mx__foto img { width:100%; height:100%; object-fit:cover; display:block; }
+.rb-gal__pijl { position:absolute; top:50%; width:36px; height:36px; margin-top:-18px; border-radius:var(--robey-radius-round); background:rgba(255,255,255,.92); box-shadow:0 1px 4px rgba(18,18,18,.18); display:flex; align-items:center; justify-content:center; }
+.rb-gal__pijl--l { left:10px; }
+.rb-gal__pijl--r { right:10px; }
+.rb-gal__dots { position:absolute; left:0; right:0; bottom:12px; display:flex; justify-content:center; gap:6px; }
+.rb-gal__dots span { width:6px; height:6px; border-radius:var(--robey-radius-round); background:rgba(18,18,18,.25); }
+.rb-gal__dots span.is-aan { background:var(--robey-color-black); }
+.rb-gal__thumbs { display:none; }
+.rb-pdp__info { display:flex; flex-direction:column; align-items:flex-start; min-width:0; }
+.rb-pdp__kleur { order:-1; align-self:stretch; }
+.rb-pdp__kleur { display:flex; flex-direction:column; }   /* code en naam boven de stalen, op elk formaat: de naam hoort ook bij de foto erboven */
+.rb-pdp__kleurkop { order:1; display:flex; align-items:baseline; gap:4px; margin:14px 0 0; font-size:var(--robey-text-13); color:var(--robey-color-gray-6); }
+.rb-pdp__kleurlabel { display:none; }   /* alleen code en naam: "100 White" (19 september) */
+.rb-pdp__gekozen { color:var(--robey-color-black); }
+.rb-pdp__gekozen b { font-weight:600; }
+.rb-pdp__gekozencode { display:inline; }
+.rb-sws { order:2; display:flex; gap:10px; overflow-x:auto; padding:3px 3px 6px; margin:8px -3px 0; scrollbar-width:none; }
+.rb-sws::-webkit-scrollbar { display:none; }
+.rb-sw { width:32px; height:32px; border-radius:var(--robey-radius-round); border:1px solid rgba(18,18,18,.15); flex-shrink:0; display:block; }
+.rb-sw.is-aan { outline:1px solid var(--robey-color-black); outline-offset:2px; }
+.rb-pdp__h1 { margin:20px 0 8px; }
+.rb-pdp__sku { display:inline-block; background:var(--robey-color-black); color:var(--robey-color-white); font-size:var(--robey-text-11); font-weight:600; padding:3px 8px; border-radius:var(--robey-radius-small); }
+.rb-pdp__specs { margin-top:16px; align-self:stretch; }
+.rb-spec { display:flex; gap:12px; font-size:var(--robey-text-13); line-height:1.9; }
+.rb-spec > span:first-child { width:96px; flex-shrink:0; font-weight:600; }
+.rb-spec--eenheid { display:none; }
+.rb-spec--tekst { flex-wrap:wrap; row-gap:0; align-items:flex-start; }
+.rb-spec--tekst > .rb-spec__tekst { flex:1 1 0%; min-width:0; line-height:1.6; padding-top:2px; }
+.rb-spec__tekst.is-kort { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.rb-spec__meer { flex-basis:100%; margin:0 0 0 108px; font-size:var(--robey-text-13); line-height:1.4; text-decoration:underline; text-underline-offset:2px; }
+.rb-na { display:flex; align-items:center; gap:8px; margin-top:8px; font-size:var(--robey-text-13); color:var(--robey-color-gray-6); line-height:1.5; }
+.rb-na b { color:var(--robey-color-black); font-weight:600; }
+.rb-na .robey-dot { width:8px; height:8px; }
+/* outlet: toelichting en afgeprijsde stukprijs */
+.rb-pdp__noot { margin:12px 0 0; font-size:var(--robey-text-13); color:var(--robey-color-gray-6); line-height:1.5; max-width:560px; }
+.rb-pdp__afgeprijsd { color:var(--robey-color-red); font-weight:700; }
+.rb-pdp__oud { margin-left:9px; color:var(--robey-color-gray-6); }
+/* ordertype (Custom Made): voorraad of voorverkoop, elk met een eigen matrix */
+.rb-ordertype { align-self:stretch; margin-top:22px; }
+.rb-ordertype .rb-sectiekop { margin:0 0 8px; }
+.rb-modusrij { display:grid; grid-template-columns:1fr 1fr; gap:2px; padding:4px; background:var(--robey-color-gray-1); border-radius:var(--robey-radius-large); }
+.rb-modus { display:flex; align-items:center; justify-content:center; gap:8px; height:40px; padding:0 12px; border-radius:6px; font-size:var(--robey-text-14); font-weight:600; color:var(--robey-color-gray-6); white-space:nowrap; }
+.rb-modus.is-aan { background:var(--robey-color-white); box-shadow:0 1px 2px rgba(0,0,0,.12); color:var(--robey-color-black); }
+.rb-modus .robey-dot { width:9px; height:9px; }
+.rb-modus__badge { background:var(--robey-color-green); color:var(--robey-color-white); font-size:var(--robey-text-11); font-weight:700; line-height:1; padding:4px 7px; border-radius:var(--robey-radius-round); }
+.rb-modus[data-modus="voorverkoop"] .rb-modus__badge { background:var(--robey-color-blue); }
+.rb-modus__stuks { display:none; }  /* onder 900 px alleen het getal */
+.rb-uitleg { display:none; margin:10px 0 0; font-size:var(--robey-text-13); color:var(--robey-color-gray-6); line-height:1.55; max-width:760px; }
+.rb-uitleg.is-aan { display:block; }
+/* bevestiging onder de matrix: er is geen knop In winkelwagen, dus dit is het signaal dat het aantal is opgeslagen */
+.rb-mx__melding { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:6px 14px; margin-top:12px; font-size:var(--robey-text-13); line-height:1.5; }
+.rb-mx__melding[hidden] { display:none; }
+/* melding als een aantal boven het leverbare maximum uitkomt; verschijnt in de kleurrij en verdwijnt na een paar seconden */
+.rb-mx__max, .rb-mx__min { grid-column:1 / -1; margin:0; padding:8px 12px; font-size:var(--robey-text-13); line-height:1.5; background:var(--robey-color-notice); border-top:1px solid var(--robey-color-notice-border); }
+.rb-mx__max b, .rb-mx__min b { font-weight:700; }
+.rb-mx__max a { text-decoration:underline; text-underline-offset:2px; }
+.rb-mx__meldingtekst { display:inline-flex; align-items:center; gap:7px; font-weight:600; }
+.rb-mx[data-modus] { display:none; }
+.rb-mx[data-modus].is-aan { display:block; }
+/* outlet per kleur: label, rode prijs en doorgehaalde oude prijs in de kleurkop */
+.rb-mx__label { display:block; width:fit-content; margin:2px 0 4px; background:var(--robey-color-red); color:var(--robey-color-white); font-size:10px; font-weight:700; line-height:1.4; padding:2px 7px; border-radius:var(--robey-radius-small); }
+.rb-mx__prijs.rb-mx__prijs--rood { color:var(--robey-color-red); font-weight:700; }
+.rb-mx__oud { display:block; font-size:var(--robey-text-11); font-weight:400; line-height:1.5; color:var(--robey-color-gray-6); text-decoration:line-through; white-space:nowrap; }
+/* matrix als kleurkaarten */
+.rb-mx__rij { border:1px solid var(--robey-color-gray-2); border-radius:var(--robey-radius-cell); margin-top:8px; background:var(--robey-color-white); scroll-margin-top:110px; }
+.rb-mx__rij:first-child { margin-top:18px; }
+.rb-mx__kop { display:flex; align-items:center; gap:12px; padding:10px 12px 10px 10px; cursor:pointer; }
+.rb-mx__foto { width:44px; height:55px; background:var(--robey-color-gray-1); overflow:hidden; flex-shrink:0; display:block; }
+.rb-mx__naam { flex:1; min-width:0; font-size:var(--robey-text-14); font-weight:600; line-height:1.3; }
+.rb-mx__code { display:block; font-size:var(--robey-text-11); font-weight:400; color:var(--robey-color-gray-6); line-height:1.4; }
+.rb-mx__prijs { display:block; font-size:var(--robey-text-12); font-weight:400; color:var(--robey-color-gray-6); line-height:1.5; margin-top:1px; white-space:nowrap; }
+.rb-mx__tel { font-size:var(--robey-text-13); font-weight:700; white-space:nowrap; }
+.rb-mx__tel.is-leeg { color:var(--robey-color-gray-4); font-weight:500; }
+.rb-mx__chev { flex-shrink:0; transition:transform .2s; }
+.rb-mx__rij.is-open .rb-mx__chev { transform:rotate(180deg); }
+.rb-mx__body { display:none; background:var(--robey-color-gray-1); padding:10px 10px 8px; border-top:1px solid var(--robey-color-gray-2); }
+.rb-mx__rij.is-open .rb-mx__body { display:block; }
+.rb-mx__cellen { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:6px; }
+.rb-mx__voet { display:flex; justify-content:space-between; font-size:var(--robey-text-12); color:var(--robey-color-gray-6); padding:10px 2px 2px; }
+.rb-mx__voetrij { display:flex; gap:5px; }
+.rb-mx__voet b { color:var(--robey-color-black); font-weight:700; font-size:var(--robey-text-13); }
+.rb-celinfo { display:flex; flex-shrink:0; }
+/* compacte cel op mobiel: lichtere kop en 16px invoer (voorkomt inzoomen op iOS) */
+.robey-cell--compact .robey-cell__head { background:var(--robey-color-searchbar); padding:4px 7px; font-size:var(--robey-text-13); }
+.robey-cell--compact .robey-cell__stock { background:var(--robey-color-searchbar); padding:0 7px 4px; min-height:22px; }
+.robey-cell--compact .robey-cell__input { height:44px; font-size:var(--robey-text-16); }
+.rb-sectie.rb-pdp__vaak { padding-top:40px; }
+/* maatpaneel: voorraad, levering en EAN van een cel */
+.rb-mp { position:fixed; width:min(420px, calc(100vw - 24px)); background:var(--robey-color-white); border-radius:var(--robey-radius-large); box-shadow:0 2px 40px rgba(18,18,18,.26), 0 0 0 1px rgba(18,18,18,.06); padding:20px 22px 12px; z-index:60; }
+.rb-mp__caret { position:absolute; bottom:-7px; width:14px; height:14px; margin-left:-7px; background:var(--robey-color-white); transform:rotate(45deg); box-shadow:4px 4px 8px -4px rgba(18,18,18,.18); }
+.rb-mp--onder .rb-mp__caret { bottom:auto; top:-7px; box-shadow:-4px -4px 8px -4px rgba(18,18,18,.18); }
+.rb-mp__kop { font-size:var(--robey-text-16); font-weight:700; margin-bottom:14px; }
+.rb-mp__rij { display:grid; grid-template-columns:110px 1fr; gap:24px; padding:13px 0; border-top:1px solid var(--robey-color-gray-2); font-size:var(--robey-text-14); line-height:1.4; }
+.rb-mp__label { color:var(--robey-color-gray-6); }
+.rb-mp__waarde { min-width:0; }
+.rb-mp__stip { width:8px; height:8px; margin-right:8px; vertical-align:1px; }
+.rb-mp__lever, .rb-mp__ean { display:flex; justify-content:space-between; gap:12px; font-variant-numeric:tabular-nums; }
+.rb-mp__plus { color:var(--robey-color-gray-6); }
+.rb-mp__kopieer { font-size:var(--robey-text-12); color:var(--robey-color-gray-6); text-decoration:underline; text-underline-offset:3px; }
+
+/* ============================================================ winkelwagen (mobiel: kaarten met kleuraccordeons, kostenoverzicht als blok) */
+.rb-wagen { display:none; }
+.rb-wagen.is-aan { display:block; }
+.rb-wagen__kop { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.rb-wagen__kop .robey-cart-label { position:relative; top:-2px; font-family:var(--robey-font-text); text-transform:none; letter-spacing:0; }
+.rb-wagen__links { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-top:8px; }  /* mobiel: wissellink links, Winkelwagen legen rechts */
+.rb-wagen__wissel { display:inline-flex; align-items:center; gap:6px; font-size:var(--robey-text-13); font-weight:400; color:var(--robey-color-gray-6); }
+.rb-wagen__wissel span { text-decoration:underline; text-underline-offset:3px; }
+.rb-wagen__wissel:hover { color:var(--robey-color-black); }
+.rb-wagen__wissel[hidden] { display:none; }
+.rb-cart__tools { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:14px; }
+.rb-cart__zoek { flex:1 0 100%; display:flex; align-items:center; gap:10px; height:40px; padding:0 14px; border:1px solid var(--robey-color-gray-3); border-radius:var(--robey-radius-small); background:var(--robey-color-white); font-size:var(--robey-text-14); color:var(--robey-color-gray-6); }
+.rb-cart__legen { margin-left:auto; }
+.rb-cart__tools .rb-cart__legen { display:none; }  /* mobiel staat hij bij de wissellink */
+.rb-cart__tools .rb-tb, .rb-cart__tools .rb-weergave { flex:1 1 auto; min-width:0; }  /* mobiel: Weergave en Bewaar vullen samen de regel */
+.rb-cart__tools .rb-tb { justify-content:center; padding:0 12px; }
+.rb-weergave > .rb-tb { width:100%; }
+.rb-cart__legen--kop[hidden] { display:none; }
+.rb-cart__legen { font-size:var(--robey-text-13); color:var(--robey-color-gray-6); text-decoration:underline; text-underline-offset:2px; }
+.rb-cart__leegtekst { margin:8px 0 20px; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); line-height:1.6; max-width:520px; }
+/* kaart */
+.rb-wk { margin-top:20px; background:var(--robey-color-gray-1); border-radius:var(--robey-radius-large); padding:16px 16px 14px; }  /* mobiel: grijs vlak bundelt de kleurkaarten van een artikel, zoals op desktop (18 september) */
+.rb-wk[hidden] { display:none; }
+.rb-wk__kop { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; padding:0 0 10px; }
+.rb-wk__titel { min-width:0; }
+.rb-wk__artikel { font-size:var(--robey-text-15); font-weight:700; line-height:1.3; }
+.rb-wk__regel { font-size:var(--robey-text-12); color:var(--robey-color-gray-6); line-height:1.5; }
+.rb-wk__regel s, .rb-wk__prijs s { color:var(--robey-color-gray-5); }
+.rb-wk__afgeprijsd { color:var(--robey-color-red); font-weight:700; }
+.rb-wk__rechts { text-align:right; flex-shrink:0; }
+.rb-wk__tel { font-size:var(--robey-text-12); color:var(--robey-color-gray-6); white-space:nowrap; }
+.rb-wk__tel b { font-weight:700; color:var(--robey-color-black); }
+.rb-wk__bedrag { font-size:var(--robey-text-15); font-weight:800; letter-spacing:var(--robey-amount-tracking); white-space:nowrap; }
+.rb-wk.is-ingeklapt .rb-wk__body { display:none; }
+/* kleurrij = accordeon op mobiel */
+.rb-wk__rij { border:1px solid var(--robey-color-gray-2); border-radius:var(--robey-radius-cell); margin-top:10px; background:var(--robey-color-white); }
+.rb-wk__rij:first-child { margin-top:0; }
+.rb-wk__rij.is-leeg { display:none; }
+.rb-wk.is-alles .rb-wk__rij.is-leeg { display:block; }
+.rb-wk__links { display:flex; align-items:flex-start; gap:14px; padding:12px 14px 12px 12px; cursor:pointer; }
+.rb-wk__foto { width:44px; height:55px; background:var(--robey-color-gray-1); overflow:hidden; flex-shrink:0; display:block; }
+.rb-wk__foto img { width:100%; height:100%; object-fit:cover; display:block; }
+.rb-wk__naam { flex:1; min-width:0; font-size:var(--robey-text-14); font-weight:600; line-height:1.3; }
+.rb-wk__code { display:block; font-size:var(--robey-text-11); font-weight:400; color:var(--robey-color-gray-6); line-height:1.4; }
+.rb-wk__prijs { display:none; }
+.rb-wk__chips { display:flex; flex-wrap:wrap; gap:5px; margin-top:8px; }
+.rb-chip { font-size:var(--robey-text-11); font-weight:500; color:var(--robey-color-gray-6); background:var(--robey-color-gray-1); border-radius:var(--robey-radius-small); padding:2px 6px; line-height:16px; white-space:nowrap; }
+.rb-chip b { color:var(--robey-color-black); font-weight:700; }
+.rb-wk__rijrechts { text-align:right; flex-shrink:0; }
+.rb-wk__rijtel { display:block; font-size:var(--robey-text-13); font-weight:700; white-space:nowrap; }
+.rb-wk__rijbedrag { display:block; font-size:var(--robey-text-12); color:var(--robey-color-gray-6); white-space:nowrap; }
+.rb-wk__rij.is-open .rb-mx__chev { transform:rotate(180deg); }
+.rb-wk__cellen { display:none; background:var(--robey-color-gray-1); padding:10px 10px 8px; border-top:1px solid var(--robey-color-gray-2); grid-template-columns:repeat(3, minmax(0,1fr)); gap:6px; }
+.rb-wk__rij.is-open .rb-wk__cellen { display:grid; }
+.rb-wk__tot { display:none; }
+.rb-wk.is-nul .rb-wk__kop { opacity:.55; }
+.rb-wk__foto--link { display:block; cursor:pointer; }
+.rb-wk__foto--link:hover img { opacity:.85; }
+.rb-wk__nul { margin:0; padding:12px 0 0; font-size:var(--robey-text-13); color:var(--robey-color-gray-6); line-height:1.5; }
+.rb-wk__nul[hidden] { display:none; }
+.rb-ko__knop.is-uit { background:var(--robey-color-gray-3); color:var(--robey-color-gray-6); pointer-events:none; }
+.rb-wk__rest { padding:12px 0 0; font-size:var(--robey-text-13); }
+.rb-wk__rest[hidden] { display:none; }
+.rb-wk__toonrest { color:var(--robey-color-gray-6); text-decoration:underline; text-underline-offset:3px; }
+.rb-wk.is-maten-weg .robey-cell:not(.is-filled) { display:none; }
+/* kostenoverzicht */
+.rb-ko { margin-top:28px; background:var(--robey-color-gray-1); border-radius:var(--robey-radius-large); padding:14px 16px 16px; }
+.rb-ko__kop { font-size:var(--robey-text-15); font-weight:800; letter-spacing:var(--robey-amount-tracking); margin-bottom:8px; }
+.rb-ko__item { display:flex; justify-content:space-between; align-items:baseline; gap:12px; font-size:var(--robey-text-13); line-height:2; }
+.rb-ko__lbl { color:var(--robey-color-gray-6); }
+.rb-ko__val { font-weight:700; white-space:nowrap; }
+/* leverregel: lichtgeel meldinglabel (token melding, bewust geen statuskleur), geen icoon; alleen het bedrag vet */
+.rb-ko__lever { display:inline-flex; align-self:flex-start; align-items:center; padding:2px 8px; background:var(--robey-color-notice); border:1px solid var(--robey-color-notice-border); border-radius:var(--robey-radius-small); font-size:var(--robey-text-12); font-weight:400; color:var(--robey-color-black); line-height:1.5; margin:-3px 0 6px; }
+.rb-ko__lever[hidden] { display:none; }
+.rb-ko__lever b { font-weight:700; }
+.rb-ko__item--totaal { margin-top:6px; padding-top:10px; border-top:1px solid var(--robey-color-gray-3); font-weight:800; }
+.rb-ko__item--totaal .rb-ko__lbl { color:var(--robey-color-black); font-size:var(--robey-text-15); font-weight:800; }
+.rb-ko__item--totaal .rb-ko__val { font-size:var(--robey-text-18); font-weight:800; }
+.rb-ko__item--totaal + .rb-ko__item--totaal { margin-top:0; padding-top:0; border-top:0; }
+.rb-ko__knop { width:100%; margin-top:14px; height:48px; font-size:var(--robey-text-15); }
+/* leegmaken */
+.rb-legen { position:fixed; inset:0; z-index:60; display:flex; align-items:center; justify-content:center; }
+.rb-legen[hidden] { display:none; }
+.rb-legen__achter { position:absolute; inset:0; background:rgba(18,18,18,.45); }
+.rb-legen__kaart { position:relative; width:420px; max-width:calc(100vw - 32px); background:var(--robey-color-white); border-radius:var(--robey-radius-large); padding:22px 20px 20px; box-shadow:0 24px 50px -16px rgba(18,18,18,.4); }
+.rb-legen__kop { font-size:var(--robey-text-18); font-weight:800; letter-spacing:var(--robey-amount-tracking); }
+.rb-legen__tekst { margin:8px 0 18px; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); line-height:1.6; }
+.rb-legen__knoppen { display:flex; flex-wrap:wrap; gap:10px; justify-content:flex-end; }
+.rb-legen__knoppen .robey-button { flex:1 1 auto; padding:0 18px; }  /* mobiel: samen de breedte, of onder elkaar als ze niet passen */
+.rb-legen__ja { background:var(--robey-color-red); color:var(--robey-color-white); }
+/* weergave-menu */
+.rb-weergave { position:relative; display:inline-block; }
+.rb-weergave__menu { display:none; position:absolute; left:0; top:calc(100% + 6px); min-width:214px; padding:6px; background:var(--robey-color-white); border:1px solid var(--robey-color-gray-2); border-radius:var(--robey-radius-cell); box-shadow:var(--robey-shadow-panel); z-index:8; }
+.rb-weergave.is-open .rb-weergave__menu { display:block; }
+.rb-wm { display:flex; align-items:center; gap:10px; padding:8px 10px; font-size:var(--robey-text-13); border-radius:var(--robey-radius-small); white-space:nowrap; }
+.rb-wm:hover { background:var(--robey-color-gray-1); color:var(--robey-color-black); }
+.rb-wm .rb-vink { width:15px; height:15px; }
+
+/* ---- mijn account (mobiel): tabs onder het kruimelpad, kaarten in plaats van tabellen; uit MobielOrders, MobielOrder, MobielGegevens ---- */
+.rb-account .rb-kruimel__lang { display:none; }
+.rb-account .rb-kruimel__acc { color:var(--robey-color-black); }
+.rb-atabs { display:flex; gap:22px; overflow-x:auto; margin:0 -16px; padding:0 16px; border-bottom:1px solid var(--robey-color-gray-2); scrollbar-width:none; }
+.rb-atabs::-webkit-scrollbar { display:none; }
+.rb-atab { flex-shrink:0; padding:12px 0 11px; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); border-bottom:2px solid transparent; white-space:nowrap; }
+.rb-atab.is-aan { color:var(--robey-color-black); font-weight:600; border-bottom-color:var(--robey-color-black); }
+.rb-atab:hover { color:var(--robey-color-black); }
+.rb-anav { display:none; }
+.rb-account .rb-kop1 { margin:18px 0 2px; }
+.rb-akop__knop { width:100%; justify-content:center; margin-top:14px; }
+.rb-ostrip { display:flex; align-items:center; gap:9px; margin-top:12px; font-size:var(--robey-text-12); color:var(--robey-color-gray-6); line-height:1.4; }
+.rb-ostrip__link { color:var(--robey-color-black); font-weight:700; text-decoration:underline; text-underline-offset:2px; }
+.rb-ostat { display:inline-flex; align-items:center; gap:7px; font-size:var(--robey-text-13); white-space:nowrap; }
+.rb-ostat i { width:8px; height:8px; border-radius:var(--robey-radius-round); flex-shrink:0; display:inline-block; }
+.rb-ostat--grijs { color:var(--robey-color-gray-6); }
+.rb-atool { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+.rb-azoek { flex:1 0 100%; display:flex; align-items:center; gap:10px; height:40px; padding:0 14px 0 12px; background:var(--robey-color-white); border:1px solid var(--robey-color-gray-3); border-radius:var(--robey-radius-small); }
+.rb-azoek input { flex:1; min-width:0; border:0; background:transparent; font:inherit; font-size:var(--robey-text-14); color:var(--robey-color-black); outline:none; padding:0; }
+.rb-azoek input::placeholder { color:var(--robey-color-gray-6); }
+.rb-atool__export { display:none; }
+.rb-tb--uit { color:var(--robey-color-gray-4); border-color:var(--robey-color-gray-2); }
+.rb-otab, .rb-apager { display:none; }
+.rb-ameer { margin-top:26px; }
+.rb-okaarten { display:flex; flex-direction:column; gap:8px; margin-top:14px; }
+.rb-okaart { display:flex; flex-direction:column; gap:6px; border:1px solid var(--robey-color-gray-2); border-radius:var(--robey-radius-cell); padding:12px 14px; }
+.rb-okaart:hover { color:inherit; }
+.rb-okaart__boven { display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+.rb-okaart__artikel { display:flex; gap:12px; min-width:0; }
+.rb-okaart__foto { width:40px; height:50px; border-radius:var(--robey-radius-small); overflow:hidden; background:var(--robey-color-gray-1); flex-shrink:0; display:block; }
+.rb-okaart__foto img { width:100%; height:100%; object-fit:cover; display:block; }
+.rb-okaart__nr { display:block; font-size:var(--robey-text-15); font-weight:700; line-height:1.3; }
+.rb-okaart__web { display:block; font-size:var(--robey-text-12); color:var(--robey-color-gray-6); line-height:1.5; }
+.rb-okaart__bedrag { font-size:var(--robey-text-15); font-weight:800; letter-spacing:var(--robey-amount-tracking); white-space:nowrap; }
+.rb-okaart__bedrag--klein { font-size:var(--robey-text-14); }
+.rb-okaart__ref { font-size:var(--robey-text-14); line-height:1.4; }
+.rb-okaart__onder { display:flex; align-items:center; flex-wrap:wrap; gap:6px 10px; margin-top:2px; min-height:22px; }
+.rb-okaart__stuks { font-size:var(--robey-text-13); color:var(--robey-color-gray-6); }
+.rb-okaart__pijl, .rb-okaart__acties { margin-left:auto; display:inline-flex; }
+.rb-okaart__lnk { font-size:var(--robey-text-12); }
+.rb-okaart__rechts { margin-left:auto; display:inline-flex; align-items:center; gap:12px; }
+.rb-okaart__rechts .rb-okaart__pijl { margin-left:0; }
+.rb-okaart__acties .rb-tb { height:34px; font-size:var(--robey-text-13); padding:0 12px; }
+.rb-lnk { color:var(--robey-color-gray-6); text-decoration:underline; text-underline-offset:2px; }
+.rb-pdf { display:inline-flex; align-items:center; gap:5px; font-size:var(--robey-text-11); font-weight:700; letter-spacing:.03em; border:1px solid var(--robey-color-gray-3); border-radius:var(--robey-radius-small); padding:3px 7px; color:var(--robey-color-black); white-space:nowrap; }
+.rb-pdf:hover { border-color:var(--robey-color-black); }
+.rb-knopklein { display:inline-flex; align-items:center; height:32px; padding:0 12px; border:1px solid var(--robey-color-gray-3); border-radius:var(--robey-radius-small); font-size:var(--robey-text-12); font-weight:600; background:var(--robey-color-white); white-space:nowrap; }
+.rb-knopklein:hover { border-color:var(--robey-color-black); color:var(--robey-color-black); }
+/* actiemenu bij een conceptorder */
+.rb-acties { position:relative; display:inline-block; }
+.rb-acties__knop { font:inherit; color:inherit; cursor:pointer; height:34px; font-size:var(--robey-text-13); padding:0 12px; }
+/* optieknop: altijd een wit rondje met dunne rand, zodat hij als knop leest (18 september) */
+.rb-acties__knop.rb-acties__knop--icoon { display:flex; align-items:center; justify-content:center; width:32px; height:32px; padding:0; border:1px solid var(--robey-color-gray-2); background:var(--robey-color-white); color:var(--robey-color-gray-6); border-radius:var(--robey-radius-round); }
+.rb-acties__knop--icoon svg { width:20px; height:20px; }
+.rb-acties__knop--icoon:hover { color:var(--robey-color-black); border-color:var(--robey-color-black); }
+.rb-wk__menu { margin:-4px 0 -4px 2px; flex-shrink:0; }
+.rb-acties__menu { display:none; position:absolute; right:0; top:calc(100% + 6px); min-width:210px; padding:6px; background:var(--robey-color-white); border:1px solid var(--robey-color-gray-2); border-radius:var(--robey-radius-cell); box-shadow:0 14px 30px -12px rgba(18,18,18,.3); text-align:left; z-index:5; }
+.rb-acties.is-open .rb-acties__menu { display:block; }
+.rb-acties__menu a { display:block; padding:8px 10px; font-size:var(--robey-text-13); color:var(--robey-color-black); border-radius:var(--robey-radius-small); white-space:nowrap; }
+.rb-acties__menu a:hover { background:var(--robey-color-gray-1); }
+.rb-acties__menu a.rb-acties__rood { color:var(--robey-color-red); }
+.rb-acties__menu hr { border:0; border-top:1px solid var(--robey-color-gray-2); margin:6px 0; }
+/* mijn gegevens */
+.rb-gkaart { border:1px solid var(--robey-color-gray-2); border-radius:var(--robey-radius-cell); padding:14px 14px 4px; margin-top:12px; }
+.rb-gkaart__kop { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:10px; }
+.rb-gkaart__kop h2 { margin:0; font-size:var(--robey-text-15); font-weight:700; }
+.rb-gkaart__actie { font-size:var(--robey-text-13); }
+.rb-gdl { margin:0; }
+.rb-gdl div { margin-bottom:12px; }
+.rb-gdl dt { font-size:var(--robey-text-11); font-weight:700; letter-spacing:var(--robey-label-tracking); text-transform:uppercase; color:var(--robey-color-gray-6); margin:0 0 2px; }
+.rb-gdl dd { margin:0; font-size:var(--robey-text-14); line-height:1.45; overflow-wrap:anywhere; }
+.rb-gdl dd .rb-lnk { font-size:var(--robey-text-13); }
+/* orderdetail */
+.rb-terug { display:inline-flex; align-items:center; gap:6px; font-size:var(--robey-text-13); color:var(--robey-color-gray-6); margin-top:14px; }
+.rb-order__kop { display:flex; align-items:center; flex-wrap:wrap; gap:4px 12px; margin-top:8px; }
+.rb-order__kop .rb-kop1 { margin:0; }
+.rb-order__kop .rb-ostat { font-weight:600; }
+.rb-order__sub { margin:4px 0 0; font-size:var(--robey-text-13); color:var(--robey-color-gray-6); line-height:1.5; }
+.rb-order__breek { display:block; height:0; overflow:hidden; }
+.rb-order__knoppen { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+.rb-order__knoppen .rb-tb { flex:1; justify-content:center; }
+.rb-order__knoppen .rb-tb--opnieuw { flex:1 0 100%; height:44px; border-color:var(--robey-color-black); font-weight:600; }
+.rb-ometa { margin:22px 0 0; padding:14px 16px 4px; background:var(--robey-color-gray-1); border-radius:var(--robey-radius-large); }
+.rb-ometa div { margin-bottom:12px; }
+.rb-ometa dt { font-size:var(--robey-text-11); font-weight:700; letter-spacing:var(--robey-label-tracking); text-transform:uppercase; color:var(--robey-color-gray-6); margin:0 0 2px; }
+.rb-ometa dd { margin:0; font-size:var(--robey-text-14); line-height:1.45; }
+.rb-ometa__grijs { color:var(--robey-color-gray-6); }
+.rb-ometa .rb-lnk { font-size:var(--robey-text-13); }
+.rb-h2 { margin:26px 0 10px; font-size:var(--robey-text-18); font-weight:700; letter-spacing:var(--robey-amount-tracking); }
+.rb-zendingen { display:grid; gap:8px; }
+.rb-zend { display:grid; grid-template-columns:9px minmax(0,1fr); gap:4px 12px; align-items:start; padding:12px 14px; border:1px solid var(--robey-color-gray-2); border-radius:var(--robey-radius-cell); background:var(--robey-color-white); }
+.rb-zend__stip { margin-top:5px; }
+.rb-zend__tekst { min-width:0; }
+.rb-zend__tekst b { display:block; font-size:var(--robey-text-14); font-weight:600; line-height:1.4; }
+.rb-zend__tekst span { display:block; font-size:var(--robey-text-12); color:var(--robey-color-gray-6); line-height:1.5; }
+.rb-zend__link { grid-column:2; font-size:var(--robey-text-12); }
+.rb-zend__link--stil { color:var(--robey-color-gray-6); }
+.rb-zend__tt { display:none; }
+.rb-h2--facturen { margin-bottom:4px; }
+.rb-order__uitleg { margin:0 0 10px; font-size:var(--robey-text-12); color:var(--robey-color-gray-6); line-height:1.5; }
+.rb-fact { border:1px solid var(--robey-color-gray-2); border-radius:var(--robey-radius-cell); padding:2px 14px; }
+.rb-fact__rij { display:grid; grid-template-columns:minmax(0,1fr) auto; grid-template-areas:"nr bedrag" "datum pdf" "oms oms"; gap:2px 12px; align-items:center; padding:12px 0; border-bottom:1px solid var(--robey-color-gray-2); font-size:var(--robey-text-14); }
+.rb-fact__rij:last-child { border-bottom:0; }
+.rb-fact__nr { grid-area:nr; font-weight:600; }
+.rb-fact__datum { grid-area:datum; font-size:var(--robey-text-13); color:var(--robey-color-gray-6); }
+.rb-fact__oms { grid-area:oms; font-size:var(--robey-text-13); color:var(--robey-color-gray-6); }
+.rb-fact__bedrag { grid-area:bedrag; font-weight:600; white-space:nowrap; text-align:right; }
+.rb-fact .rb-pdf { grid-area:pdf; justify-self:end; }
+.rb-order__artkop { display:flex; align-items:baseline; justify-content:space-between; gap:20px; }
+.rb-order__artkop .rb-h2 { margin-bottom:2px; }
+.rb-order__weergave { display:none; }
+.rb-wk--order .rb-wk__kop { padding-top:0; }
+.rb-wk__ostatus { display:block; font-size:var(--robey-text-12); font-weight:600; line-height:1.5; }
+.rb-wk__ostatus--geleverd { color:var(--robey-color-green); }
+.rb-wk__ostatus--volgt { color:var(--robey-color-orange); }
+.rb-chip--volgt { background:var(--robey-color-orange-tint); }
+.rb-chip--meer { background:transparent; padding-left:0; }
+/* alleen-lezen maatcel: dezelfde maten als de invoercel (robey-cell--compact), met een waarde in plaats van een veld */
+.rb-oc { border-radius:var(--robey-radius-cell); overflow:hidden; box-shadow:var(--robey-shadow-cell); background:var(--robey-color-white); }
+.rb-oc__kop { background:var(--robey-color-searchbar); padding:4px 7px; font-size:var(--robey-text-13); font-weight:700; line-height:18px; }
+.rb-oc__st { background:var(--robey-color-searchbar); padding:0 7px 4px; min-height:22px; font-size:var(--robey-text-11); font-weight:600; line-height:18px; color:var(--robey-color-gray-6); }
+.rb-oc__w { height:44px; line-height:44px; text-align:center; font-size:var(--robey-text-14); font-weight:700; border-top:2px solid var(--robey-color-green); }
+.rb-oc--leeg .rb-oc__w { color:var(--robey-color-gray-4); font-weight:500; border-top-color:var(--robey-color-gray-2); }
+.rb-oc--volgt .rb-oc__w { border-top-color:var(--robey-color-orange); background:var(--robey-color-orange-tint); }
+.rb-oc--volgt .rb-oc__st { color:var(--robey-color-orange); }
+.rb-ko--order { margin-top:28px; }
+
+/* ---- retourneren en klantenservice (mobiel): één kolom; maten afgeleid van RetourA/ServiceA, er is geen mobiel artboard ---- */
+.rb-sv__sub { margin-top:6px; }
+.rb-sv__knoppen { display:flex; flex-direction:column; gap:10px; margin-top:20px; }
+.rb-sv__knoppen .robey-button { width:100%; }
+.rb-sv__stappen { display:grid; gap:18px; margin-top:32px; }
+.rb-sv__stap { border-top:2px solid var(--robey-color-black); padding-top:12px; }
+.rb-sv__nr { display:block; font-size:var(--robey-text-12); font-weight:700; letter-spacing:var(--robey-label-tracking); color:var(--robey-color-gray-6); }
+.rb-sv__tt { display:block; font-size:var(--robey-text-16); font-weight:700; margin:4px 0; letter-spacing:var(--robey-amount-tracking); }
+.rb-sv__stap p { margin:0; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); line-height:1.6; }
+.rb-sv__kaarten { display:grid; gap:14px; margin-top:32px; }
+.rb-svkaart { border:1px solid var(--robey-color-gray-2); border-radius:6px; padding:18px 18px 20px; background:var(--robey-color-white); }
+.rb-svkaart h2 { margin:0 0 10px; font-size:var(--robey-text-16); font-weight:700; letter-spacing:var(--robey-amount-tracking); }
+.rb-svkaart p { margin:0 0 8px; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); line-height:1.6; }
+.rb-svkaart p:last-child { margin-bottom:0; }
+.rb-sv__contact b { color:var(--robey-color-black); }
+.rb-svkaart .rb-lnk { font-size:var(--robey-text-13); }
+.rb-sv__lijst { margin:0; padding:0; list-style:none; }
+.rb-sv__lijst li { position:relative; padding-left:22px; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); line-height:1.6; margin-bottom:8px; }
+.rb-sv__lijst li:last-child { margin-bottom:0; }
+.rb-sv__lijst li::before { content:''; position:absolute; left:2px; top:9px; width:7px; height:7px; border-radius:var(--robey-radius-round); background:var(--robey-color-gray-3); }
+.rb-sv__tegels { display:grid; gap:12px; margin-top:24px; }
+.rb-svtegel { border:1px solid var(--robey-color-gray-2); border-radius:6px; padding:18px 18px; display:flex; flex-direction:column; gap:4px; background:var(--robey-color-white); }
+.rb-svtegel:hover { color:inherit; border-color:var(--robey-color-gray-3); background:#FAFAFA; }
+.rb-svtegel__tt { font-size:var(--robey-text-16); font-weight:700; letter-spacing:var(--robey-amount-tracking); }
+.rb-svtegel__uit { font-size:var(--robey-text-13); color:var(--robey-color-gray-6); line-height:1.5; }
+.rb-svtegel__lnk { font-size:var(--robey-text-13); text-decoration:underline; text-underline-offset:3px; margin-top:4px; }
+.rb-sv__h2 { margin:40px 0 0; font-size:var(--robey-text-20); font-weight:700; letter-spacing:var(--robey-amount-tracking); }
+.rb-sv__zoek { margin:16px 0 4px; }
+.rb-sv__groep { margin:24px 0 6px; }
+.rb-sv__vraag { display:flex; align-items:center; gap:14px; width:100%; padding:13px 2px; border:0; border-bottom:1px solid var(--robey-color-gray-2); background:none; font:inherit; font-size:var(--robey-text-15); font-weight:600; color:inherit; text-align:left; cursor:pointer; }
+.rb-sv__vraag span { flex:1; min-width:0; }
+.rb-sv__min, .rb-sv__item.is-open .rb-sv__plus { display:none; }
+.rb-sv__item.is-open .rb-sv__min { display:block; }
+.rb-sv__antwoord { display:none; padding:2px 2px 14px; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); line-height:1.65; border-bottom:1px solid var(--robey-color-gray-2); max-width:820px; }
+.rb-sv__item.is-open .rb-sv__antwoord { display:block; }
+.rb-sv__item[hidden], .rb-sv__groep[hidden] { display:none; }
+.rb-sv__leeg { margin:14px 0 0; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); }
+.rb-sv__leeg[hidden] { display:none; }
+.rb-sv__formulier { display:grid; gap:28px; margin-top:20px; align-items:start; }
+.rb-sv__tweekol { display:grid; gap:0; }
+.rb-sv__veld { display:block; margin-bottom:14px; }
+.rb-sv__veld > span { display:block; font-size:var(--robey-text-13); font-weight:600; margin-bottom:6px; }
+.rb-sv__veld input, .rb-sv__veld select, .rb-sv__veld textarea { width:100%; height:44px; border:1px solid var(--robey-color-gray-3); border-radius:var(--robey-radius-small); background:var(--robey-color-white); padding:0 13px; font:inherit; font-size:var(--robey-text-14); color:var(--robey-color-black); }
+.rb-sv__veld textarea { height:128px; line-height:1.6; padding:11px 13px; resize:vertical; }
+.rb-sv__hint { font-size:var(--robey-text-12); color:var(--robey-color-gray-5); font-weight:400; margin-left:6px; }
+.rb-sv__verstuur { width:100%; margin-top:4px; }
+.rb-sv__contact { display:grid; gap:14px; }
+
+/* ---- downloads: logo's en campagnes (mobiel) ---- */
+.rb-dlkop .rb-kop1 { margin-bottom:0; }
+.rb-dlkop__knop { width:100%; height:44px; margin-top:12px; font-size:var(--robey-text-14); font-weight:600; gap:8px; }
+.rb-dlkop + .rb-sub { margin-top:10px; }
+.rb-dl__type { font-size:10px; font-weight:800; color:var(--robey-color-gray-6); letter-spacing:.02em; }
+.rb-dl__nieuw { display:inline-block; margin-left:8px; background:var(--robey-color-black); color:var(--robey-color-white); font-size:10px; font-weight:700; line-height:1.4; padding:2px 7px; border-radius:var(--robey-radius-small); vertical-align:2px; }
+
+@media (min-width: 768px) {
+  .rb-tegel__stalen { gap:6px; flex-wrap:nowrap; margin-top:10px; min-height:20px; }
+  .rb-tegel__stalen.is-alles { flex-wrap:wrap; }
+  .rb-staal { width:18px; height:18px; }
+  .rb-staal-meer { height:18px; min-width:18px; padding:0 5px; line-height:16px; }
+  /* winkelwagen tablet en desktop: kaart met grijze kop, witte kleurrijen met vaste cellen van 105 px en totalen rechts */
+  .rb-wagen__kop { gap:14px; }
+  .rb-wagen__kop .robey-cart-label { top:-3px; }
+  .rb-legen__kaart { padding:26px 28px 24px; }
+  .rb-legen__knoppen .robey-button { flex:0 0 auto; padding:0 24px; }
+  .rb-wagen__koprij { display:flex; align-items:center; gap:8px; }
+  .rb-wagen__links { display:contents; }
+  .rb-cart__legen--kop { display:none; }
+  .rb-cart__tools .rb-cart__legen { display:inline; }
+  .rb-wagen__koprij .rb-wagen__kop { margin:0; }
+  .rb-wagen__wissel { margin:0; position:relative; top:-3px; }
+  .rb-cart__tools { gap:10px; margin-top:18px; }
+  .rb-cart__tools .rb-weergave { flex:0 0 auto; }
+  .rb-weergave > .rb-tb { width:auto; }
+  .rb-cart__zoek { flex:0 1 auto; }
+  .rb-cart__zoek { display:flex; align-items:center; gap:10px; height:38px; padding:0 14px; border:1px solid var(--robey-color-gray-3); border-radius:var(--robey-radius-small); min-width:190px; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); }
+  .rb-cart__tools .rb-tb { height:38px; padding:0 14px; gap:8px; font-size:var(--robey-text-14); font-weight:600; flex:0 0 auto; justify-content:flex-start; }
+  .rb-cart__legen { margin-left:auto; }
+  .rb-wk { margin-top:20px; border:1px solid var(--robey-color-gray-2); border-radius:0; padding:0; background:none; }
+  .rb-wk__kop { align-items:center; gap:16px; padding:16px 18px 8px; background:var(--robey-color-gray-1); }
+  .rb-wk__artikel { font-size:17px; letter-spacing:var(--robey-amount-tracking); }
+  .rb-wk__rechts { margin-left:auto; }
+  .rb-wk__tel { margin-bottom:3px; }
+  .rb-wk__bedrag { font-size:var(--robey-text-18); line-height:1.2; }
+  .rb-wk__body { background:var(--robey-color-gray-1); padding:10px 14px 4px; }
+  .rb-wk__menu { margin:0 0 0 6px; }
+  .rb-wk__rij, .rb-wk__rij:first-child { display:grid; grid-template-columns:92px minmax(0,1fr) 112px; gap:8px; align-items:start; margin:0 0 10px; padding:12px 6px; border:1px solid var(--robey-color-gray-2); border-radius:var(--robey-radius-cell); }  /* 96 + 4 x 105 + 112 past precies op 768 */
+  .rb-wk.is-alles .rb-wk__rij.is-leeg { display:grid; }
+  .rb-wk__links { display:block; padding:0; cursor:default; }
+  .rb-wk__foto { width:64px; height:80px; margin-bottom:8px; }
+  .rb-wk__naam { display:block; }
+  .rb-wk__prijs { display:block; font-size:var(--robey-text-13); font-weight:400; line-height:1.5; }
+  .rb-wk__chips, .rb-wk__rijrechts, .rb-wk__links .rb-mx__chev { display:none; }
+  .rb-wk__cellen, .rb-wk__rij.is-open .rb-wk__cellen { display:grid; grid-template-columns:repeat(auto-fill, var(--robey-size-cell-width)); gap:6px; background:none; padding:0; border:0; }
+  .rb-wk__tot { display:block; padding-top:4px; }
+  .rb-wk__tot .rb-mx__voetrij { justify-content:space-between; font-size:var(--robey-text-13); line-height:1.6; color:var(--robey-color-gray-6); }
+  .rb-wk__tot b { color:var(--robey-color-black); font-size:var(--robey-text-14); font-weight:700; }
+  .rb-wk__rest { padding:4px 0 14px; }
+  .rb-wk__nul { padding:4px 0 0; }
+  /* kostenoverzicht tablet (TabletCart768): plakkende kaart, kop over de breedte, links stuks en verzending, rechts bedragen en de knop */
+  .rb-ko { margin-top:24px; border:1px solid var(--robey-color-gray-6); position:sticky; bottom:20px; z-index:5; box-shadow:0 12px 30px -14px rgba(18,18,18,.3); padding:14px 24px 16px; display:flex; flex-wrap:wrap; align-items:flex-start; gap:10px 24px; }
+  .rb-ko__kop { width:100%; font-size:17px; line-height:1.25; margin:0; }
+  .rb-ko__links { flex:1 1 0; min-width:0; }
+  .rb-ko__eind { flex:1 1 0; min-width:0; display:flex; flex-direction:column; }
+  .rb-ko__item { line-height:1.7; }
+  .rb-ko__item--totaal { margin-top:4px; padding-top:8px; }
+  .rb-ko__eind > .rb-ko__item--totaal:first-child { border-top:0; margin-top:0; padding-top:0; }
+  .rb-ko__knop { margin-top:14px; height:46px; }
+  /* productpagina tablet staand: foto links, matrix als raster over de volle breedte */
+  .rb-pdp__boven { display:grid; grid-template-columns:300px minmax(0,1fr); gap:24px; align-items:start; }
+  .rb-gal__pijl, .rb-gal__dots { display:none; }
+  .rb-gal__thumbs { display:flex; gap:8px; margin-top:12px; align-items:center; }
+  .rb-gal__thumb { width:56px; height:70px; background:var(--robey-color-gray-1); overflow:hidden; display:block; }
+  .rb-gal__thumb.is-aan { outline:1px solid var(--robey-color-black); outline-offset:-1px; }
+  .rb-gal__meer { display:none; }
+  .rb-pdp__kleur { order:0; }
+  .rb-pdp__kleurkop { margin:22px 0 0; font-size:var(--robey-text-14); color:inherit; }
+  .rb-sws { flex-wrap:wrap; overflow:visible; padding:0; margin:8px 0 0; }
+  .rb-sw { width:30px; height:30px; }
+  .rb-pdp__info .rb-pdp__h1 { margin:0 0 10px; }
+  .rb-pdp__sku { font-size:var(--robey-text-12); padding:4px 10px; }
+  .rb-pdp__specs { margin-top:18px; }
+  .rb-spec { font-size:var(--robey-text-14); }
+  .rb-spec > span:first-child { width:130px; }
+  .rb-spec__meer { margin-left:142px; }
+  .rb-spec--eenheid { display:flex; }
+  .rb-mx { grid-column:1 / -1; margin-top:30px; border:1px solid var(--robey-color-gray-2); }
+  .rb-mx__rij { display:grid; grid-template-columns:140px minmax(0,1fr) 126px; border:0; border-bottom:1px solid var(--robey-color-gray-2); border-radius:0; margin:0; background:none; }
+  .rb-mx__rij:first-child { margin-top:0; }
+  .rb-mx__rij:last-child { border-bottom:0; }
+  .rb-mx__kop { display:block; padding:12px; cursor:default; }
+  .rb-mx__foto { width:56px; height:70px; margin-bottom:8px; }
+  .rb-mx__naam { display:block; }
+  .rb-mx__tel, .rb-mx__chev { display:none; }
+  .rb-mx__body, .rb-mx__rij.is-open .rb-mx__body { display:contents; }
+  .rb-mx__cellen { grid-column:2; grid-row:1; grid-template-columns:repeat(auto-fill, var(--robey-size-cell-width)); padding:12px 8px; align-self:start; }   /* zoveel cellen van 105 als passen (19 september); vanaf 1340 vast vijf */
+  .rb-mx__voet { grid-column:3; grid-row:1; display:block; margin:0; padding:14px 12px 12px 8px; border-top:0; font-size:var(--robey-text-13); }
+  .rb-mx__voetrij { justify-content:space-between; line-height:1.7; }
+  .rb-mx__voet b { font-size:inherit; }
+  .robey-cell--compact .robey-cell__head { background:var(--robey-color-gray-1); padding:4px 6px; }
+  .robey-cell--compact .robey-cell__stock { background:var(--robey-color-gray-1); padding:4px 6px; }
+  .robey-cell--compact .robey-cell__input { font-size:var(--robey-text-14); }
+  .rb-sectie.rb-pdp__vaak { padding-top:44px; }
+  .rb-modusrij { display:inline-flex; }
+  .rb-modus { height:36px; padding:0 18px; gap:9px; justify-content:flex-start; }
+  .rb-uitleg { margin-top:12px; line-height:1.6; }
+  .rb-mx[data-modus].is-aan { display:block; grid-column:1 / -1; }
+  .rb-mx__melding { grid-column:1 / -1; }
+  .rb-mp__rij { grid-template-columns:140px 1fr; }
+  .rb-wrap { padding-left:24px; padding-right:24px; }
+  .rb-pil, .rb-pil--goud { padding:0 12px; }
+  .rb-bannerwrap { padding-bottom:0; }
+  .rb-sectie--welkom { padding-top:32px; }
+  .rb-tb { height:36px; padding:0 12px; gap:8px; font-size:var(--robey-text-13); }
+  .rb-toolbar .rb-tb { flex:0 0 auto; justify-content:flex-start; }
+  .rb-tb--sort svg { width:11px; height:11px; }
+  .rb-cat { width:97px; }
+  .rb-tegel__sku { line-height:1.4; }
+  .rb-zoekveld { max-width:none; }
+  .rb-pdp__boven { gap:0 24px; }
+  .robey-cell--compact .robey-cell__head { font-size:var(--robey-text-12); padding:4px 5px; }
+  .robey-cell--compact .robey-cell__stock { font-size:10px; padding:0 5px 4px; min-height:24px; }
+  .robey-cell--compact .robey-cell__input { height:44px; }
+  .rb-topbar__in, .rb-header__rij { padding:0 24px; }
+  .rb-header__zoekrij { padding:0 24px 10px; }
+  .rb-filters { padding-left:32px; padding-right:32px; }
+  .rb-filters__kop { height:72px; }
+  .rb-kop1 { font-size:22px; line-height:28px; margin:2px 0 6px; }
+  .rb-kop1--telling { font-size:22px; line-height:28px; margin:0; }
+  .rb-kruimel { padding:18px 0 16px; }
+  .rb-bannerwrap { padding-top:20px; }
+  .rb-banner { aspect-ratio:720/260; }
+  .rb-banner__tekst { left:28px; bottom:26px; }
+  .rb-banner__boven { margin-bottom:6px; font-size:var(--robey-text-14); }
+  .rb-banner__kop { font-size:32px; line-height:36px; }
+  .rb-banner__knop { padding:10px 20px; }
+  .rb-hkop { font-size:19px; margin-bottom:14px; }
+  .rb-sectie--welkom { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:baseline; column-gap:20px; }
+  .rb-welkom { grid-column:1; grid-row:1; }
+  .rb-hlinks { grid-column:2; grid-row:1; margin-top:0; }
+  .rb-pblokken { grid-column:1 / -1; grid-row:2; }
+  .rb-pblokken { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px; }
+  .rb-pblok { gap:10px; }
+  /* collecties worden een raster van vijf; producten en categorieen blijven schuiven */
+  .rb-sl--col .rb-col { width:215px; }
+  .rb-col { width:auto; }
+  .rb-col__naam { left:14px; bottom:12px; font-size:var(--robey-text-15); line-height:20px; }
+  .rb-sl__track { margin:0 -24px; padding:2px 24px 6px; gap:14px; }
+  .rb-sl--prod .rb-tegel { width:161px; }
+  .rb-sl--cat .rb-sl__track { gap:16px; }
+  .rb-tegels { grid-template-columns:repeat(3, minmax(0,1fr)); gap:24px 14px; margin-top:22px; }
+  .rb-tegels--meer > .rb-tegel:nth-child(n+7) { display:flex; }
+  .rb-sl--prod .rb-tegel__stalen { display:flex; }
+  .rb-sl--klein .robey-rrp { display:block; }
+  .rb-tegel { gap:6px; }
+  .rb-pagkop { flex-direction:row; align-items:flex-end; justify-content:space-between; gap:16px; }
+  .rb-kop1__tel--woord { display:inline; }
+  .rb-tb { height:36px; padding:0 12px; font-size:var(--robey-text-13); gap:8px; }
+  .rb-toonmeer { width:320px; margin:28px auto 0; height:46px; }
+  .rb-voet { padding:36px 0 28px; margin-top:52px; }
+  .rb-voet__raster { display:grid; grid-template-columns:1fr 1fr; gap:32px; }
+  .rb-voet__kolommen { display:contents; }
+  .rb-voet__accordeon { display:none; }
+  .rb-voet__kop { font-size:var(--robey-text-15); margin-bottom:12px; }
+  .rb-voet__lijst li { margin-bottom:0; }
+  .rb-voet__lijst a { font-size:var(--robey-text-14); line-height:26px; }
+  .rb-voet__onder { margin-top:32px; padding-top:20px; border-top:1px solid rgba(255,255,255,.18); }
+  .rb-voet__onderlinks { display:inline; }
+  .rb-breedte::before { content:'tablet staand · '; }
+  .rb-paneel__in { padding:0 24px; }
+
+  .rb-dlkop { display:flex; align-items:center; justify-content:space-between; gap:18px; }
+  .rb-dlkop__knop { width:auto; margin-top:0; padding:0 20px; }
+  .rb-dlkop + .rb-sub { margin-top:8px; }
+
+  /* retourneren en klantenservice tablet: stappen en tegels naast elkaar, knoppen op natuurlijke breedte */
+  .rb-sv__knoppen { flex-direction:row; align-items:center; gap:14px; margin-top:24px; }
+  .rb-sv__knoppen .robey-button { width:auto; }
+  .rb-sv__stappen { grid-template-columns:repeat(3, minmax(0,1fr)); gap:24px; margin-top:36px; }
+  .rb-sv__stap { padding-top:16px; }
+  .rb-sv__tt { font-size:17px; margin:6px 0; }
+  .rb-sv__kaarten { grid-template-columns:repeat(2, minmax(0,1fr)); gap:20px; margin-top:40px; max-width:1000px; }
+  .rb-svkaart { padding:22px 24px; }
+  .rb-svkaart h2 { font-size:var(--robey-text-18); margin-bottom:12px; }
+  .rb-sv__tegels { grid-template-columns:repeat(3, minmax(0,1fr)); gap:20px; margin-top:30px; max-width:1000px; }
+  .rb-svtegel { padding:22px 24px; gap:6px; }
+  .rb-sv__h2 { margin-top:52px; font-size:var(--robey-text-22); }
+  .rb-sv__zoek { margin:22px 0 10px; max-width:520px; }
+  .rb-sv__groep { margin:30px 0 10px; }
+  .rb-sv__vraag { padding:15px 4px; gap:16px; }
+  .rb-sv__antwoord { padding:2px 4px 16px; }
+  .rb-sv__tweekol { grid-template-columns:1fr 1fr; gap:0 20px; }
+  .rb-sv__veld { margin-bottom:16px; }
+  .rb-sv__verstuur { width:auto; }
+  .rb-sv__contact { gap:20px; }
+
+  /* mijn account tablet: tabellen in plaats van kaarten, tabs met de zijmarge van de pagina */
+  .rb-atabs { margin:0 -24px; padding:0 24px; }
+  .rb-account .rb-kop1 { margin:20px 0 0; }
+  .rb-akop { display:flex; align-items:flex-end; justify-content:space-between; gap:16px; }
+  .rb-akop__knop { width:auto; margin-top:20px; }
+  .rb-ostrip { font-size:var(--robey-text-13); }
+  .rb-atool { flex-wrap:nowrap; }
+  .rb-azoek { flex:1 1 auto; max-width:380px; }
+  .rb-atool__export { display:inline-flex; margin-left:auto; }
+  .rb-okaarten, .rb-ameer { display:none; }
+  .rb-otab { display:table; width:100%; border-collapse:collapse; font-size:var(--robey-text-13); font-variant-numeric:tabular-nums; margin-top:16px; }
+  .rb-otab th { text-align:left; font-size:var(--robey-text-11); font-weight:700; letter-spacing:var(--robey-label-tracking); text-transform:uppercase; color:var(--robey-color-gray-6); padding:0 8px 8px; border-bottom:1px solid var(--robey-color-gray-3); white-space:nowrap; }
+  .rb-otab td { padding:11px 8px; border-bottom:1px solid var(--robey-color-gray-2); vertical-align:middle; white-space:nowrap; line-height:1.3; }
+  .rb-otab b { font-weight:600; }
+  .rb-otab__rij { cursor:pointer; }
+  .rb-otab__rij:hover td { background:var(--robey-color-gray-1); }
+  .rb-otab__r { text-align:right; }
+  .rb-otab td.rb-otab__ref { white-space:normal; max-width:130px; }
+  .rb-otab__streep { color:var(--robey-color-gray-4); }
+  .rb-otab__klein { display:block; font-size:var(--robey-text-11); color:var(--robey-color-gray-6); line-height:1.4; font-weight:500; margin-top:2px; }
+  .rb-otab__lang, .rb-otab__klein--lang { display:none; }
+  .rb-otab__klein .rb-ostat { font-size:var(--robey-text-11); }
+  .rb-otab td.rb-otab__pijl { width:24px; padding-right:0; }
+  .rb-otab td.rb-otab__status { white-space:normal; min-width:96px; }
+  .rb-otab td.rb-otab__status .rb-ostat { white-space:normal; }
+  .rb-otab td.rb-otab__acties { padding-right:0; }
+  .rb-otab__art { display:flex; align-items:center; gap:10px; }
+  .rb-otab__foto { width:32px; height:40px; border-radius:var(--robey-radius-small); overflow:hidden; background:var(--robey-color-gray-1); flex-shrink:0; display:block; }
+  .rb-otab__foto img { width:100%; height:100%; object-fit:cover; display:block; }
+  .rb-apager { display:flex; align-items:center; justify-content:space-between; margin-top:16px; font-size:var(--robey-text-13); color:var(--robey-color-gray-6); }
+  .rb-apager__knoppen { display:flex; gap:8px; }
+  .rb-acties__knop { height:32px; font-size:var(--robey-text-12); padding:0 10px; }
+  .rb-gkaart { padding:16px 18px 6px; border-radius:var(--robey-radius-large); margin-top:14px; }
+  .rb-gdl { display:grid; grid-template-columns:1fr 1fr; gap:0 20px; }
+  /* orderdetail tablet */
+  .rb-terug { margin-top:16px; }
+  .rb-order__kop { gap:14px; }
+  .rb-order__sub { line-height:1.6; }
+  .rb-order__breek { display:inline; height:auto; }
+  .rb-order__knoppen { margin-top:14px; }
+  .rb-order__knoppen .rb-tb, .rb-order__knoppen .rb-tb--opnieuw { flex:0 0 auto; height:36px; border-color:var(--robey-color-gray-3); font-weight:500; }
+  .rb-ometa { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px 20px; padding:18px 20px; }
+  .rb-ometa div { margin:0; }
+  .rb-ometa dt { margin-bottom:3px; }
+  .rb-ometa dd { font-size:var(--robey-text-13); line-height:1.5; }
+  .rb-h2 { margin:30px 0 10px; }
+  .rb-zend { grid-template-columns:9px minmax(0,1fr) auto; gap:12px; align-items:center; padding:12px 16px; }
+  .rb-zend__stip { margin-top:0; }
+  .rb-zend__link { grid-column:auto; font-size:var(--robey-text-13); white-space:nowrap; }
+  .rb-order__uitleg { font-size:var(--robey-text-13); }
+  .rb-fact { padding:2px 18px; }
+  .rb-fact__rij { display:flex; gap:14px; }
+  .rb-fact__nr { min-width:96px; }
+  .rb-fact__datum { min-width:104px; }
+  .rb-fact__oms { flex:1; min-width:0; }
+  .rb-order__weergave { display:inline; font-size:var(--robey-text-13); color:var(--robey-color-gray-6); }
+  .rb-order__weergave b { color:var(--robey-color-black); font-weight:600; }
+  .rb-wk--order { margin-top:18px; }
+  .rb-wk--order .rb-wk__kop { padding-top:16px; }
+  .rb-wk__ostatus { display:none; }
+  .rb-oc__kop { background:var(--robey-color-gray-1); font-size:var(--robey-text-12); padding:4px 5px; }
+  .rb-oc__st { background:var(--robey-color-gray-1); font-size:10px; padding:0 5px 4px; min-height:24px; }
+  .rb-ko--order { position:static; box-shadow:none; border:1px solid var(--robey-color-gray-2); border-top-color:var(--robey-color-gray-6); margin-top:24px; padding:18px 22px; }
+}
+
+/* ============================================================ 900: tablet liggend ============================================================ */
+@media (min-width: 900px) {
+  .rb-wrap { padding-left:32px; padding-right:32px; }
+  .rb-wk__rij, .rb-wk__rij:first-child { grid-template-columns:100px minmax(0,1fr) 130px; gap:14px; padding:14px 20px; }
+  .rb-wk__body { padding:12px 20px 4px; }
+  .rb-wk__kop { padding:18px 20px 8px; }
+  .rb-wk__artikel { font-size:var(--robey-text-18); }
+  .rb-wk__bedrag { font-size:var(--robey-text-20); }
+  .rb-ko { gap:12px 28px; padding:18px 32px 20px; }
+  .rb-ko__links { flex:0 1 auto; }  /* natuurlijke breedte: label en bedrag blijven bij elkaar (18 september) */
+  .rb-ko__item { gap:28px; }
+  .rb-ko__eind { flex:0 0 250px; margin-left:auto; }
+  .rb-topbar__in, .rb-header__rij { padding-left:32px; padding-right:32px; }
+  .rb-header__zoekrij { padding:0 32px 10px; }
+  .rb-sl--col .rb-col { width:229px; }
+  .rb-zoekveld { max-width:520px; }
+  .rb-zoekveld input, .rb-zoekveld .robey-button { height:44px; }
+  .rb-pdp__boven { gap:0 32px; }
+  .robey-cell--compact .robey-cell__head { font-size:var(--robey-text-13); padding:4px 6px; }
+  .robey-cell--compact .robey-cell__stock { font-size:var(--robey-text-11); padding:0 6px 4px; min-height:24px; }
+  .rb-kop1, .rb-kop1--telling { font-size:26px; line-height:32px; margin:0 0 10px; }
+  .rb-sl__track { margin:0 -32px; padding:2px 32px 6px; }
+  .rb-voet { padding:40px 0 28px; }
+  .rb-voet__raster { grid-template-columns:1.3fr 1fr 1fr 1fr; }
+  .rb-sub__lang, .rb-knop__lang, .rb-dl__uit--lang { display:inline; }
+  .rb-knop__kort, .rb-dl__uit--kort { display:none; }
+  .rb-dl { gap:16px; padding:15px 18px; }
+  .rb-dl__meta--onder { display:none; }
+  .rb-dl__meta--naast { display:inline; }
+  .rb-dl__knop { height:38px; padding:0 14px; font-size:var(--robey-text-13); }
+  .rb-dl__knoptekst { display:inline; }
+  .rb-dl__knopkort { display:none; }
+  /* productpagina tablet liggend: totalen in een eigen kolom rechts */
+  .rb-pdp__boven { grid-template-columns:400px minmax(0,1fr); }
+  .rb-mx__rij { grid-template-columns:150px minmax(0,1fr) 126px; }
+  .rb-mx__kop { padding:14px 16px 14px 14px; }
+  .rb-mx__cellen { grid-row:1; padding:14px 8px; }
+  .rb-mx__voet { grid-column:3; grid-row:1; margin:0; padding:16px 14px 14px 12px; border-top:0; font-size:var(--robey-text-13); }
+  .rb-sl--prod .rb-tegel { width:215px; }
+  .rb-breedte::before { content:'tablet liggend · '; }
+  .rb-paneel__in { padding:0 32px; }
+
+  .rb-sv__formulier { grid-template-columns:minmax(0,1fr) 300px; gap:40px; }
+
+  .rb-atabs { margin:0 -32px; padding:0 32px; }
+  .rb-modus__stuks { display:inline; }
+  .rb-otab td.rb-otab__ref { max-width:170px; }
+  .rb-oc__kop { font-size:var(--robey-text-13); padding:4px 6px; }
+  .rb-oc__st { font-size:var(--robey-text-11); padding:0 6px 4px; }
+  .rb-wk--order .rb-wk__kop { padding-top:18px; }
+}
+
+/* ============================================================ 1200: desktop ============================================================ */
+@media (min-width: 1200px) {
+  /* vanaf hier de desktopkop met navigatie en zoekbalk in de balk, en de catalogus met filterkolom */
+  .rb-topbar__links > svg { display:block; }
+  .rb-topbar__in { height:36px; padding:0 32px; }
+  .rb-header__rij { height:72px; padding:0 32px; gap:22px; }
+  .rb-logo img { height:44px; }
+  .rb-header__acties { gap:12px; }
+  .rb-pil { height:44px; padding:0 14px; gap:8px; font-size:var(--robey-text-14); }
+  .rb-pil--goud { padding:0 14px; }
+  .rb-header__zoekrij { padding:0 32px 14px; }
+  .rb-logo { flex:0 0 auto; }
+  .rb-nav { display:flex; }
+  .rb-hamburger { display:none; }
+  .rb-header__zoek { display:flex; flex:1; min-width:0; justify-content:flex-end; }
+  .rb-zoek { max-width:300px; }
+  .rb-header__zoekrij { display:none; }
+  .rb-menu { display:none !important; }
+  .rb-tb--filters, .rb-fchips { display:none; }
+  .rb-plp { display:grid; grid-template-columns:220px minmax(0,1fr); gap:32px; align-items:start; }
+  .rb-filters { position:static; display:block; padding:0; overflow:visible; z-index:auto; }
+  .rb-filters__kop, .rb-filters__voet { display:none; }
+  .rb-filters__kop + .rb-fgroep, .rb-ftoegepast + .rb-fgroep { border-top:0; padding-top:0; }
+  .rb-ftoegepast:not([hidden]) { display:block; padding:0 0 18px; margin-bottom:16px; border-bottom:1px solid var(--robey-color-gray-2); }
+  .rb-tegels { margin-top:0; }
+  /* productpagina desktop (MainD): vaste galerij links, matrix in de rechterkolom met cellen van 105px */
+  .rb-pdp__boven { grid-template-columns:minmax(300px, 430px) minmax(770px, 1fr); gap:0 40px; }
+  .robey-cell--compact .robey-cell__head { font-size:var(--robey-text-14); padding:4px 6px; }
+  .robey-cell--compact .robey-cell__stock { font-size:var(--robey-text-11); padding:4px 6px; min-height:26px; }
+  .robey-cell--compact .robey-cell__input { height:var(--robey-size-cell); }
+  .rb-galerij { grid-row:1 / 3; position:sticky; top:110px; transition:top .22s ease; }
+  body.rb-kop-weg .rb-galerij { top:24px; }
+  .rb-gal__thumbs { gap:10px; margin-top:14px; }
+  .rb-gal__thumb { width:60px; height:75px; }
+  .rb-gal__thumb.is-aan { outline-offset:0; }
+  .rb-gal__meer { display:block; margin-left:4px; }
+  .rb-pdp__info .rb-pdp__h1 { margin:0 0 10px; }
+  .rb-pdp__specs { margin:22px 0 24px; }
+  .rb-spec > span:first-child { width:150px; }
+  .rb-spec--lever { display:none; }
+  .rb-pdp__kleur { margin-bottom:20px; }
+  .rb-pdp__kleurkop { display:flex; gap:12px; margin:0; line-height:1.9; align-items:baseline; }
+  .rb-sws { margin:9px 0 0 162px; gap:10px; }
+  .rb-sw { width:24px; height:24px; border:1px solid; }
+  /* schets D (19 september): het kleurblok staat op desktop in de vaste fotokolom, onder de miniaturen; eronder alleen code en naam */
+  .rb-galerij .rb-pdp__kleur { display:flex; flex-direction:column; margin:0; }
+  .rb-galerij .rb-sws { order:2; margin:8px 0 0; }
+  .rb-galerij .rb-pdp__kleurkop { order:1; margin:26px 0 0; line-height:1.5; font-size:var(--robey-text-13); }
+  .rb-galerij .rb-pdp__kleurlabel { display:none; }
+  .rb-galerij .rb-pdp__gekozen { color:var(--robey-color-black); }
+  .rb-galerij .rb-pdp__gekozen b { font-weight:600; }
+  .rb-spec--tekst > .rb-spec__tekst { max-width:440px; }
+  .rb-spec__meer { margin-left:162px; }
+  .rb-na { margin:-6px 0 14px; }
+  .rb-mx, .rb-mx[data-modus].is-aan { grid-column:2; margin-top:0; display:block; }
+  .rb-mx__melding { grid-column:2; margin-top:14px; }
+  .rb-mx__melding[hidden] { display:none; }
+  .rb-ordertype { margin:0 0 20px; }
+  .rb-ordertype .rb-na { margin:8px 0 0; }
+  .rb-pdp__noot { margin:0 0 20px; }
+  .rb-mx__label { margin:2px 0 8px; }
+  .rb-mx__rij { grid-template-columns:150px minmax(0,1fr) 180px; }
+  .rb-mx__kop { padding:16px 40px 16px 16px; }
+  .rb-mx__foto { width:64px; height:80px; }
+  .rb-mx__cellen { padding:16px 0; }
+  .rb-mx__voet { padding:20px 16px 16px 40px; }
+  .rb-mx__voetrij { line-height:1.6; }
+  .rb-mx__voet b { font-size:var(--robey-text-14); }
+  .rb-sectie.rb-pdp__vaak { padding-top:56px; padding-bottom:72px; }
+  .rb-pagina.rb-pdp--kaal { padding-bottom:112px; }
+  /* Downloads: maten uit DownloadsD.dc.html (.dl-rij, .dl-ico, .dl-map, .dl-art, .dl-zoek, .dl-knop, .dl-knop-rand) */
+  .rb-dl { gap:18px; padding:18px 22px; margin-bottom:10px; }
+  .rb-dl--map { padding:14px 18px 14px 14px; }
+  .rb-dl--art { gap:16px; padding:12px 18px 12px 12px; margin-bottom:8px; }
+  .rb-dl__icoon { width:40px; height:40px; }
+  .rb-dl__thumb { width:96px; height:64px; }
+  .rb-dl__thumb--art { width:52px; height:65px; }
+  .rb-dl__naam { font-size:var(--robey-text-15); }
+  .rb-dl--art .rb-dl__naam { font-size:var(--robey-text-14); font-weight:600; }
+  .rb-dl__uit { font-size:var(--robey-text-13); }
+  .rb-dl__meta { font-size:var(--robey-text-12); }
+  .rb-dl__naam, .rb-dl__uit { line-height:1.6; }
+  .rb-dl__knop { height:38px; padding:0 16px; font-size:var(--robey-text-13); font-weight:600; gap:8px; }
+  .rb-zoekveld { gap:10px; }
+  .rb-zoekveld--breed { max-width:560px; }
+  .rb-zoekveld input { padding:0 14px; font-size:var(--robey-text-14); border-radius:3px; }
+  .rb-zoekveld .robey-button { padding:0 20px; font-weight:600; }
+  /* paginering: telling gecentreerd boven de knoppen, zoals PLPD */
+  .rb-paginering > span:first-child { display:block; }
+  .rb-wrap { padding:0 var(--robey-size-wrap-gutter); }
+  .rb-topbar { font-size:var(--robey-text-13); }
+  .rb-topbar__in { height:37px; max-width:var(--robey-size-wrap); margin:0 auto; padding:0 40px; justify-content:space-between; gap:24px; }
+  .rb-topbar__rechts { display:inline-flex; }
+  .rb-topbar__links b { font-weight:600; }
+  .rb-header__rij { height:var(--robey-size-bar); max-width:var(--robey-size-wrap); margin:0 auto; padding:0 40px; gap:56px; }
+  .rb-logo img { height:50px; }
+  .rb-nav { margin-left:0; gap:34px; }
+  .rb-nav__link { padding:0 2px; }
+  .rb-header__zoek { justify-content:stretch; margin-left:0; }
+  .rb-header__acties { gap:10px; }
+  .rb-zoek { max-width:none; height:var(--robey-size-button); padding:0 20px 0 28px; gap:14px; }
+  .rb-zoek__veld { font-size:var(--robey-text-15); margin-top:-1px; }
+  .rb-zoek__veld::placeholder { color:var(--robey-color-gray-6); }
+  .rb-pil { height:var(--robey-size-button); padding:0 18px; gap:9px; font-size:var(--robey-text-14); }
+  .rb-pil--goud { padding:0 18px; margin:0; }
+  .rb-pil svg:first-child { width:21px; height:21px; }
+  .rb-pil--goud svg:first-child { width:22px; height:22px; }
+  .rb-pil__kort { display:none; }
+  .rb-pil__lang, .rb-pil__pijl, .rb-pil__haak { display:inline; }
+  .rb-pil__pijl { display:inline-block; }
+  /* hoverpanelen, zoals in het desktopontwerp: mega op Catalogus, account op de accountknop, minicart op goud */
+  .rb-header, body.rb-gescrold .rb-header { box-shadow:var(--robey-shadow-bar); }
+  .rb-paneel { position:absolute; top:100%; left:0; right:0; display:none; pointer-events:none; }
+  .rb-paneel > * { pointer-events:auto; }
+  .rb-zoekhouder { position:relative; flex:1; min-width:0; }
+  .rb-zoekpaneel { position:absolute; top:calc(100% + 19px); left:0; right:0; display:none; background:var(--robey-color-white); border-radius:0 0 var(--robey-radius-large) var(--robey-radius-large); box-shadow:var(--robey-shadow-panel); clip-path:inset(0 -40px -40px -40px); z-index:var(--robey-layer-search-panel); }
+  .rb-zoekhouder.is-open .rb-zoekpaneel { display:block; }
+  .rb-zoekhouder.is-open .rb-zoek { background:var(--robey-color-white); box-shadow:0 0 0 2px var(--robey-color-black) inset; }
+  .rb-header.is-mega .rb-mega, .rb-header.is-acc .rb-acc, .rb-header.is-mc .rb-mc { display:block; pointer-events:auto; }
+  .rb-mega { background:var(--robey-color-white); border-bottom:1px solid var(--robey-color-gray-2); box-shadow:var(--robey-shadow-mega); }
+  .rb-mega__in { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:32px; max-width:var(--robey-size-wrap); margin:0 auto; padding:34px 40px 38px; }
+  .rb-mega__kop { font-size:var(--robey-text-14); font-weight:700; margin:0 0 10px; }
+  .rb-mega__link { display:block; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); line-height:2.1; }
+  .rb-mega__link:hover { color:var(--robey-color-gold); }
+  .rb-paneel__in { max-width:var(--robey-size-wrap); margin:0 auto; padding:0 40px; }
+  .rb-acc__kaart, .rb-mc__kaart { background:var(--robey-color-white); border-radius:0 0 var(--robey-radius-large) var(--robey-radius-large); box-shadow:var(--robey-shadow-panel); clip-path:inset(0 -40px -40px -40px); position:relative; }
+  .rb-acc__kaart { width:300px; }
+  .rb-mc__kaart { width:360px; }
+  .rb-acc__blok { padding:18px 20px 4px; }
+  .rb-acc__blok--lijn { padding:10px 20px 14px; border-top:1px solid var(--robey-color-gray-2); margin-top:10px; }
+  .rb-acc__naam { font-size:var(--robey-text-16); font-weight:700; line-height:1.3; margin-bottom:10px; }
+  .rb-acc__link { font-size:var(--robey-text-14); color:var(--robey-color-gray-6); line-height:29px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .rb-acc__link:hover { color:var(--robey-color-gold); }
+  .rb-acc__voet { background:var(--robey-color-gray-1); padding:12px 20px 13px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .rb-acc__winkel { font-size:var(--robey-text-14); font-weight:700; line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .rb-acc__nr { font-size:var(--robey-text-12); color:var(--robey-color-gray-6); line-height:1.4; margin-top:1px; }
+  .rb-acc__wissel { font-size:var(--robey-text-13); font-weight:600; text-decoration:underline; text-underline-offset:2px; white-space:nowrap; }
+  .rb-acc__uitrij { border-top:1px solid var(--robey-color-gray-2); padding:13px 20px 15px; }
+  .rb-acc__uit { font-size:var(--robey-text-14); font-weight:600; display:flex; align-items:center; gap:9px; }
+  /* homepage */
+  .rb-bannerwrap { padding-top:32px; }
+  .rb-banner { aspect-ratio:1240/300; }
+  .rb-banner__schaduw { background:linear-gradient(to right, rgba(18,18,18,.20) 0%, rgba(18,18,18,.10) 50%, rgba(18,18,18,.05) 100%); }
+  .rb-banner__tekst { left:44px; bottom:44px; right:auto; max-width:520px; }
+  .rb-banner__boven { margin-bottom:13px; font-size:var(--robey-text-15); line-height:1.5; }
+  .rb-banner__kop { margin-bottom:16px; font-size:41px; line-height:48px; letter-spacing:-0.3px; }
+  .rb-banner__knop { font-size:var(--robey-text-15); line-height:22px; padding:11px 26px 13px; }
+  .rb-bannerwrap { padding-bottom:48px; }
+  .rb-sectie { padding-top:0; padding-bottom:48px; }
+  .rb-sectie--welkom { padding-top:0; }
+  .rb-sectie--cats { padding-top:30px; padding-bottom:90px; }
+  .rb-hkop { font-size:var(--robey-text-20); letter-spacing:-0.1px; margin-bottom:20px; }
+  .rb-welkom { margin-bottom:20px; }
+  .rb-hlinks { gap:14px; font-size:var(--robey-text-14); }
+  .rb-hlinks span { height:13px; }
+  .rb-pblokken { gap:24px; }
+  .rb-pblok { gap:14px; padding:18px 22px 18px 24px; }
+  .rb-pblok__titel { font-size:var(--robey-text-15); }
+  .rb-pblok__sub { margin-top:2px; }
+  .rb-pblok__thumbs { margin-top:9px; }
+  .rb-thumb { width:32px; height:39px; }
+  .rb-pblok__meer { margin-left:5px; }
+  .rb-pblok__pijl { width:32px; height:32px; }
+  /* sliders: vaste rij met --n zichtbaar en pijlen erbuiten */
+  .rb-sl__vp { overflow:hidden; }
+  .rb-sl .rb-sl__track { display:flex; gap:var(--g); overflow:visible; margin:0; padding:0; transition:transform .35s ease; }
+  .rb-sl .rb-sl__track > * { flex:0 0 calc((100% - (var(--n) - 1) * var(--g)) / var(--n)); width:auto; }
+  .rb-sl__track--vast { flex-wrap:wrap; }
+  .rb-sl__pijl { position:absolute; width:40px; height:40px; border-radius:var(--robey-radius-round); background:var(--robey-color-white); box-shadow:0 4px 14px rgba(18,18,18,.22); display:flex; align-items:center; justify-content:center; cursor:pointer; z-index:2; }
+  .rb-sl__pijl--next { right:-14px; }
+  .rb-sl__pijl--prev { left:-14px; }
+  .rb-col__naam { left:26px; bottom:24px; font-size:var(--robey-text-22); line-height:32px; }
+  .rb-hkop--cats { display:none; }
+  .rb-cat { width:auto; gap:14px; font-size:var(--robey-text-14); }
+  .rb-cat__cirkel { width:100%; height:auto; aspect-ratio:1; }
+  /* tegels */
+  .rb-tegels { gap:34px 26px; }
+  .rb-tegel { gap:0; }
+  .rb-tegel .robey-photo { margin-bottom:9px; }
+  .rb-tegel__naam { font-size:var(--robey-text-15); line-height:20px; }
+  .rb-tegel__sku { display:block; font-size:var(--robey-text-12); line-height:19px; letter-spacing:0; }
+  .rb-tegel__prijs { display:block; margin-top:9px; line-height:1.35; }
+  .rb-tegel__prijs .robey-price { font-size:var(--robey-text-15); line-height:1.35; }
+  .rb-tegel .robey-price__old { display:inline; margin-left:8px; font-size:var(--robey-text-13); }
+  .rb-tegel .robey-rrp { display:block; font-size:var(--robey-text-12); line-height:1.4; margin-top:4px; }
+  .rb-tegel .robey-label { left:10px; bottom:10px; font-size:var(--robey-text-11); padding:3px 8px; }
+  .rb-tegel__stalen { margin-top:13px; }
+  .rb-sl--prod .rb-tegel__stalen { display:flex; }
+  .rb-sl--klein .rb-tegel__prijs .robey-price { font-size:var(--robey-text-15); }
+  /* catalogus */
+  .rb-pagina { padding-top:24px; padding-bottom:84px; }
+  .rb-kruimel { padding:0; margin-bottom:18px; }
+  .rb-kop1, .rb-kop1--telling { font-size:30px; line-height:36px; margin:0; }
+  .rb-kop1__tel--woord { display:none; }
+  .rb-kop1__tel--altijd { display:inline; }
+  .rb-kop1__tel--haak { display:inline; font-family:var(--robey-font-heading); font-size:30px; font-weight:800; color:var(--robey-color-black); letter-spacing:var(--robey-heading-tracking); }
+  .rb-pagkop { margin-bottom:26px; }
+  .rb-tb--sort { display:none; }
+  .rb-toolbar { gap:22px; }
+  .rb-toolbar__weergave { display:flex; gap:10px; }
+  .rb-toolbar__icoon { display:flex; align-items:center; justify-content:center; width:30px; height:30px; }
+  .rb-toolbar__sort { display:inline-flex; align-items:center; gap:9px; font-size:var(--robey-text-14); }
+  .rb-plp { gap:32px; }
+  .rb-toonmeer { display:none; }
+  .rb-paginering { display:block; }
+  /* downloads */
+  .rb-sub { margin-top:8px; font-size:var(--robey-text-14); line-height:1.6; }
+  .rb-zoekveld { margin:26px 0 24px; }
+  /* footer */
+  .rb-voet { padding:60px 0 40px; margin-top:0; }
+  .rb-voet__raster { display:flex; gap:60px; align-items:flex-start; }
+  .rb-voet__kolom--brief { flex:0 0 350px; }
+  .rb-voet__kolommen { display:flex; flex:1; min-width:0; gap:60px; }
+  .rb-voet__kolommen .rb-voet__kolom { flex:1; min-width:0; }
+  .rb-voet__kop { font-size:var(--robey-text-18); line-height:1.35; margin-bottom:20px; }
+  .rb-voet__tekst { font-size:var(--robey-text-15); line-height:24px; margin:0 0 24px; }
+  .rb-voet__knop { font-size:var(--robey-text-15); padding:12px 25px; }
+  .rb-voet__lijst li { margin-bottom:7.5px; }
+  .rb-voet__lijst a { font-size:var(--robey-text-15); line-height:24px; opacity:1; }
+  .rb-voet__tussen { display:flex; padding-top:48px; }
+  .rb-voet__tekst--kort, .rb-voet__taalklein { display:none; }
+  .rb-voet__tekst--lang, .rb-voet__jaar { display:inline; }
+  .rb-voet__onder { margin-top:40px; padding-top:22px; color:#B0B0B0; border-top:1px solid rgba(255,255,255,.18); }
+  .rb-voet__kvk { display:inline; }
+  .rb-breedte::before { content:'desktop · '; }
+
+  .rb-dl--bestand { padding:14px 22px 14px 14px; }
+  .rb-dl--bestand .rb-dl__naam { font-size:var(--robey-text-14); font-weight:600; }
+
+  /* retourneren en klantenservice desktop: RetourA en ServiceA */
+  .rb-sv__sub { margin-top:10px; font-size:var(--robey-text-15); max-width:700px; }
+  .rb-sv__sub--vraag { font-size:var(--robey-text-14); }
+  .rb-sv__knoppen { margin-top:26px; }
+  .rb-sv__kaarten { margin-top:44px; }
+  .rb-svkaart { padding:24px 26px; }
+  .rb-sv__h2 { margin-top:56px; }
+  .rb-sv__faq { max-width:900px; }
+  .rb-sv__formulier { grid-template-columns:minmax(0,1fr) 320px; gap:48px; max-width:1100px; margin-top:26px; }
+}
+@media (min-width: 1240px) {
+  /* kostenoverzicht desktop (CartD): één regel met de bedragen naast elkaar en de knop rechts */
+  .rb-ko { margin-top:30px; bottom:24px; padding:16px 24px; align-items:center; justify-content:space-between; gap:8px 32px; }  /* de zes onderdelen evenredig verdeeld (18 september) */
+  .rb-ko__links, .rb-ko__eind { display:contents; }
+  .rb-ko__kop { width:auto; font-size:var(--robey-text-16); margin:0 6px 0 0; }
+  .rb-ko__kol { flex:none; min-height:44px; }  /* altijd twee regels hoog: Verzendkosten blijft bovenaan staan, ook zonder leverregel */
+  .rb-ko__item { justify-content:flex-start; gap:14px; line-height:1.55; }
+  .rb-ko__kol .rb-ko__lbl { white-space:nowrap; }
+  .rb-ko__kol .rb-ko__val { margin-left:auto; }
+  .rb-ko__lever { margin:0; }
+  .rb-ko__kol--verzend .rb-ko__item { margin-bottom:0; }
+  .rb-ko__item--totaal { flex-direction:column; align-items:flex-start; gap:1px; line-height:1.3; margin:0; padding:0; border:0; }
+  .rb-ko__item--totaal .rb-ko__lbl { font-size:var(--robey-text-12); font-weight:400; color:var(--robey-color-gray-6); }
+  .rb-ko__item--totaal .rb-ko__val { font-size:var(--robey-text-20); }
+  .rb-ko__knop { width:auto; min-width:170px; margin:0; height:46px; }
+}
+@media (min-width: 1340px) {
+  /* productpagina volgens schets D: vijf cellen van 105 per rij (150 + 5 x 105 + 4 x 6 + 180 = 879), de fotokolom krijgt wat overblijft */
+  .rb-pdp__boven { grid-template-columns:minmax(300px, 430px) minmax(839px, 1fr); gap:0 32px; }
+  .rb-mx__rij { grid-template-columns:140px minmax(0,1fr) 150px; }   /* 140 + 5 x 105 + 4 x 6 + 150 = 839; bij content 1240 blijft 369 voor de foto */
+  .rb-mx__cellen { grid-template-columns:repeat(5, var(--robey-size-cell-width)); }
+  .rb-mx__voet { padding:20px 14px 16px 24px; }
+  /* mijn account: vanaf 1340 px is de inhoudskolom breed genoeg voor de tabelmaten van het desktopontwerp (14 px, celpadding 12) */
+  .rb-otab { font-size:var(--robey-text-14); }
+  .rb-otab th { padding:0 12px 10px; }
+  .rb-otab td { padding:13px 12px; }
+  .rb-otab td.rb-otab__status, .rb-otab td.rb-otab__status .rb-ostat { white-space:nowrap; }
+
+  /* mijn account desktop: zijnavigatie van 220 px naast de inhoud, volledig kruimelpad; uit AccountA */
+  .rb-account .rb-kruimel__lang { display:inline; }
+  .rb-account .rb-kruimel__acc { color:inherit; }
+  .rb-atabs { display:none; }
+  .rb-account__grid { display:grid; grid-template-columns:220px minmax(0,1fr); gap:32px; align-items:start; }
+  .rb-anav { display:block; padding-top:6px; }
+  .rb-anav__link { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:6px 0 6px 12px; border-left:2px solid transparent; font-size:var(--robey-text-14); color:var(--robey-color-gray-6); line-height:1.6; }
+  .rb-anav__link:hover { color:var(--robey-color-black); }
+  .rb-anav__link.is-aan { border-left-color:var(--robey-color-black); color:var(--robey-color-black); font-weight:600; }
+  .rb-anav__blok { margin:26px 0 0 14px; padding-top:18px; border-top:1px solid var(--robey-color-gray-2); }
+  .rb-anav__winkel { font-size:var(--robey-text-14); font-weight:600; line-height:1.4; }
+  .rb-anav__nr { font-size:var(--robey-text-12); color:var(--robey-color-gray-6); line-height:1.6; }
+  .rb-anav__knoppen { display:flex; gap:8px; margin-top:12px; }
+  .rb-account .rb-kop1 { margin:0; }
+  .rb-akop { margin-bottom:22px; gap:24px; }
+  .rb-akop__knop { margin-top:0; height:40px; font-size:var(--robey-text-14); padding:0 14px; }
+  .rb-ostrip { margin:-6px 0 16px; gap:10px; }
+  .rb-ostrip__link { font-weight:600; text-decoration:none; }
+  .rb-ostrip__link:hover { text-decoration:underline; }
+  .rb-ostat { font-size:var(--robey-text-14); gap:8px; }
+  .rb-ostat i { width:9px; height:9px; }
+  .rb-atool { gap:10px; margin:0 0 18px; }
+  .rb-atool .rb-tb { height:40px; padding:0 14px; font-size:var(--robey-text-14); }
+  .rb-azoek { flex:1 1 auto; max-width:420px; gap:12px; }
+  .rb-otab { margin-top:0; }
+  .rb-otab td.rb-otab__status { white-space:normal; }
+  .rb-otab th.rb-otab__breed { width:34%; }
+  .rb-otab td.rb-otab__ref { max-width:none; }
+  .rb-otab__lang { display:table-cell; }
+  .rb-otab__klein--lang { display:block; }
+  .rb-otab__klein--kort { display:none; }
+  .rb-otab td.rb-otab__pijl { width:30px; padding-right:4px; }
+  .rb-otab td.rb-otab__acties { width:100px; padding-right:12px; }
+  .rb-otab__art { gap:12px; }
+  .rb-otab__klein .rb-ostat { font-size:var(--robey-text-11); }
+  .rb-apager { margin-top:18px; }
+  .rb-apager .rb-tb { height:36px; font-size:var(--robey-text-14); padding:0 14px; }
+  .rb-acties__knop { height:34px; font-size:var(--robey-text-13); padding:0 12px; }
+  .rb-gkaart { padding:20px 22px 22px; margin:0 0 16px; }
+  .rb-gkaart__kop { margin-bottom:14px; gap:16px; }
+  .rb-gkaart__kop h2 { font-size:var(--robey-text-16); }
+  .rb-gdl { grid-template-columns:repeat(3, minmax(0,1fr)); gap:16px 24px; }
+  .rb-gdl--breed { grid-template-columns:repeat(2, minmax(0,1fr)); }
+  .rb-gdl div { margin:0; }
+  .rb-gdl dt { margin-bottom:4px; }
+  .rb-gdl dd { line-height:1.55; }
+  /* orderdetail desktop */
+  .rb-terug { margin:0 0 14px; }
+  .rb-order__boven { display:flex; align-items:flex-start; justify-content:space-between; gap:24px; margin-bottom:26px; }
+  .rb-order__kop { gap:16px; margin-top:0; }
+  .rb-order__kop .rb-ostat { font-size:var(--robey-text-14); }
+  .rb-order__sub { font-size:var(--robey-text-14); }
+  .rb-order__knoppen { margin-top:0; gap:10px; flex-shrink:0; }
+  .rb-order__knoppen .rb-tb, .rb-order__knoppen .rb-tb--opnieuw { height:44px; padding:0 18px; font-size:var(--robey-text-14); font-weight:600; }
+  .rb-ometa { margin:0 0 34px; padding:20px 22px; gap:18px 28px; }
+  .rb-ometa dd { font-size:var(--robey-text-14); }
+  .rb-h2 { margin:0 0 12px; }
+  .rb-h2--facturen { margin:38px 0 4px; }
+  .rb-zendingen { gap:10px; }
+  .rb-zend { gap:14px; padding:14px 18px; }
+  .rb-zend__tt { display:inline; }
+  .rb-fact { margin-bottom:34px; }
+  .rb-fact__rij { font-size:var(--robey-text-15); }
+  .rb-order__artkop .rb-h2 { margin-bottom:4px; }
+  .rb-order__uitleg { margin-bottom:6px; }
+  .rb-wk--order { margin-top:20px; }
+  .rb-wk--order + .rb-wk--order { margin-top:28px; }
+  .rb-wk--order .rb-wk__rij { padding:14px; gap:10px; }
+  .rb-oc__kop { font-size:var(--robey-text-14); }
+  .rb-oc__st { padding:4px 6px; min-height:26px; }
+  .rb-oc__w { height:var(--robey-size-cell); line-height:var(--robey-size-cell); }
+  .rb-ko--order { margin-top:30px; padding:20px 24px; border-top-width:1px; }
+}

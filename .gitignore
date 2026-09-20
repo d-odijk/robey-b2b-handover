@@ -1,0 +1,4 @@
+# Het zipbestand is een momentopname voor wie alles los wil downloaden;
+# de site serveert de bestanden zelf, dus houd hem buiten de repo.
+*.zip
+.DS_Store

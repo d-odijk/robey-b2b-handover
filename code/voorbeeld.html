@@ -1,0 +1,56 @@
+<!doctype html><meta charset="utf-8"><title>Robey B2B - tokens and components</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="componenten.css">
+<style>
+  body { margin:0; padding:40px; font-family:var(--robey-font-text); font-size:var(--robey-text-15);
+         line-height:1.6; color:var(--robey-color-black); background:var(--robey-color-white); }
+  h1 { font-family:var(--robey-font-heading); font-size:var(--robey-text-30); line-height:36px; text-transform:uppercase;
+       letter-spacing:var(--robey-heading-tracking); margin:0 0 6px; }
+  h2 { font-size:var(--robey-text-11); font-weight:700; letter-spacing:var(--robey-label-tracking);
+       text-transform:uppercase; color:var(--robey-color-gray-6); margin:40px 0 12px; }
+  p.uit { color:var(--robey-color-gray-6); font-size:var(--robey-text-14); max-width:720px; margin:0 0 4px; }
+  .rij { display:flex; align-items:flex-start; gap:8px; margin-bottom:6px; }
+  .rij > span { width:230px; flex-shrink:0; font-size:var(--robey-text-13); color:var(--robey-color-gray-6); padding-top:14px; }
+  .robey-cell { width:105px; }
+  .strook { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:10px; }
+  .swatchrij { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:8px; }
+  .swatch { width:96px; }
+  .swatch i { display:block; height:44px; border-radius:var(--robey-radius-small); border:1px solid rgba(18,18,18,.1); }
+  .swatch b { display:block; font-size:var(--robey-text-12); font-weight:600; margin-top:5px; }
+  .swatch small { display:block; font-size:var(--robey-text-11); color:var(--robey-color-gray-6); }
+</style>
+<h1>Tokens and components</h1>
+<p class="uit">This page uses only <code>tokens.css</code> and <code>componenten.css</code>, without a single colour or size of its own.
+What you see here is what you get when you import those two files. The on-screen copy is Dutch, like the portal.</p>
+
+<h2>Colour</h2>
+<div class="swatchrij"><div class="swatch"><i style="background:#FFFFFF"></i><b>white</b><small>#FFFFFF</small></div><div class="swatch"><i style="background:#F3F3F3"></i><b>gray-1</b><small>#F3F3F3</small></div><div class="swatch"><i style="background:#E4E4E4"></i><b>gray-2</b><small>#E4E4E4</small></div><div class="swatch"><i style="background:#C4C4C4"></i><b>gray-3</b><small>#C4C4C4</small></div><div class="swatch"><i style="background:#B0B0B0"></i><b>gray-4</b><small>#B0B0B0</small></div><div class="swatch"><i style="background:#898989"></i><b>gray-5</b><small>#898989</small></div><div class="swatch"><i style="background:#5C5C5C"></i><b>gray-6</b><small>#5C5C5C</small></div><div class="swatch"><i style="background:#121212"></i><b>black</b><small>#121212</small></div><div class="swatch"><i style="background:#EDEDED"></i><b>searchbar</b><small>#EDEDED</small></div><div class="swatch"><i style="background:#E9E9E9"></i><b>block-hover</b><small>#E9E9E9</small></div><div class="swatch"><i style="background:#B58521"></i><b>gold</b><small>#B58521</small></div><div class="swatch"><i style="background:#9F751D"></i><b>gold-hover</b><small>#9F751D</small></div><div class="swatch"><i style="background:#D90606"></i><b>red</b><small>#D90606</small></div><div class="swatch"><i style="background:#46973A"></i><b>green</b><small>#46973A</small></div><div class="swatch"><i style="background:#E4FDE1"></i><b>green-tint</b><small>#E4FDE1</small></div><div class="swatch"><i style="background:#FD7E14"></i><b>orange</b><small>#FD7E14</small></div><div class="swatch"><i style="background:#FFEDDD"></i><b>orange-tint</b><small>#FFEDDD</small></div><div class="swatch"><i style="background:#1155CC"></i><b>blue</b><small>#1155CC</small></div><div class="swatch"><i style="background:#E3ECFB"></i><b>blue-tint</b><small>#E3ECFB</small></div><div class="swatch"><i style="background:#FFF4C2"></i><b>notice</b><small>#FFF4C2</small></div><div class="swatch"><i style="background:#F0DC8C"></i><b>notice-border</b><small>#F0DC8C</small></div></div>
+
+<h2>Size cell &mdash; all states</h2>
+<p class="uit">The line above the field says what the size does; the fill says whether anything has been ordered.</p>
+<div class="rij"><span>Stock</span><div class="robey-cell robey-cell--stock"><div class="robey-cell__head"><span>M</span><svg width="13" height="13" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#898989"/><rect x="10.8" y="9.8" width="2.4" height="8" rx="1.2" fill="#fff"/><circle cx="12" cy="6.6" r="1.5" fill="#fff"/></svg></div><div class="robey-cell__stock">(83)</div><input class="robey-cell__input" value="" placeholder="0"></div><div class="robey-cell robey-cell--stock is-filled"><div class="robey-cell__head"><span>L</span><svg width="13" height="13" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#898989"/><rect x="10.8" y="9.8" width="2.4" height="8" rx="1.2" fill="#fff"/><circle cx="12" cy="6.6" r="1.5" fill="#fff"/></svg></div><div class="robey-cell__stock">(46)</div><input class="robey-cell__input" value="12" placeholder="0"></div></div><div class="rij"><span>Size sold out, will be backordered</span><div class="robey-cell robey-cell--backorder"><div class="robey-cell__head"><span>XL</span><svg width="13" height="13" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#898989"/><rect x="10.8" y="9.8" width="2.4" height="8" rx="1.2" fill="#fff"/><circle cx="12" cy="6.6" r="1.5" fill="#fff"/></svg></div><div class="robey-cell__stock">(0)</div><input class="robey-cell__input" value="" placeholder="0"></div><div class="robey-cell robey-cell--backorder is-filled"><div class="robey-cell__head"><span>2XL</span><svg width="13" height="13" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#898989"/><rect x="10.8" y="9.8" width="2.4" height="8" rx="1.2" fill="#fff"/><circle cx="12" cy="6.6" r="1.5" fill="#fff"/></svg></div><div class="robey-cell__stock">(0)</div><input class="robey-cell__input" value="6" placeholder="0"></div></div><div class="rij"><span>Preorder</span><div class="robey-cell robey-cell--preorder"><div class="robey-cell__head"><span>M</span><svg width="13" height="13" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#898989"/><rect x="10.8" y="9.8" width="2.4" height="8" rx="1.2" fill="#fff"/><circle cx="12" cy="6.6" r="1.5" fill="#fff"/></svg></div><div class="robey-cell__stock">&nbsp;</div><input class="robey-cell__input" value="" placeholder="0"></div><div class="robey-cell robey-cell--preorder is-filled"><div class="robey-cell__head"><span>L</span><svg width="13" height="13" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#898989"/><rect x="10.8" y="9.8" width="2.4" height="8" rx="1.2" fill="#fff"/><circle cx="12" cy="6.6" r="1.5" fill="#fff"/></svg></div><div class="robey-cell__stock">&nbsp;</div><input class="robey-cell__input" value="24" placeholder="0"></div></div><div class="rij"><span>Size does not exist in this colour</span><div class="robey-cell robey-cell--unavailable"><div class="robey-cell__head"><span>4XL</span><svg width="13" height="13" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#898989"/><rect x="10.8" y="9.8" width="2.4" height="8" rx="1.2" fill="#fff"/><circle cx="12" cy="6.6" r="1.5" fill="#fff"/></svg></div><div class="robey-cell__stock">&nbsp;</div><input class="robey-cell__input" value="" placeholder="0"></div></div>
+
+<h2>Buttons</h2>
+<p class="uit">Gold is reserved for cart and checkout. A second gold button on a page is a mistake.</p>
+<div class="strook">
+  <a class="robey-button robey-button--gold">Afrekenen</a>
+  <a class="robey-button robey-button--black">Retour aanmelden</a>
+  <a class="robey-button robey-button--outline">Bekijk je retouren</a>
+</div>
+
+<h2>Price and label</h2>
+<div class="strook">
+  <span class="robey-price">&euro; 12,48 &ndash; &euro; 12,98</span>
+  <span class="robey-price robey-price--reduced">&euro; 5,79 &ndash; &euro; 5,99<span class="robey-price__old">&euro; 14,48 &ndash; &euro; 14,98</span></span>
+  <span class="robey-rrp">Adviesprijs &euro; 28,95</span>
+  <span style="position:relative; display:inline-block; width:90px; height:40px; background:var(--robey-color-gray-1);"><span class="robey-label">Nieuw 26/27</span></span>
+  <span style="position:relative; display:inline-block; width:70px; height:40px; background:var(--robey-color-gray-1);"><span class="robey-label robey-label--outlet">Outlet</span></span>
+</div>
+
+<h2>Order type</h2>
+<div class="strook">
+  <span class="robey-cart-label robey-cart-label--stock"><span class="robey-dot robey-dot--stock"></span>Voorraad</span>
+  <span class="robey-cart-label robey-cart-label--preorder"><span class="robey-dot robey-dot--preorder"></span>Voorverkoop</span>
+  <span style="font-size:var(--robey-text-13); color:var(--robey-color-gray-6);"><span class="robey-dot robey-dot--backorder"></span> 12 in nalevering</span>
+  <span class="robey-amount" style="font-size:var(--robey-text-20);">&euro; 3.837,08</span>
+</div>

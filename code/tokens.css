@@ -1,0 +1,75 @@
+/* Robey B2B - design tokens.
+   Generated from bouw-tokens.py; do not edit by hand.
+   Every value has been checked against the design artboards. */
+
+:root {
+  /* Colour */
+  --robey-color-white: #FFFFFF;  /* Background, cards, buttons */
+  --robey-color-gray-1: #F3F3F3;  /* Surfaces: personal blocks, card headers, matrix labels, filter chips, photo background */
+  --robey-color-gray-2: #E4E4E4;  /* Borders and dividers */
+  --robey-color-gray-3: #C4C4C4;  /* Borders of inputs and checkboxes, hover border of header buttons */
+  --robey-color-gray-4: #B0B0B0;  /* Placeholders, such as the 0 in an empty matrix cell */
+  --robey-color-gray-5: #898989;  /* Decorative gray: icons, struck-through prices */
+  --robey-color-gray-6: #5C5C5C;  /* Secondary text */
+  --robey-color-black: #121212;  /* Text, black bar, footer */
+  --robey-color-searchbar: #EDEDED;  /* Exception: lighter than gray-1 so the search bar does not read as a surface */
+  --robey-color-block-hover: #E9E9E9;  /* Exception: hover tint of the personal blocks */
+  --robey-color-gold: #B58521;  /* ONLY cart and checkout, plus link hover in panels */
+  --robey-color-gold-hover: #9F751D;  /* Hover of gold */
+  --robey-color-red: #D90606;  /* Reduced: price and Outlet label; the Outlet nav link */
+  --robey-color-green: #46973A;  /* Stock: indicator line, dot, label */
+  --robey-color-green-tint: #E4FDE1;  /* Filled cell from stock; cart label Stock */
+  --robey-color-orange: #FD7E14;  /* Size sold out, will be backordered: indicator line, dot */
+  --robey-color-orange-tint: #FFEDDD;  /* Cell of a size that is sold out, also when empty */
+  --robey-color-blue: #1155CC;  /* Preorder: indicator line, dot, counter */
+  --robey-color-blue-tint: #E3ECFB;  /* Filled preorder cell; cart label Preorder */
+  --robey-color-notice: #FFF4C2;  /* Notice that is not a status: free-shipping threshold, per-size maximum, preorder minimum (light yellow, deliberately outside the status colours) */
+  --robey-color-notice-border: #F0DC8C;  /* Border of a notice */
+
+  /* Radius */
+  --robey-radius-round: 999px;  /* Search bar, dots, swatches, category circles, counter badge, "+N" button */
+  --robey-radius-large: 10px;  /* Header buttons, dropdown panels, personal blocks, toggle, cost summary */
+  --robey-radius-cell: 5px;  /* Matrix cells, colour rows in the cart, shipment rows */
+  --robey-radius-small: 3px;  /* Filled text buttons, labels, size buttons, chips, checkboxes, notices */
+
+  /* Shadow */
+  --robey-shadow-bar: 0 2px 6px rgba(18,18,18,.1);  /* White bar (header), only after scrolling */
+  --robey-shadow-panel: 0 14px 30px -10px rgba(18,18,18,.28);  /* Dropdown panels: account, minicart, search */
+  --robey-shadow-mega: 0 18px 30px -22px rgba(18,18,18,.4);  /* Mega menu, with border-bottom gray-2 */
+  --robey-shadow-cell: 0 1px 2px rgba(0,0,0,.16);  /* Matrix cell */
+  --robey-shadow-button-active: 0 1px 2px rgba(0,0,0,.12);  /* Active button in the toggle */
+
+  /* Text size */
+  --robey-text-11: 11px;  /* Uppercase labels (700, letter-spacing .07em) and the stock line in a cell */
+  --robey-text-12: 12px;  /* Article number, RRP, meta */
+  --robey-text-13: 13px;  /* Links, chips, secondary lines */
+  --robey-text-14: 14px;  /* Tables, form labels, specifications */
+  --robey-text-15: 15px;  /* Base, line-height 1.6 */
+  --robey-text-16: 16px;  /* Price on the tile */
+  --robey-text-18: 18px;  /* Card header in the cart */
+  --robey-text-20: 20px;  /* Amount in a card header */
+  --robey-text-22: 22px;  /* Section heading, line-height 32 */
+  --robey-text-26: 26px;  /* Sub heading */
+  --robey-text-30: 30px;  /* Page heading, line-height 36 */
+  --robey-text-41: 41px;  /* Banner heading, line-height 48 */
+
+  /* Size */
+  --robey-size-wrap: 1320px;  /* Maximum content width (content 1240 with the gutters) */
+  --robey-size-wrap-gutter: 40px;  /* Side gutter of the content on desktop */
+  --robey-size-bar: 86px;  /* Height of the white bar */
+  --robey-size-button: 48px;  /* Search bar and header buttons */
+  --robey-size-navlink: 46px;  /* Height of a nav link */
+  --robey-size-cell: 45px;  /* Input field in a matrix cell */
+  --robey-size-cell-width: 105px;  /* Width of a matrix cell from 768 px */
+
+  /* Layer (z-index) */
+  --robey-layer-bar: 20;  /* White bar */
+  --robey-layer-search-panel: 26;  /* Must come out above the shadow of the bar */
+
+  /* Font */
+  --robey-font-heading: 'Univers Black', 'Arial Black', Helvetica, sans-serif;
+  --robey-font-text: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --robey-heading-tracking: -0.15px;
+  --robey-amount-tracking: -0.005em;
+  --robey-label-tracking: .07em;
+}

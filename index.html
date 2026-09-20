@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Robey B2B — design handover</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+  :root {
+    --grond:#FFFFFF; --vlak:#F3F3F3; --lijn:#E4E4E4; --lijn2:#C4C4C4;
+    --tekst:#121212; --tekst2:#5C5C5C; --tekst3:#898989; --goud:#B58521;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --grond:#121212; --vlak:#1C1C1C; --lijn:#2E2E2E; --lijn2:#444444; --tekst:#F3F3F3; --tekst2:#B0B0B0; --tekst3:#898989; --goud:#C9974A; }
+  }
+  :root[data-theme="dark"] { --grond:#121212; --vlak:#1C1C1C; --lijn:#2E2E2E; --lijn2:#444444; --tekst:#F3F3F3; --tekst2:#B0B0B0; --tekst3:#898989; --goud:#C9974A; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--grond); color:var(--tekst); font-family:'Inter','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:820px; margin:0 auto; padding:0 24px 80px; }
+  header { border-bottom:1px solid var(--lijn); margin-bottom:40px; }
+  header .wrap { padding-top:48px; padding-bottom:32px; }
+  .vlag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--goud); margin-bottom:10px; }
+  h1 { font-size:30px; line-height:36px; font-weight:800; letter-spacing:-0.4px; text-transform:uppercase; margin:0 0 8px; }
+  .sub { color:var(--tekst2); margin:0; max-width:60ch; }
+  h2 { font-size:11px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--tekst2); margin:44px 0 14px; }
+  p { margin:0 0 14px; max-width:68ch; }
+  a { color:inherit; }
+  .kaart { display:flex; gap:18px; align-items:flex-start; padding:20px 22px; border:1px solid var(--lijn); border-radius:10px; text-decoration:none; margin-bottom:10px; }
+  .kaart:hover { border-color:var(--lijn2); background:var(--vlak); }
+  .kaart .nr { flex-shrink:0; width:26px; height:26px; border-radius:999px; background:var(--vlak); color:var(--tekst2); font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+  .kaart b { display:block; font-size:16px; font-weight:700; margin-bottom:2px; }
+  .kaart span { display:block; color:var(--tekst2); font-size:14px; }
+  ul { margin:0 0 14px; padding-left:20px; max-width:68ch; }
+  li { margin:5px 0; }
+  li::marker { color:var(--tekst2); }
+  code { font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.88em; background:var(--vlak); border:1px solid var(--lijn); border-radius:3px; padding:1px 5px; }
+  kbd { font-family:inherit; font-size:12px; font-weight:700; border:1px solid var(--lijn2); border-bottom-width:2px; border-radius:4px; padding:1px 6px; }
+  .bestanden { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+  .bestanden a { font-size:13px; text-decoration:none; border:1px solid var(--lijn); border-radius:3px; padding:5px 10px; color:var(--tekst2); }
+  .bestanden a:hover { border-color:var(--lijn2); color:var(--tekst); }
+  footer { border-top:1px solid var(--lijn); margin-top:56px; padding-top:20px; color:var(--tekst3); font-size:13px; }
+</style>
+
+<header><div class="wrap">
+  <span class="vlag">Robey Sportswear · Shopify Plus headless</span>
+  <h1>B2B dealer portal — design handover</h1>
+  <p class="sub">The design of the new B2B portal: a clickable prototype, the tokens and base components, and the build dossier. This page always shows the latest version.</p>
+</div></header>
+
+<div class="wrap">
+
+  <h2>Start here</h2>
+
+  <a class="kaart" href="prototype-responsive.html">
+    <span class="nr">1</span>
+    <span><b>The prototype</b><span>All twenty-one screens, every breakpoint, clickable. Resize the window; press <kbd>B</kbd> for the screen list.</span></span>
+  </a>
+  <a class="kaart" href="dossier.html">
+    <span class="nr">2</span>
+    <span><b>The build dossier</b><span>Behaviour, models, breakpoints, canonical copy, data questions and open decisions.</span></span>
+  </a>
+  <a class="kaart" href="code/voorbeeld.html">
+    <span class="nr">3</span>
+    <span><b>Tokens and base components</b><span>Sample page proving the two stylesheets; import <code>tokens.css</code> and <code>componenten.css</code> as they are.</span></span>
+  </a>
+
+  <h2>Using the prototype</h2>
+  <ul>
+    <li>Resize the window: mobile (&lt; 768), tablet portrait (768–899), tablet landscape (900–1199) and desktop (≥ 1200) are one file. The indicator bottom-right names the breakpoint.</li>
+    <li>Everything that looks clickable works: menu, search, filters, colour swatches, the size matrix (type quantities), the cart, the account pages, the gallery view.</li>
+    <li>Quantities typed on a product page appear in the cart immediately; there is deliberately no "Add to cart" button.</li>
+    <li>Sample data, not authoritative. The on-screen copy is Dutch: the portal is for Dutch dealers, and the wording is part of the design.</li>
+  </ul>
+
+  <h2>Reading values</h2>
+  <p>The prototype is real HTML and CSS, so the browser inspector replaces a design tool's inspect panel: right-click, Inspect, and you get the real spacing, font sizes, colours and hover behaviour per breakpoint. Classes are named <code>rb-&lt;component&gt;__&lt;part&gt;</code> (glossary in the dossier) and the values refer to the tokens.</p>
+
+  <h2>Files</h2>
+  <div class="bestanden">
+    <a href="code/tokens.css">tokens.css</a>
+    <a href="code/tokens.json">tokens.json</a>
+    <a href="code/componenten.css">componenten.css</a>
+    <a href="code/prototype-styles.css">prototype-styles.css</a>
+    <a href="dossier-archief.html">Design history (archive)</a>
+    <a href="README.md">README</a>
+  </div>
+  <p>Adopt the values, the structure of each component, the behaviour and the copy. Do not adopt the prototype's own code: it is generated design code with a single DOM and embedded images; the portal gets components with props and data from the Storefront and Customer Account APIs.</p>
+
+  <footer>Questions: Dennis Odijk, Robey Sportswear.</footer>
+</div>
+</html>
