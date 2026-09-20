@@ -667,7 +667,6 @@ body.rb-lb-open { overflow:hidden; }
 .rb-wk__foto--link:hover img { opacity:.85; }
 .rb-wk__nul { margin:0; padding:12px 0 0; font-size:var(--robey-text-13); color:var(--robey-color-gray-6); line-height:1.5; }
 .rb-wk__nul[hidden] { display:none; }
-.rb-ko__knop.is-uit { background:var(--robey-color-gray-3); color:var(--robey-color-gray-6); pointer-events:none; }
 .rb-wk__rest { padding:12px 0 0; font-size:var(--robey-text-13); }
 .rb-wk__rest[hidden] { display:none; }
 .rb-wk__toonrest { color:var(--robey-color-gray-6); text-decoration:underline; text-underline-offset:3px; }
@@ -678,14 +677,12 @@ body.rb-lb-open { overflow:hidden; }
 .rb-ko__item { display:flex; justify-content:space-between; align-items:baseline; gap:12px; font-size:var(--robey-text-13); line-height:2; }
 .rb-ko__lbl { color:var(--robey-color-gray-6); }
 .rb-ko__val { font-weight:700; white-space:nowrap; }
-/* leverregel: lichtgeel meldinglabel (token melding, bewust geen statuskleur), geen icoon; alleen het bedrag vet */
-.rb-ko__lever { display:inline-flex; align-self:flex-start; align-items:center; padding:2px 8px; background:var(--robey-color-notice); border:1px solid var(--robey-color-notice-border); border-radius:var(--robey-radius-small); font-size:var(--robey-text-12); font-weight:400; color:var(--robey-color-black); line-height:1.5; margin:-3px 0 6px; }
+/* leverregel: wit label met grijze rand (20 september). Geel is gereserveerd voor meldingen die om een correctie vragen,
+   zoals de bovengrens per maat en het minimum in Voorverkoop; gratis levering is een kans, geen waarschuwing */
+.rb-ko__lever { display:inline-flex; align-self:flex-start; align-items:center; padding:2px 8px; background:var(--robey-color-white); border:1px solid var(--robey-color-gray-3); border-radius:var(--robey-radius-small); font-size:var(--robey-text-12); font-weight:400; color:var(--robey-color-black); line-height:1.5; margin:-3px 0 6px; }
 .rb-ko__lever[hidden] { display:none; }
-.rb-ko__lever b, .rb-ko__mintekst b { font-weight:700; }
-/* minimummelding voorverkoop: onder de knop Afrekenen, zodat de knop niet opzij geduwd wordt (20 september) */
-.rb-ko__min { display:flex; justify-content:flex-end; margin-top:10px; }
-.rb-ko__min[hidden] { display:none; }
-.rb-ko__mintekst { display:inline-block; padding:2px 8px; background:var(--robey-color-notice); border:1px solid var(--robey-color-notice-border); border-radius:var(--robey-radius-small); font-size:var(--robey-text-12); line-height:1.5; color:var(--robey-color-black); }
+.rb-ko__lever b { font-weight:700; }
+
 .rb-ko__item--totaal { margin-top:6px; padding-top:10px; border-top:1px solid var(--robey-color-gray-3); font-weight:800; }
 .rb-ko__item--totaal .rb-ko__lbl { color:var(--robey-color-black); font-size:var(--robey-text-15); font-weight:800; }
 .rb-ko__item--totaal .rb-ko__val { font-size:var(--robey-text-18); font-weight:800; }
@@ -1445,7 +1442,6 @@ body.rb-lb-open { overflow:hidden; }
   .rb-ko__item--totaal .rb-ko__lbl { font-size:var(--robey-text-12); font-weight:400; color:var(--robey-color-gray-6); }
   .rb-ko__item--totaal .rb-ko__val { font-size:var(--robey-text-20); }
   .rb-ko__knop { width:auto; min-width:170px; margin:0; height:46px; }
-  .rb-ko__min { flex:0 0 100%; order:2; margin:0; }   /* eigen regel onder de knop */
 }
 @media (min-width: 1340px) {
   /* productpagina volgens schets D: vijf cellen van 105 per rij (150 + 5 x 105 + 4 x 6 + 180 = 879), de fotokolom krijgt wat overblijft */
@@ -1794,7 +1790,7 @@ body.rb-lb-open { overflow:hidden; }
       <div class="rb-ko__lever" hidden><span class="rb-ko__levertekst">Nog <b>&euro; 0,00</b> tot gratis levering</span></div>
       </div>
       </div>
-      <div class="rb-ko__eind"><div class="rb-ko__item rb-ko__item--totaal"><span class="rb-ko__lbl">Totaal stuks</span><span class="rb-ko__val rb-ko__stuks">0</span></div><div class="rb-ko__item rb-ko__item--totaal"><span class="rb-ko__lbl">Totaal excl. btw</span><span class="rb-ko__val rb-ko__totaal">&euro; 0,00</span></div><a href="#" class="robey-button robey-button--gold rb-ko__knop">Afrekenen</a><div class="rb-ko__min" hidden><span class="rb-ko__mintekst"><b>1 kleur</b> haalt het minimum van 15 stuks niet</span></div></div>
+      <div class="rb-ko__eind"><div class="rb-ko__item rb-ko__item--totaal"><span class="rb-ko__lbl">Totaal stuks</span><span class="rb-ko__val rb-ko__stuks">0</span></div><div class="rb-ko__item rb-ko__item--totaal"><span class="rb-ko__lbl">Totaal excl. btw</span><span class="rb-ko__val rb-ko__totaal">&euro; 0,00</span></div><a href="#" class="robey-button robey-button--gold rb-ko__knop">Afrekenen</a></div>
     </div>
   </section>
   <section class="rb-wagen" data-modus="voorverkoop">
@@ -1816,7 +1812,7 @@ body.rb-lb-open { overflow:hidden; }
       <div class="rb-ko__lever" hidden><span class="rb-ko__levertekst">Nog <b>&euro; 0,00</b> tot gratis levering</span></div>
       </div>
       </div>
-      <div class="rb-ko__eind"><div class="rb-ko__item rb-ko__item--totaal"><span class="rb-ko__lbl">Totaal stuks</span><span class="rb-ko__val rb-ko__stuks">0</span></div><div class="rb-ko__item rb-ko__item--totaal"><span class="rb-ko__lbl">Totaal excl. btw</span><span class="rb-ko__val rb-ko__totaal">&euro; 0,00</span></div><a href="#" class="robey-button robey-button--gold rb-ko__knop">Afrekenen</a><div class="rb-ko__min" hidden><span class="rb-ko__mintekst"><b>1 kleur</b> haalt het minimum van 15 stuks niet</span></div></div>
+      <div class="rb-ko__eind"><div class="rb-ko__item rb-ko__item--totaal"><span class="rb-ko__lbl">Totaal stuks</span><span class="rb-ko__val rb-ko__stuks">0</span></div><div class="rb-ko__item rb-ko__item--totaal"><span class="rb-ko__lbl">Totaal excl. btw</span><span class="rb-ko__val rb-ko__totaal">&euro; 0,00</span></div><a href="#" class="robey-button robey-button--gold rb-ko__knop">Afrekenen</a></div>
     </div>
   </section>
 </div>
@@ -2019,7 +2015,7 @@ function spiegel(v) {
   });
 }
 function herbereken() {
-  var tot = { voorraad: { n: 0, b: 0, a: 0, na: 0, onder: 0 }, voorverkoop: { n: 0, b: 0, a: 0, na: 0, onder: 0 } };
+  var tot = { voorraad: { n: 0, b: 0, a: 0, na: 0 }, voorverkoop: { n: 0, b: 0, a: 0, na: 0 } };
   document.querySelectorAll('.rb-wagen .rb-wk').forEach(function (k) {
     var m = k.dataset.modus, kn = 0, kb = 0, rest = 0;
     k.querySelectorAll('.rb-wk__rij').forEach(function (rij) {
@@ -2028,7 +2024,7 @@ function herbereken() {
       rij.querySelector('.rb-wk__rijaantal').textContent = n; rij.querySelector('.rb-wk__rijprijs').innerHTML = geld(n * p);
       rij.querySelector('.rb-wk__rijtel').textContent = n + (n === 1 ? ' stuk' : ' stuks'); rij.querySelector('.rb-wk__rijbedrag').innerHTML = geld(n * p); rij.querySelector('.rb-wk__chips').innerHTML = chips;
       rij.classList.toggle('is-leeg', n === 0); if (n === 0) rest++; if (n > 0) tot[m].a++;
-      var onder = m === 'voorverkoop' && n > 0 && n < MINIMUM_VV; minRegel(rij.querySelector('.rb-wk__cellen'), onder ? n : 0); if (onder) tot[m].onder++;
+      minRegel(rij.querySelector('.rb-wk__cellen'), m === 'voorverkoop' ? n : 0);   /* de melding staat alleen bij de kleurrij; het kostenoverzicht blokkeert niets (20 september) */
       kn += n; kb += n * p;
     });
     k.querySelector('.rb-wk__aantal').textContent = kn; k.querySelector('.rb-wk__bedrag').innerHTML = geld(kn * parseFloat(k.querySelector('.rb-wk__rij').dataset.prijs));
@@ -2045,9 +2041,6 @@ function herbereken() {
     ko.querySelector('.rb-ko__stuks').textContent = t.n;
     ko.querySelector('.rb-ko__verzend').innerHTML = verzend ? geld(verzend) : 'Gratis';
     var lever = ko.querySelector('.rb-ko__lever'); lever.hidden = t.n === 0 || netto >= 150; lever.querySelector('.rb-ko__levertekst').innerHTML = 'Nog <b>' + geld(150 - netto) + '</b> tot gratis levering';
-    var mn = ko.querySelector('.rb-ko__min'); mn.hidden = !t.onder;
-    mn.querySelector('.rb-ko__mintekst').innerHTML = '<b>' + t.onder + (t.onder === 1 ? ' kleur' : ' kleuren') + '</b> ' + (t.onder === 1 ? 'haalt' : 'halen') + ' het minimum van ' + MINIMUM_VV + ' stuks niet';
-    ko.querySelector('.rb-ko__knop').classList.toggle('is-uit', t.onder > 0);
     ko.querySelector('.rb-ko__subtotaal').innerHTML = geld(t.b); ko.querySelector('.rb-ko__korting').innerHTML = '− ' + geld(korting); ko.querySelector('.rb-ko__totaal').innerHTML = geld(netto + verzend);
     w.querySelector('.rb-wagen__wissel').hidden = !beide;
     w.querySelector('.rb-cart__tools').style.visibility = t.n ? '' : 'hidden';
