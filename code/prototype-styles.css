@@ -235,9 +235,9 @@ img { display:block; max-width:100%; }
    <1200: compacte balk met hamburger en een eigen zoekrij (76px mobiel, 72px tablet)
    1200+: volle balk van 86px, inhoud in de wrap van 1320, hoverpanelen
    De balk met navlinks past niet smaller dan 1200. Gerekend met de echte maten: 40 marge + 36 logo + 298 navlinks
-   + 262 knoppen + 3 x 56 tussenruimte + 40 marge laat 352 over voor de zoekbalk, en dat is precies het minimum
-   waarbij 'Zoek op product of artikelnummer' nog heel in beeld staat (28 links + 242 tekst + 28 + 20 icoon + 20 rechts).
-   Samen 1196. Daaronder dus de hamburgerbalk; een tussenvariant met een kleiner logo is bewust geschrapt
+   + 262 knoppen + 3 x 56 tussenruimte + 40 marge laat 322 over voor de zoekbalk, en dat is precies het minimum
+   waarbij 'Zoek op product of artikelnummer' nog heel in beeld staat (28 links + 226 tekst + 28 + 20 icoon + 20 rechts).
+   Samen 1166. Daaronder dus de hamburgerbalk; een tussenvariant met een kleiner logo is bewust geschrapt
    (besluit Dennis, 20 september). */
 .rb-header { background:var(--robey-color-white); position:sticky; top:0; z-index:var(--robey-layer-bar); transition:transform .22s ease, box-shadow .22s ease; }
 body.rb-kop-weg .rb-header { transform:translateY(-100%); }
