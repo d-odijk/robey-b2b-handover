@@ -43,7 +43,8 @@
    Bottom-left on the photo. Black is a season label, red is outlet.
    No gold: that belongs to the cart. */
 .robey-label { position: absolute; left: 10px; bottom: 10px; font-size: var(--robey-text-11);
-  font-weight: 700; padding: 3px 8px; background: var(--robey-color-black); color: var(--robey-color-white); }
+  font-weight: 700; padding: 3px 8px; border-radius: var(--robey-radius-small);
+  background: var(--robey-color-black); color: var(--robey-color-white); }
 .robey-label--outlet { background: var(--robey-color-red); }
 
 /* ---------------------------------------------------------------- price
