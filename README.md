@@ -1,4 +1,4 @@
-# Robey B2B dealer portal: design handover
+# Robey B2B portal: design handover
 
 **Everything is online at <https://d-odijk.github.io/robey-b2b-handover/>: the prototype, the dossier and the token files, always the latest version.** This repository holds the same files for offline use.
 
