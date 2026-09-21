@@ -1,5 +1,7 @@
 # Robey B2B dealer portal: design handover
 
+**Everything is online at <https://d-odijk.github.io/robey-b2b-handover/>: the prototype, the dossier and the token files, always the latest version.** This repository holds the same files for offline use.
+
 This package contains the design of the new Robey B2B portal (headless on Shopify Plus with B2B). Three things are authoritative, in this order.
 
 ## 1. The prototype: `prototype-responsive.html`
