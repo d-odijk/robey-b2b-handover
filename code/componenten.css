@@ -40,8 +40,10 @@
 .robey-button--outline:hover { border-color: var(--robey-color-black); }
 
 /* ---------------------------------------------------------------- labels
-   Bottom-left on the photo. Black is a season label, red is outlet.
-   No gold: that belongs to the cart. */
+   One label per photo, filled, bottom-left. Black is the neutral season
+   label, red is outlet. A new label keeps that shape: a filled background
+   with text at 4.5:1 or more, and never gold, which belongs to the cart.
+   The photo background is gray-1, so a light fill disappears. */
 .robey-label { position: absolute; left: 10px; bottom: 10px; font-size: var(--robey-text-11);
   font-weight: 700; padding: 3px 8px; border-radius: var(--robey-radius-small);
   background: var(--robey-color-black); color: var(--robey-color-white); }
