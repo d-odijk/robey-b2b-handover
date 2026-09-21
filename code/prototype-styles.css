@@ -835,7 +835,6 @@ body.rb-lb-open { overflow:hidden; }
 .rb-fact .rb-pdf { grid-area:pdf; justify-self:end; }
 .rb-order__artkop { display:flex; align-items:baseline; justify-content:space-between; gap:20px; }
 .rb-order__artkop .rb-h2 { margin-bottom:2px; }
-.rb-order__weergave { display:none; }
 .rb-wk--order .rb-wk__kop { padding-top:0; }
 .rb-wk__ostatus { display:block; font-size:var(--robey-text-12); font-weight:600; line-height:1.5; }
 .rb-wk__ostatus--geleverd { color:var(--robey-color-green); }
@@ -1062,8 +1061,6 @@ body.rb-lb-open { overflow:hidden; }
   .rb-fact__nr { min-width:96px; }
   .rb-fact__datum { min-width:104px; }
   .rb-fact__oms { flex:1; min-width:0; }
-  .rb-order__weergave { display:inline; font-size:var(--robey-text-13); color:var(--robey-color-gray-6); }
-  .rb-order__weergave b { color:var(--robey-color-black); font-weight:600; }
   .rb-wk--order { margin-top:18px; }
   .rb-wk--order .rb-wk__kop { padding-top:16px; }
   .rb-wk__ostatus { display:none; }
