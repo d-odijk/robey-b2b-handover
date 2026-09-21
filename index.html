@@ -38,6 +38,10 @@
   .bestanden { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
   .bestanden a { font-size:13px; text-decoration:none; border:1px solid var(--lijn); border-radius:3px; padding:5px 10px; color:var(--tekst2); }
   .bestanden a:hover { border-color:var(--lijn2); color:var(--tekst); }
+  .wijzig { font-size:14px; }
+  .wijzig .datum { font-weight:700; font-size:13px; margin:18px 0 6px; }
+  .wijzig ul { margin:0; }
+  .wijzig li { color:var(--tekst2); }
   footer { border-top:1px solid var(--lijn); margin-top:56px; padding-top:20px; color:var(--tekst3); font-size:13px; }
 </style>
 
@@ -85,6 +89,11 @@
     <a href="README.md">README</a>
   </div>
   <p>Adopt the values, the structure of each component, the behaviour and the copy. Do not adopt the prototype's own code: it is generated design code with a single DOM and embedded images; the portal gets components with props and data from the Storefront and Customer Account APIs.</p>
+
+
+  <h2>Recent changes</h2>
+  <p>So you can see whether anything moved since you last read it. The prototype and the dossier always show the latest version.</p>
+  <div class="wijzig"><p class="datum">21 September 2026</p><ul><li>A size still to come says "volgt ± wk 38" in the cell, and the shipment row "verwacht ± week 38". The ± marks it as an estimate.</li><li>The view switch "Weergave: Matrix · Lijst" is gone from the order detail and the draft order detail: the list view is not designed yet.</li><li>Photo labels ("Nieuw 26/27", "Outlet") get the 3 px radius that the token already prescribed.</li><li>An empty colour row no longer shows in the cart. The first row of every card used to stay visible even at zero.</li><li>The full header now starts at 900 px instead of 1200: nav links in the bar, search row underneath, panels on tap. The black bar carries its links from 900 and is 36 px at every width.</li></ul><p class="datum">20 September 2026</p><ul><li>The Components chapter has one shape per component: class name, a Build table, a Behaviour list.</li><li>The free-shipping label in the cost summary is gray-2, and the summary has a third line "Na korting" with the amount the € 150 threshold counts.</li><li>The parked screens Retourneren and Klantenservice are out of the prototype; their code sits in <code>geparkeerd-retour-service.py</code>.</li></ul></div>
 
   <footer>Questions: Dennis Odijk, Robey Sportswear.</footer>
 </div>
